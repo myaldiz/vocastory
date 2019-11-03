@@ -1,0 +1,244 @@
+body,html
+{
+    min-width: 960px;
+}
+
+.page
+{
+
+    
+    padding: 0 0 0 20vw;
+    margin: 0 310px 0 0 ;
+    border:0;
+    overflow-y: auto;
+
+
+}
+
+
+.top-half
+{
+    
+    background: white;
+    height: 60vh;
+    margin-top: 10px;
+    padding:15px;
+    border-radius: 25px;
+    border-color: rgb(228, 228, 228);
+    position:fixed;
+    width:60vw;
+    top:70px;
+    right:330px;
+    z-index: 150;
+    overflow: auto;
+ 
+}
+
+
+.top-half:hover
+{
+
+    background: rgb(240, 240, 240);
+
+}
+
+.bottom-half:hover
+{
+    background: rgb(240, 240, 240);
+
+
+}
+
+
+.top-half-browse:hover
+{
+    background: rgb(240, 240, 240);
+}
+
+
+.topbar:hover
+{
+    background: rgb(255, 245, 152);
+}
+
+
+.sidebar:hover
+{
+    background: rgb(240, 240, 240);
+}
+
+.top-half-browse
+{
+    
+    background: white;
+    height: 100vh;
+    margin-top: 10px;
+    padding: 80px 0 0px 0vw;
+    border-radius: 25px;
+    border-color: rgb(99, 87, 87);
+    border-style: solid;
+    
+}
+
+.bottom-half
+{
+    
+    background: rgb(255, 255, 255);
+    height: 27vh;
+    margin-top: 10px;
+    border-radius: 25px;
+    border-color:  rgb(139, 53, 53);
+    position:fixed;
+    width:60vw;
+    top:calc(60vh + 80px);
+    right:330px;
+    
+
+}
+
+.topbar
+{
+
+    height:70px;
+    width:100%;
+    min-width: 1200px;
+    padding:0 350px 0 20vw;
+    background: rgb(255, 246, 205);
+    position: fixed;
+    z-index: 50;
+    top:0;
+
+}
+
+
+.sidebar
+{
+    width:300px;
+    background: white;
+    height: 100vh;
+    position: fixed;
+    right:0;
+    top:0;
+    z-index: 100;
+ 
+}
+
+.btn
+{
+    border-radius: 30px;
+    
+}
+
+
+#avatar:hover
+{
+    filter: brightness(50%);
+}
+
+.browse-card
+{
+    background: yellow;
+    width: 48%;
+    margin:1%;
+   
+}
+
+
+
+
+
+
+.image-card
+{
+    height: 85px;
+    width:auto;
+    margin:1px;
+
+}
+
+.sentence
+{
+    touch-action: none;
+    user-select: none;
+}
+
+
+
+
+.image-icon
+{
+
+    height: 70px;
+    width:70px;
+    margin-top:0px;
+
+}
+
+
+.image-icon:hover
+{
+    filter:brightness(50%)
+}
+
+
+
+.image-card:hover
+{
+    filter: brightness(50%);
+}
+
+.card-title:hover
+{
+    text-decoration: underline;
+}
+
+.browse-card
+{
+    border-radius: 25px;
+    text-align: center;
+    background: white;
+    height: 100%;
+
+    
+}
+
+
+.card-group
+{
+padding:0 20px 0 20px;
+height: 30vh;
+
+}
+
+
+
+.btns
+{
+    border-radius: 0px;
+}
+
+#friends-card
+{
+    overflow:hidden;
+}
+
+
+
+.go-bar
+{
+    background: red;
+    height: 60vh;
+    margin-top: 10px;
+    padding-top:10px;
+    
+    border-radius: 25px;
+    border-color: rgb(228, 228, 228);
+    position:fixed;
+    width:calc(30vw - 5px);
+    top:70px;
+
+    z-index: 150;
+    overflow: auto;
+}
+
+

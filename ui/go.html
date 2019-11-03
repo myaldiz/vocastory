@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="javascript.js"></script>
+
+
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+    <div class="topbar col-md-12 shadow-sm mb5">
+        <form class="form-inline sm-form float-right" style="margin:15px">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search word sets" aria-label="Search">
+            <button class="btn btn-primary" type="submit">Search</button>
+            <button class="btn btn-primary"
+                style="margin:0 0 0 10px;background:yellow;color: black;border-color: yellow;"
+                type="Search">Browse</button>
+        </form>
+
+        <img src="./imgs/logo-text.png" style="max-width: 200px;margin-top:15px;" alt="" id="vocastory">
+
+
+
+
+
+    </div>
+    <div class="page"></div>
+
+
+
+    <div class="sidebar shadow p-0 mb-0">
+
+        <div class="row">
+            <img src="./imgs/avatar.jpg" class="shadow p-0 mb-4  rounded-circle mx-auto d-block"
+                style="max-height: 200px;width:200px ;margin-top:10px;" alt="" id="avatar">
+        </div>
+
+
+        <div class="shadow-sm card browse-card"
+            style="padding:0 0 0 10px;border-radius:50px;background:white;margin:-20px 10px 10px 10px;padding:15px 30px 10px 30px;;height:10vh;width:90%"
+            id="friends-card">
+            <div class="row">
+                <img src="./imgs/heart-icon.png" class="image-icon p-0 mb-0   mx-auto d-block" alt="">
+                <img src="./imgs/shield-icon.png" class="image-icon p-0 mb-0  mx-auto d-block" alt="">
+                <img src="./imgs/comment-icon.png" class="image-icon p-0 mb-0  mx-auto d-block" alt="">
+            </div>
+
+
+        </div>
+
+        <div class="shadow-sm card browse-card"
+            style="padding:0 0 0 10px;border-radius:50px;background:white;margin:0 10px 10px 10px;padding:10px 30px 10px 30px;;height:62vh;width:90%;overflow:auto;"
+            id="friends-card">
+            <div class="row">
+                <a href="#" class="btn btn-primary w-100" style="margin:5px;">Friends list</a>
+            </div>
+            <div class="row">
+                <img src="./imgs/1.jpg" class="image-card shadow p-0 mb-0  rounded-circle mx-auto d-block" alt="">
+                <img src="./imgs/1.jpg" class="image-card shadow p-0 mb-0  rounded-circle mx-auto d-block" alt="">
+
+                <img src="./imgs/1.jpg" class="image-card shadow p-0 mb-0  rounded-circle mx-auto d-block" alt="">
+                <img src="./imgs/1.jpg" class=" image-card shadow p-0 mb-0 rounded-circle mx-auto d-block" alt="">
+
+                <img src="./imgs/1.jpg" class="image-card shadow p-0 mb-0  rounded-circle mx-auto d-block" alt="">
+                <img src="./imgs/1.jpg" class="image-card shadow p-0 mb-0  rounded-circle mx-auto d-block" alt="">
+
+                <img src="./imgs/1.jpg" class="image-card shadow p-0 mb-0  rounded-circle mx-auto d-block" alt="">
+                <img src="./imgs/1.jpg" class=" image-card shadow p-0 mb-0 rounded-circle mx-auto d-block" alt="">
+
+                <img src="./imgs/1.jpg" class="image-card shadow p-0 mb-0  rounded-circle mx-auto d-block" alt="">
+                <img src="./imgs/1.jpg" class="image-card shadow p-0 mb-0  rounded-circle mx-auto d-block" alt="">
+
+                <img src="./imgs/1.jpg" class="image-card shadow p-0 mb-0  rounded-circle mx-auto d-block" alt="">
+                <img src="./imgs/1.jpg" class=" image-card shadow p-0 mb-0 rounded-circle mx-auto d-block" alt="">
+
+                <img src="./imgs/1.jpg" class="image-card shadow p-0 mb-0  rounded-circle mx-auto d-block" alt="">
+                <img src="./imgs/1.jpg" class="image-card shadow p-0 mb-0  rounded-circle mx-auto d-block" alt="">
+
+                <img src="./imgs/1.jpg" class="image-card shadow p-0 mb-0  rounded-circle mx-auto d-block" alt="">
+                <img src="./imgs/1.jpg" class=" image-card shadow p-0 mb-0 rounded-circle mx-auto d-block" alt="">
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+    </div>
+
+
+    <div class="page">
+        <div class="go-bar" style="right:330px">
+            <div class="col-md-6">
+                <img src="./imgs/avatar.jpg" class="shadow p-0 mb-4  rounded-circle mx-auto d-block"
+                    style="max-height: 200px;width:200px;" alt="" id="avatar">
+            </div>
+        </div>
+
+        <div class="go-bar" style="right:calc(335px + 30vw)">
+            <div class="row" style="padding-left:10%;padding-right:10%">
+                <div class="col-sm-6">
+                    <img src="./imgs/avatar.jpg" class="shadow p-0 mb-4  rounded-circle mx-auto d-block"
+                        style="height: 250px;width:250px;" alt="" id="avatar">
+                </div>
+                <div class="col-sm-6">
+                    <img src="./imgs/avatar.jpg" class="shadow p-0 mb-4  rounded-circle mx-auto d-block"
+                        style="height: 250px;width:250px" alt="" id="avatar">
+                </div>
+            </div>
+            <div class="row">
+
+                <img src="./imgs/avatar.jpg" class="shadow p-0 mb-4  rounded-circle mx-auto d-block"
+                    style="z-index:10;height: 150px;width:150px;padding-left:calc(50% - 100px);padding-right:5%;margin-top:-20%"
+                    alt="" id="avatar">
+
+                <img src="./imgs/plus.png" class="shadow p-0 mb-4  rounded-circle mx-auto d-block"
+                    style="z-index:10;height: 150px;width:150px;padding-left:calc(50% - 100px);padding-right:5%;margin-top:-20%"
+                    alt="" id="avatar">
+
+            </div>
+
+
+            <div class="row" style="padding:5%">
+                <a href="#" class="btn btn-primary " style="padding:5px;width:100%">Friends list</a>
+            </div>
+        </div>
+        <div class="bottom-half shadow p-0 mb-0">
+            <div class="row">
+                <div class="col-md-12">
+                    kkk
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+
+
+
+</body>
+
+</html>

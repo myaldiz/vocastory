@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="javascript.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/RubaXa/Sortable/Sortable.min.js"></script>
+
+</head>
+
+<body>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col">
+                <div class="jumbotron">
+                    <h1>Drag and Drop items for Bootstrap 4 - Advanced Components</h1>
+                    <p class="lead">by djibe.</p>
+                    <p class="text-muted">(thx to BS4 + Daemonite Material Design + Sortable.js)</p>
+                    <p>
+                        Plugin for BS4 to be able to drag and drop elements with the screen. <a
+                            href="https://github.com/RubaXa/Sortable" target="_blank">Sortable.js</a> does all the job
+                        without jQuery.
+                    </p>
+                    <h2>
+                        Tutorial
+                    </h2>
+                    <ol>
+                        <li>Add this lines to your html, below boostrap.bundle.js<br>
+                            <code>&lt;script src="https://cdn.jsdelivr.net/gh/RubaXa/Sortable/Sortable.min.js"></code>
+                        </li>
+                        <li>
+                            Initialize Sortable<br>
+                            <code>
+                      Sortable.create(demo1, {
+          animation: 100,
+          group: 'list-1',
+          draggable: '.list-group-item',
+          handle: '.list-group-item',
+          sort: true,
+          filter: '.sortable-disabled',
+          chosenClass: 'active'
+        });
+                    </code>
+                        </li>
+                        <li><a href="https://github.com/RubaXa/Sortable" target="_blank">Read full documentation</a>
+                        </li>
+                    </ol>
+                    <h2>
+                        Demo
+                    </h2>
+                    <p>
+                        Try to drag and drop items within lists or between lists.
+                    </p>
+                    <ul class="list-group" id="demo1">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+                    <ul class="list-group mt-4" id="demo2">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
