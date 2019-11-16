@@ -9,6 +9,7 @@ class Word(models.Model):
     def __str__(self):
         return self.text
 
+
 class WordSet(models.Model):
     title = models.CharField(max_length=50)
     creation_date = models.DateTimeField('date created')
@@ -16,6 +17,20 @@ class WordSet(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Story(models.Model):
+    completed = models.BooleanField(default=False)
+    start_date = models.DateTimeField('date started')
+    creation_date = models.DateTimeField('date created')
+    word_set = models.ForeignKey(WordSet, on_delete=models.CASCADE)
+
+    def process_story_text(self):
+        """
+        :return: string of the story written so far
+        """
+        # self.sentence_set.all()
+        pass
 
 
 class Sentence(models.Model):
@@ -29,27 +44,18 @@ class Sentence(models.Model):
     # Is this sentence selected as part of the story
     is_selected = models.BooleanField(default=False)
 
+    story = models.ForeignKey(Story, on_delete=models.CASCADE)
+
 
     def process_used_words(self):
         """
         This method checks the used words in the sentence
         :return:
         """
+        # self.story.word_set.all()
         pass
 
     def __str__(self):
         return self.text
 
 
-class Story(models.Model):
-    completed = models.BooleanField(default=False)
-    start_date = models.DateTimeField('date started')
-    creation_date = models.DateTimeField('date created')
-    word_set = models.ForeignKey(WordSet, on_delete=models.CASCADE)
-    sentences = models.ManyToManyField(Sentence)
-
-    def process_story_text(self):
-        """
-        :return: string of the story written so far
-        """
-        pass
