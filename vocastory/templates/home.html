@@ -1,0 +1,32 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <article>
+        {% if user.is_authenticated %}
+            <h2>UserMenu</h2>
+            <p>Hi {{ user.username }}! Here are the possible options to navigate:</p>
+            <ul>
+                <li>
+                    <a href='writers_mode'> Writer's Mode</a>
+                </li>
+
+                <li>
+                    <a href='writers_mode'> Reader's Mode</a>
+                </li>
+            </ul>
+        {% else %}
+          <p>You are not logged in, here are the possible options to navigate:</p>
+            <ul>
+
+                <li>
+                    <a href='browse_mode'> Browse Stories</a>
+                </li>
+            </ul>
+
+
+        {% endif %}
+    </article>
+{% endblock %}

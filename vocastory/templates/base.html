@@ -1,0 +1,41 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html>
+<h1>
+    Vocastory
+</h1>
+
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Base.html{% endblock %}</title>
+</head>
+
+
+<p style="text-align: left">
+    <a href="/"> Home </a>
+    &nbsp;
+    <a href='browse_mode'> Browse Stories</a>
+
+    <span style="float:right;">
+    {% if user.is_authenticated %}
+        <strong> {{ user.username }} </strong>
+        <a href="{% url 'logout' %}">logout</a>
+
+    {% else %}
+        <a href="{% url 'login' %}"> Login</a>
+        <a href="{% url 'login' %}"> Sign up</a>
+    </span>
+{% endif %}
+
+</p>
+
+
+<hr>
+
+<body>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>

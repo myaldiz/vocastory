@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Word-Lists{% endblock %}
+
+{% block content %}
+    <p>
+    Here is the Word-Sets, and the words they contain:
+    </p>
+    {% if word_sets %}
+        <ul>
+        {% for word_set in word_sets %}
+            <li>
+                <a href="/browse_mode/{{ word_set.id }}/">
+                    {{ word_set.title }}:
+                </a>
+            <ul>
+
+                {% for word in word_set.words.all %}
+                    <li>
+                        {{ word.text }}
+                    </li>
+                {% endfor %}
+            </ul>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p> No Word-Set is available </p>
+    {% endif %}
+{% endblock %}

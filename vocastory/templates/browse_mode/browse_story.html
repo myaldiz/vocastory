@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Browse Stories{% endblock %}
+
+{% block content %}
+    <p>
+    Here is the {{ word_set.title }}, and the words it contain:
+        <ul>
+        {% for word in word_set.words.all %}
+            <li>
+                {{ word.text }}
+            </li>
+        {% endfor %}
+        </ul>
+    </p>
+
+
+    <p>
+        {% if story_list|length != 0 %}
+        Here are the stories created by that word_set:
+            <ul>
+            {% for story in story_list %}
+                <li>
+                {{ story.id }}
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+        No stories to show.
+        {% endif %}
+    </p>
+
+{% endblock %}
