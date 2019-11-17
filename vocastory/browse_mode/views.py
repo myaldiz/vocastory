@@ -17,16 +17,7 @@ def browse_story_list(request, wordset_id):
         story_list = word_set.story_set.all()
         context = {'word_set': word_set, 'story_list': story_list}
 
-    except Sentence.DoesNotExist:
+    except WordSet.DoesNotExist:
         raise Http404("Sentence does not exists!!")
 
     return render(request, 'browse_mode/browse_story.html', context)
-
-
-def read_story(request, story_id):
-    response = "You're looking at the results of sentence %s."
-    return HttpResponse(response % story_id)
-
-
-def write_story(request, story_id):
-    return HttpResponse("You're voting on sentence %s." % story_id)

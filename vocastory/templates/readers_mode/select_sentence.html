@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Select Sentence{% endblock %}
+
+{% block content %}
+    <h3>
+    {{ story.title }}
+    </h3>
+
+    <p>
+        Here is the last two sentences:<br>
+        {{ story_last_two }}
+    </p>
+
+    <p>
+        Here is the possible sentences to continue:<br>
+    </p>
+
+{% endblock %}

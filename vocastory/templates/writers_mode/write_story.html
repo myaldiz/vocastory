@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Write Story{% endblock %}
+
+{% block content %}
+    <h3>
+    {{ story.title }}
+    </h3>
+
+    <p>
+        Here is the last two sentences:<br>
+        {{ story_last_two }}
+    </p>
+
+    <p>
+    <form method="post">
+    {% csrf_token %}
+    {{ input_form }}
+    <input type="Submit" value="Submit">
+    </form>
+    </p>
+
+{% endblock %}

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'writers_mode.apps.WritersModeConfig',
     'accounts.apps.AccountsConfig',
     'browse_mode.apps.BrowseModeConfig',
+    'review_mode.apps.ReviewModeConfig',
+    'readers_mode.apps.ReadersModeConfig',
 ]
 AUTH_USER_MODEL = 'accounts.CustomUser'
 

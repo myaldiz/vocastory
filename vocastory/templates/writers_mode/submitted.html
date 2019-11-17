@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Sentence Submitted!{% endblock %}
+
+{% block content %}
+    <h3>
+    {{ story.title }}
+    </h3>
+
+    <p>
+        Submitted! Your story:<br>
+        {{ story_last_two }}
+        {{ candidate_sentence }}
+    </p>
+
+{% endblock %}

@@ -20,17 +20,48 @@ class WordSet(models.Model):
 
 
 class Story(models.Model):
+    title = models.CharField(max_length=100)
     completed = models.BooleanField(default=False)
     start_date = models.DateTimeField('date started')
     creation_date = models.DateTimeField('date created')
     word_set = models.ForeignKey(WordSet, on_delete=models.CASCADE)
 
-    def process_story_text(self):
+    def get_selected_sentences(self):
         """
-        :return: string of the story written so far
+        Returns the sentences voted and selected by user
+        :return:
         """
-        # self.sentence_set.all()
-        pass
+        return self.sentence_set.filter(is_selected=True).order_by('order')
+
+
+    def get_text(self):
+        """
+        Gets the text for selected sentences for visualization
+        :return:
+        """
+        sentences = self.get_selected_sentences()
+        text = " ".join([i.text for i in sentences])
+        return text
+
+
+    def get_last_two(self):
+        sentences = self.get_selected_sentences()
+        return " ".join([str(i) for i in list(sentences)[-2:]])
+
+
+    def get_candidate_sentences(self):
+        non_selected = self.sentence_set.filter(is_selected=False).order_by('-order')
+        last_idx = non_selected[-1].order
+
+        # No new sentence is written
+        if self.sentence_set.filter(is_selected=True, order=last_idx).exists():
+            return []
+
+        return self.sentence_set.filter(is_selected=False, order=last_idx)
+
+
+
+
 
 
 class Sentence(models.Model):
@@ -43,7 +74,7 @@ class Sentence(models.Model):
     used_words = models.ManyToManyField(Word)
     # Is this sentence selected as part of the story
     is_selected = models.BooleanField(default=False)
-
+    # story reference for the sentence
     story = models.ForeignKey(Story, on_delete=models.CASCADE)
 
 
@@ -57,5 +88,3 @@ class Sentence(models.Model):
 
     def __str__(self):
         return self.text
-
-
