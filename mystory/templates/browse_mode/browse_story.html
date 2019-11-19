@@ -29,20 +29,20 @@
                 {% endif %}
                 <ul>
                     <li>
-                        <a href="review_mode/{{ story.id }}/">
+                        <a href="/vocastory/review_mode/{{ story.id }}/">
                         Read/Review the story!
                         </a>
                     </li>
 
                     {% if not story.completed %}
                         <li>
-                            <a href="readers_mode/{{ story.id }}/">
+                            <a href="/vocastory/readers_mode/{{ story.id }}/">
                             Contribute in Reader's mode!
                             </a>
                         </li>
 
                         <li>
-                            <a href="writers_mode/{{ story.id }}/">
+                            <a href="/vocastory/writers_mode/{{ story.id }}/">
                             Contribute in Writer's mode!
                             </a>
                         </li>

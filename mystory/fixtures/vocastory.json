@@ -1,0 +1,299 @@
+[
+{
+  "model": "vocastory.word",
+  "pk": 8,
+  "fields": {
+    "text": "obliterated"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 9,
+  "fields": {
+    "text": "heed"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 10,
+  "fields": {
+    "text": "tenuous"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 11,
+  "fields": {
+    "text": "assiduous"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 12,
+  "fields": {
+    "text": "audacious"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 13,
+  "fields": {
+    "text": "aver"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 14,
+  "fields": {
+    "text": "castigate"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 15,
+  "fields": {
+    "text": "capacity"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 16,
+  "fields": {
+    "text": "accustomed"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 17,
+  "fields": {
+    "text": "advocate"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 18,
+  "fields": {
+    "text": "realm"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 19,
+  "fields": {
+    "text": "corrode"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 20,
+  "fields": {
+    "text": "eloquent"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 21,
+  "fields": {
+    "text": "recall"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 22,
+  "fields": {
+    "text": "incite"
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 1,
+  "fields": {
+    "title": "GRE Set 1",
+    "creation_date": "2019-11-19T04:15:28Z",
+    "words": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      20
+    ]
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 2,
+  "fields": {
+    "title": "Toefl Set 1",
+    "creation_date": "2019-11-19T04:15:59Z",
+    "words": [
+      15,
+      16,
+      18,
+      20,
+      22
+    ]
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 3,
+  "fields": {
+    "title": "Toefl Set 2",
+    "creation_date": "2019-11-19T04:16:11Z",
+    "words": [
+      15,
+      18,
+      19,
+      20,
+      21
+    ]
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 4,
+  "fields": {
+    "title": "GRE Set 2",
+    "creation_date": "2019-11-19T04:16:23Z",
+    "words": [
+      8,
+      12,
+      14,
+      15,
+      19,
+      22
+    ]
+  }
+},
+{
+  "model": "vocastory.story",
+  "pk": 1,
+  "fields": {
+    "title": "Superstar Frog",
+    "completed": true,
+    "start_date": "2019-11-19T04:17:17Z",
+    "creation_date": "2019-11-19T04:17:18Z",
+    "word_set": 1
+  }
+},
+{
+  "model": "vocastory.story",
+  "pk": 2,
+  "fields": {
+    "title": "Funny Story 1",
+    "completed": false,
+    "start_date": "2019-11-19T04:17:33Z",
+    "creation_date": "2019-11-19T04:17:35Z",
+    "word_set": 2
+  }
+},
+{
+  "model": "vocastory.story",
+  "pk": 3,
+  "fields": {
+    "title": "Crazy Story",
+    "completed": false,
+    "start_date": "2019-11-19T04:17:46Z",
+    "creation_date": "2019-11-19T04:17:47Z",
+    "word_set": 4
+  }
+},
+{
+  "model": "vocastory.story",
+  "pk": 4,
+  "fields": {
+    "title": "Life is Good",
+    "completed": false,
+    "start_date": "2019-11-19T04:17:59Z",
+    "creation_date": "2019-11-19T04:18:00Z",
+    "word_set": 3
+  }
+},
+{
+  "model": "vocastory.sentence",
+  "pk": 1,
+  "fields": {
+    "text": "The memory of his parent's death was so painful that he obliterated it from his mind.",
+    "order": 0,
+    "votes": 3,
+    "is_selected": true,
+    "story": 1,
+    "used_words": [
+      8
+    ]
+  }
+},
+{
+  "model": "vocastory.sentence",
+  "pk": 2,
+  "fields": {
+    "text": "We constantly told him that he should have heeded the warnings and avoid swamp vacation at any cost.",
+    "order": 1,
+    "votes": 3,
+    "is_selected": true,
+    "story": 1,
+    "used_words": [
+      9
+    ]
+  }
+},
+{
+  "model": "vocastory.sentence",
+  "pk": 3,
+  "fields": {
+    "text": "But I guess there is a tenuous link between this and his decision to go Hollywood.",
+    "order": 2,
+    "votes": 3,
+    "is_selected": true,
+    "story": 1,
+    "used_words": [
+      10
+    ]
+  }
+},
+{
+  "model": "vocastory.sentence",
+  "pk": 4,
+  "fields": {
+    "text": "I believe that him being assiduous what made him a great figure.",
+    "order": 3,
+    "votes": 4,
+    "is_selected": true,
+    "story": 1,
+    "used_words": [
+      11
+    ]
+  }
+},
+{
+  "model": "vocastory.sentence",
+  "pk": 5,
+  "fields": {
+    "text": "He suddenly realized the capacity of one possess.",
+    "order": 0,
+    "votes": 2,
+    "is_selected": true,
+    "story": 2,
+    "used_words": [
+      15
+    ]
+  }
+},
+{
+  "model": "vocastory.sentence",
+  "pk": 6,
+  "fields": {
+    "text": "Interesting sentences from now on incite.",
+    "order": 1,
+    "votes": 2,
+    "is_selected": false,
+    "story": 2,
+    "used_words": [
+      22
+    ]
+  }
+}
+]

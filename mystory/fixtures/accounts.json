@@ -1,0 +1,40 @@
+[
+{
+  "model": "accounts.customuser",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$XnTL38dcy4X9$ckhxiWdidicUHQT2O5dSJ9o7L7YnFisGoDcJGY1ZpNI=",
+    "last_login": "2019-11-19T03:36:53.869Z",
+    "is_superuser": true,
+    "username": "myaldiz",
+    "first_name": "",
+    "last_name": "",
+    "email": "berk17@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2019-11-19T03:36:39.681Z",
+    "custom_field": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "pk": 2,
+  "fields": {
+    "password": "guest123123",
+    "last_login": "2019-11-19T04:33:23.826Z",
+    "is_superuser": false,
+    "username": "guest",
+    "first_name": "",
+    "last_name": "",
+    "email": "guest@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-11-19T04:33:13.410Z",
+    "custom_field": "",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

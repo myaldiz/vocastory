@@ -41,9 +41,6 @@ def read_story(request, story_id):
     return HttpResponse('Read/Select how to continue!')
 
 
-def browse_word_sets(request):
-    return HttpResponse('Browse the word sets!')
-
 def write_story(request, story_id):
     try:
         story = Story.objects.get(pk=story_id)
@@ -65,12 +62,3 @@ def write_story(request, story_id):
             return render(request, 'writers_mode/submitted.html', context)
         else:
             raise Http404("Invalid form!!")
-
-
-def browse_word_sets(request):
-    """
-    When clicked select random story to continue..
-    :param request:
-    :return:
-    """
-    return HttpResponse('Browse the word sets!')
