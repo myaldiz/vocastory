@@ -22,7 +22,7 @@
   "model": "accounts.customuser",
   "pk": 2,
   "fields": {
-    "password": "guest123123",
+    "password": "pbkdf2_sha256$150000$U1KbVhMAA33E$bjZsoi61p4Zcu8VEgrKgS767ku2fECMIkJ0Axdq572s=",
     "last_login": "2019-11-19T04:33:23.826Z",
     "is_superuser": false,
     "username": "guest",

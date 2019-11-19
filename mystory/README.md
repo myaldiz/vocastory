@@ -29,4 +29,4 @@ Manually created database entries are stored in `fixtures` folder, which you can
 python manage.py loaddata fixtures/accounts.json # for the accounts
 python manage.py loaddata fixtures/vocastory.json # for the main models
 ``` 
-Website is ready to test!
+Website is ready to test, guest password is `guest123123`.
