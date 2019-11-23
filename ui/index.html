@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>VocaStory</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -30,9 +30,7 @@
 
 <body>
 
-
-
-    <div class="topbar col-md-12 shadow-sm mb5">
+    <div class="top-bar col-md-12 shadow-sm mb5">
         <form class="form-inline sm-form float-right" style="margin:15px">
             <input class="form-control mr-sm-2" type="text" placeholder="Search word sets" aria-label="Search">
             <button class="btn btn-primary" type="submit">Search</button>
@@ -48,19 +46,15 @@
 
 
     </div>
-    <div class="page"></div>
 
-
-
-    <div class="sidebar shadow p-0 mb-0">
-
+    <div class="side-bar shadow p-0 mb-0" id="side-bar">
         <div class="row">
-            <img src="./imgs/avatar.jpg" class="shadow p-0 mb-4  rounded-circle mx-auto d-block"
-                style="max-height: 200px;width:200px ;margin-top:10px;" alt="" id="avatar">
+            <img id="avatar" src="./imgs/avatar.jpg" class="shadow p-0 mb-4  rounded-circle mx-auto d-block"
+                style="max-height: 200px;width:200px ;margin-top:10px;" alt="" >
         </div>
 
 
-        <div class="shadow-sm card browse-card"
+        <div class="shadow-sm card" 
             style="padding:0 0 0 10px;border-radius:50px;background:white;margin:-20px 10px 10px 10px;padding:10px 30px 10px 30px;;height:13vh;width:90%"
             id="friends-card">
             <div class="row">
@@ -74,7 +68,6 @@
 
 
         </div>
-
         <div class="shadow-sm card browse-card"
             style="padding:0 0 0 10px;border-radius:50px;background:white;margin:0 10px 10px 10px;padding:10px 30px 10px 30px;;height:25vh;width:90%"
             id="friends-card">
@@ -88,11 +81,7 @@
                 <img src="./imgs/1.jpg" class="image-card shadow p-0 mb-0  rounded-circle mx-auto d-block" alt="">
                 <img src="./imgs/1.jpg" class=" image-card shadow p-0 mb-0 rounded-circle mx-auto d-block" alt="">
             </div>
-
-
         </div>
-
-
 
         <div class="shadow card browse-card"
             style="padding:0 0 0 10px;border-radius:50px;background:white;margin:0px 10px 10px 10px;padding:5px;;height:36vh;width:90%;overflow:auto">
@@ -117,28 +106,46 @@
 
 
         </div>
-
+    </div>
     </div>
 
 
-
+<div id="banner" class="shadow-sm">
+    
+Write a sentence to using a word from the set to continue the story
     </div>
 
 
     <div class="page">
-        <div class="top-half shadow p-0 mb-0">
-            <div class="row grid span8">
-                <div class="well span2 tile">A</div>
-                <div class="well span2 tile">B</div>
-                <div class="well span2 tile">C</div>
-                <div class="well span4 tile">D</div>
+        <div class="top-half shadow p-0 mb-0"  >
+
+    <div class="sentence shadow-sm">
+once upon a time
+<img class="sentence-image" src="./imgs/avatar.jpg" alt="">
+    </div>
+        <div class="sentence-blur shadow-sm">
+        once upon a time
+        <img class="sentence-image" src="./imgs/avatar.jpg" alt="">
+        </div>
+        <div class="sentence shadow-sm">
+        once upon a time
+        <img class="sentence-image" src="./imgs/avatar.jpg" alt="">
+        </div>
+        <div class="sentence shadow-sm">
+        once upon a time
+        <img class="sentence-image" src="./imgs/avatar.jpg" alt="">
+        </div>
+
             </div>
         </div>
 
-        <div class="bottom-half shadow p-0 mb-0">
-            <div class="row">
+
+</div>
                 <div class="col-md-12">
-                    kkk
+                    <textarea  id="input-text" rows='10'>
+
+                        
+                    </textarea>
                 </div>
             </div>
         </div>
@@ -153,10 +160,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
-
-
-
-
 </body>
 
 </html>

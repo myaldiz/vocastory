@@ -1,18 +1,13 @@
-body,html
-{
-    min-width: 960px;
+html , body{
+    height: 100%;
 }
-
 .page
 {
 
-    
     padding: 0 0 0 20vw;
     margin: 0 310px 0 0 ;
     border:0;
     overflow-y: auto;
-
-
 }
 
 
@@ -21,16 +16,17 @@ body,html
     
     background: white;
     height: 60vh;
-    margin-top: 10px;
-    padding:15px;
+    margin-top: 20px;
+    padding:25px;
     border-radius: 25px;
     border-color: rgb(228, 228, 228);
     position:fixed;
-    width:60vw;
-    top:70px;
-    right:330px;
-    z-index: 150;
-    overflow: auto;
+    width:80vw;
+    bottom:31vh;
+    right:100px;
+    z-index: 0;
+    overflow-y: auto;
+    overflow-x:hidden;
  
 }
 
@@ -41,6 +37,24 @@ body,html
     background: rgb(240, 240, 240);
 
 }
+
+
+.bottom-half
+{
+    
+    background: rgb(255, 255, 255);
+    height: 27vh;
+    margin-top: 10px;
+    border-radius: 25px;
+    border-color:  rgb(139, 53, 53);
+    position:fixed;
+    width:80vw;
+    top:calc(60vh + 80px);
+    right:100px;
+    
+
+}
+
 
 .bottom-half:hover
 {
@@ -56,16 +70,12 @@ body,html
 }
 
 
-.topbar:hover
+.top-bar:hover
 {
     background: rgb(255, 245, 152);
 }
 
 
-.sidebar:hover
-{
-    background: rgb(240, 240, 240);
-}
 
 .top-half-browse
 {
@@ -80,23 +90,9 @@ body,html
     
 }
 
-.bottom-half
-{
-    
-    background: rgb(255, 255, 255);
-    height: 27vh;
-    margin-top: 10px;
-    border-radius: 25px;
-    border-color:  rgb(139, 53, 53);
-    position:fixed;
-    width:60vw;
-    top:calc(60vh + 80px);
-    right:330px;
-    
 
-}
 
-.topbar
+.top-bar
 {
 
     height:70px;
@@ -111,16 +107,23 @@ body,html
 }
 
 
-.sidebar
+.side-bar
 {
     width:300px;
     background: white;
     height: 100vh;
     position: fixed;
-    right:0;
     top:0;
     z-index: 100;
+    right:-250px;
+    transition: all 500ms;
  
+}
+
+
+.side-bar:hover
+{
+    right:0;
 }
 
 .btn
@@ -129,6 +132,11 @@ body,html
     
 }
 
+
+#avatar
+{
+    transition: all 500ms;
+}
 
 #avatar:hover
 {
@@ -242,3 +250,91 @@ height: 30vh;
 }
 
 
+#input-text
+{
+    border-color: transparent;
+    height: 25vh;
+    padding:15px;
+    border-radius: 25px;
+    border-color: rgb(228, 228, 228);
+    position:fixed;
+    width:80vw;
+    bottom:10px;
+    right:100px;
+    z-index: 0;
+    overflow-y: hidden;
+
+}
+
+#input-text:hover
+{
+    border-style: solid;
+    border-color: rgb(196, 196, 196);
+    border-width: 3px;
+
+}
+
+#banner
+{
+
+    height: 3vh;
+    padding-top: 3px;
+    padding-left:60px;
+    border-radius: 25px;
+    border-color: rgb(228, 228, 228);
+    position:fixed;
+    width:80vw;
+    bottom:calc(10px + 25vh + 1vh);
+    right:100px;
+    z-index: 0;
+    background: rgb(202, 202, 202);
+    overflow: hidden;
+    
+}
+
+
+.sentence
+{
+    margin:10px 0px 10px 20px;
+    width: 95%;
+    height: 50px;
+    background:white ;
+    border-radius: 25px;
+    padding:12px;
+
+    
+    overflow-x:auto;
+    overflow-y: hidden;
+    border-width: 1px;
+}
+
+.sentence-blur
+{
+    margin:10px 0px 10px 20px;
+    width: 95%;
+    height: 50px;
+    background:white ;
+    border-radius: 25px;
+    padding:12px;
+
+    
+    overflow-x:auto;
+    overflow-y: hidden;
+    border-width: 1px;
+    color: transparent;
+   text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    
+}
+
+
+.sentence-image
+{
+    position: relative;
+    height:45px;
+    width:45px;
+    border-radius: 50px;
+    top:-33px;
+    margin-left:90%;
+    
+    
+}
