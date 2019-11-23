@@ -4,8 +4,10 @@
 Please use anaconda for the virtual environment. Install from [command line installer](https://www.anaconda.com/distribution/). Add it to your `$PATH` variable and run the below codes to prepare the environment.
 ```bash
 conda update conda
-conda create -n py36 python=3.6 anaconda django
+conda create -n py36 python=3.6 anaconda django spacy
 conda activate py36 # Activates the environment named py36
+# The followings will download the language files
+python -m spacy download en_core_web_sm
 ```
 Now you going to be able to run the website.
 ```bash
