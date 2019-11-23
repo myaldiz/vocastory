@@ -5,6 +5,56 @@
 
 {% block content %}
     <article>
+
+    <p>
+        Welcome to the Vocastory
+        {% if user.is_authenticated %}
+            {{ user.username }}.
+        {% else %}
+            ,please signup for contributing to the stories.
+        {% endif %}<br>
+        Description of the website here. <br>
+        Description<br>
+        Description<br>
+    </p>
+
+
+    <p>
+        <h3> Top Stories </h3>
+        <ul>
+            {% for num_stars, title, text in top_story_info %}
+                <li>
+                    {{ num_stars }} time starred, <br>
+                    <strong> {{ title }}</strong> <br>
+                    {{ text }}
+                </li>
+            {% endfor %}
+        </ul>
+    </p>
+
+    <p>
+        <h3> Top WordSets </h3>
+        <ul>
+        {% for word_set in top_word_sets %}
+            <li>
+                <a href="/vocastory/browse_mode/{{ word_set.id }}/">
+                    {{ word_set.title }}:
+                </a>, {{ word_set.num_stars }} time starred:
+            <ul>
+
+                {% for word in word_set.words.all %}
+                    <li>
+                        {{ word.text }}
+                    </li>
+                {% endfor %}
+            </ul>
+            </li>
+        {% endfor %}
+        </ul>
+    </p>
+
+
+        <!--
         {% if user.is_authenticated %}
             <h2>UserMenu</h2>
             <p>Hi {{ user.username }}! Here are the possible options to navigate:</p>
@@ -28,5 +78,6 @@
 
 
         {% endif %}
+        -->
     </article>
 {% endblock %}

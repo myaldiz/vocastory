@@ -1,0 +1,81 @@
+[
+{
+  "model": "vocastory.wordset",
+  "pk": 1,
+  "fields": {
+    "title": "GRE Set 1",
+    "creation_date": "2019-11-19T04:15:28Z",
+    "creator": 1,
+    "words": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      20
+    ],
+    "starred_users": [
+      1
+    ]
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 2,
+  "fields": {
+    "title": "Toefl Set 1",
+    "creation_date": "2019-11-19T04:15:59Z",
+    "creator": 1,
+    "words": [
+      15,
+      16,
+      18,
+      20,
+      22
+    ],
+    "starred_users": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 3,
+  "fields": {
+    "title": "Toefl Set 2",
+    "creation_date": "2019-11-19T04:16:11Z",
+    "creator": 2,
+    "words": [
+      15,
+      18,
+      19,
+      20,
+      21
+    ],
+    "starred_users": [
+      1
+    ]
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 4,
+  "fields": {
+    "title": "GRE Set 2",
+    "creation_date": "2019-11-19T04:16:23Z",
+    "creator": 1,
+    "words": [
+      8,
+      12,
+      14,
+      15,
+      19,
+      22
+    ],
+    "starred_users": []
+  }
+}
+]

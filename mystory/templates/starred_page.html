@@ -1,0 +1,45 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Starred Page{% endblock %}
+
+{% block content %}
+    <article>
+
+    <p>
+        <h3> Starred Stories </h3>
+        This shows the stories that you contributed.
+        <ul>
+            {% for num_stars, title, text in story_info %}
+                <li>
+                    <!-- {{ num_stars }} time starred, <br> //Not working -->
+                    <strong> {{ title }}</strong> <br>
+                    {{ text }}
+                </li>
+            {% endfor %}
+        </ul>
+    </p>
+
+    <p>
+        <h3> Starred WordSets </h3>
+        This shows the wordsets you created.
+        <ul>
+        {% for word_set in word_sets %}
+            <li>
+                <a href="/vocastory/browse_mode/{{ word_set.id }}/">
+                    {{ word_set.title }}:
+                </a><!--, {{ word_set.num_stars }} time starred: //Not working -->
+            <ul>
+                {% for word in word_set.words.all %}
+                    <li>
+                        {{ word.text }}
+                    </li>
+                {% endfor %}
+            </ul>
+            </li>
+        {% endfor %}
+        </ul>
+    </p>
+
+    </article>
+{% endblock %}

@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$150000$XnTL38dcy4X9$ckhxiWdidicUHQT2O5dSJ9o7L7YnFisGoDcJGY1ZpNI=",
-    "last_login": "2019-11-19T03:36:53.869Z",
+    "last_login": "2019-11-23T11:26:00.049Z",
     "is_superuser": true,
     "username": "myaldiz",
     "first_name": "",
@@ -13,7 +13,6 @@
     "is_staff": true,
     "is_active": true,
     "date_joined": "2019-11-19T03:36:39.681Z",
-    "custom_field": "",
     "groups": [],
     "user_permissions": []
   }
@@ -32,7 +31,6 @@
     "is_staff": false,
     "is_active": true,
     "date_joined": "2019-11-19T04:33:13.410Z",
-    "custom_field": "",
     "groups": [],
     "user_permissions": []
   }

@@ -1,0 +1,55 @@
+[
+{
+  "model": "vocastory.story",
+  "pk": 1,
+  "fields": {
+    "title": "Superstar Frog",
+    "completed": true,
+    "creation_date": "2019-11-23T11:35:51.559Z",
+    "word_set": 1,
+    "starred_users": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "vocastory.story",
+  "pk": 2,
+  "fields": {
+    "title": "Funny Story 1",
+    "completed": false,
+    "creation_date": "2019-11-23T11:36:26.352Z",
+    "word_set": 2,
+    "starred_users": [
+      2
+    ]
+  }
+},
+{
+  "model": "vocastory.story",
+  "pk": 3,
+  "fields": {
+    "title": "Crazy Story",
+    "completed": false,
+    "creation_date": "2019-11-23T11:36:35.696Z",
+    "word_set": 3,
+    "starred_users": [
+      1
+    ]
+  }
+},
+{
+  "model": "vocastory.story",
+  "pk": 4,
+  "fields": {
+    "title": "Life is good",
+    "completed": false,
+    "creation_date": "2019-11-23T11:36:46.261Z",
+    "word_set": 4,
+    "starred_users": [
+      1
+    ]
+  }
+}
+]

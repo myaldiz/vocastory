@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts.apps.AccountsConfig',
     'vocastory.apps.VocastoryConfig',
+    'accounts.apps.AccountsConfig',
 ]
 AUTH_USER_MODEL = 'accounts.CustomUser'
 

@@ -1,19 +1,59 @@
 from django.db import models
+import string
+
+
+# NLP engine only loaded if needed
+nlp_engine = None
+
+def nlp(*args, **kwargs):
+    """
+    This method tokenizes the sentence
+    """
+    global nlp_engine
+    if nlp_engine == None:
+        import warnings
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            import spacy
+            nlp_engine = spacy.load("en_core_web_sm")
+    return nlp_engine(*args, **kwargs)
 
 
 class Word(models.Model):
-    text = models.CharField(max_length=25)
-    # We may use some float descriptor in the future
-    # descriptor = models.CharField(max_length=25)
-    # TODO: Override init function to lower-case and remove spaces
+    text = models.CharField(max_length=30)
+
+    @classmethod
+    def create(cls, text):
+        """
+        Processes a word into its base form
+        """
+        text_processed = text.strip().strip(string.punctuation)\
+            .lower().split()[0]
+        text = nlp(text_processed)
+        return cls(text=text.lemma_)
+
     def __str__(self):
         return self.text
 
 
 class WordSet(models.Model):
     title = models.CharField(max_length=50)
-    creation_date = models.DateTimeField('date created')
+    creation_date = models.DateTimeField(auto_now_add=True)
     words = models.ManyToManyField(Word)
+    creator = models.ForeignKey('accounts.CustomUser',
+                                on_delete=models.CASCADE,
+                                related_name='created_word_sets')
+    starred_users = models.ManyToManyField(
+        'accounts.CustomUser',
+        related_name='starred_word_sets')
+
+    @classmethod
+    def get_top_wordsets_ordered(cls):
+        stories = cls.objects\
+            .annotate(
+            num_stars=models.Count('starred_users')
+        ).order_by('-num_stars')
+        return list(stories)
 
     def __str__(self):
         return self.title
@@ -22,14 +62,26 @@ class WordSet(models.Model):
 class Story(models.Model):
     title = models.CharField(max_length=100)
     completed = models.BooleanField(default=False)
-    start_date = models.DateTimeField('date started')
-    creation_date = models.DateTimeField('date created')
-    word_set = models.ForeignKey(WordSet, on_delete=models.CASCADE)
+    creation_date = models.DateTimeField(auto_now_add=True)
+    word_set = models.ForeignKey(
+        WordSet,
+        on_delete=models.CASCADE,
+        null=True
+    )
+    starred_users = models.ManyToManyField(
+        'accounts.CustomUser',
+        related_name='starred_stories')
+
+    @classmethod
+    def get_top_stories_ordered(cls):
+        stories = cls.objects.\
+            annotate(num_stars=models.Count('starred_users')).\
+            order_by('-num_stars')
+        return list(stories)
 
     def get_selected_sentences(self):
         """
-        Returns the sentences voted and selected by user
-        :return:
+        Returns the sentences voted and selected by users
         """
         return self.sentence_set.filter(is_selected=True).order_by('order')
 
@@ -37,7 +89,6 @@ class Story(models.Model):
     def get_text(self):
         """
         Gets the text for selected sentences for visualization
-        :return:
         """
         sentences = self.get_selected_sentences()
         text = " ".join([i.text for i in sentences])
@@ -45,12 +96,18 @@ class Story(models.Model):
 
 
     def get_last_two(self):
+        """
+        :return: text of the last two selected sentence
+        """
         sentences = self.get_selected_sentences()
         return " ".join([str(i) for i in list(sentences)[-2:]])
 
 
     def get_candidate_sentences(self):
-        non_selected = self.sentence_set.filter(is_selected=False).order_by('-order')
+        """
+        :return: Last written sentences for the continuation of the story
+        """
+        non_selected = self.sentence_set.filter(is_selected=False).order_by('order')
         last_idx = non_selected[-1].order
 
         # No new sentence is written
@@ -60,31 +117,47 @@ class Story(models.Model):
         return self.sentence_set.filter(is_selected=False, order=last_idx)
 
 
-
-
-
-
 class Sentence(models.Model):
+    creation_date = models.DateTimeField(auto_now_add=True)
     text = models.CharField(max_length=200)
-    # Order in the story
-    order = models.IntegerField(default=0)
-    # Number of votes in the selection process
-    votes = models.IntegerField(default=0)
-    # Used words from the WordSet
-    used_words = models.ManyToManyField(Word)
-    # Is this sentence selected as part of the story
+    order = models.IntegerField(default=0)  # Order in the story
+    votes = models.IntegerField(default=0)  # Number of votes in the selection process
+    used_words = models.ManyToManyField(Word)   # Used words from the WordSet
     is_selected = models.BooleanField(default=False)
-    # story reference for the sentence
-    story = models.ForeignKey(Story, on_delete=models.CASCADE)
+    story = models.ForeignKey(Story, on_delete=models.CASCADE)  # story reference for the sentence
 
+    # User reference for the sentence
+    creator = models.ForeignKey('accounts.CustomUser',
+                                on_delete=models.CASCADE,
+                                related_name='created_sentences',
+                                null=True)
 
-    def process_used_words(self):
+    @classmethod
+    def create(cls, text, order, story, creator, wordset):
         """
-        This method checks the used words in the sentence
-        :return:
+        Matches wordset words of the text,
+        adds punctuation if not exists
         """
-        # self.story.word_set.all()
-        pass
+        text = str(text).strip()
+        if len(text) < 3:
+            return None
+        text = text+'.' if text[-1] not in string.punctuation else text
+        sentence = cls(text=text, order=order, story=story, creator=creator)
+        text_tokens = nlp(text)
+
+        # if WordSet is provided, check for matches
+        if isinstance(wordset, WordSet):
+            used_words = set()
+            for t in text_tokens:
+                t = t.lemma_.lower()
+                found_words = wordset.words.filter(text=t)
+                used_words.update(found_words)
+
+            for word in used_words:
+                sentence.used_words.add(word)
+
+        return sentence
+
 
     def __str__(self):
         return self.text

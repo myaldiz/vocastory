@@ -3,7 +3,7 @@
   "model": "vocastory.word",
   "pk": 8,
   "fields": {
-    "text": "obliterated"
+    "text": "obliterate"
   }
 },
 {
@@ -59,7 +59,7 @@
   "model": "vocastory.word",
   "pk": 16,
   "fields": {
-    "text": "accustomed"
+    "text": "accustom"
   }
 },
 {
@@ -110,6 +110,7 @@
   "fields": {
     "title": "GRE Set 1",
     "creation_date": "2019-11-19T04:15:28Z",
+    "creator": 1,
     "words": [
       8,
       9,
@@ -119,6 +120,9 @@
       13,
       14,
       20
+    ],
+    "starred_users": [
+      1
     ]
   }
 },
@@ -128,12 +132,17 @@
   "fields": {
     "title": "Toefl Set 1",
     "creation_date": "2019-11-19T04:15:59Z",
+    "creator": 1,
     "words": [
       15,
       16,
       18,
       20,
       22
+    ],
+    "starred_users": [
+      1,
+      2
     ]
   }
 },
@@ -143,12 +152,16 @@
   "fields": {
     "title": "Toefl Set 2",
     "creation_date": "2019-11-19T04:16:11Z",
+    "creator": 2,
     "words": [
       15,
       18,
       19,
       20,
       21
+    ],
+    "starred_users": [
+      1
     ]
   }
 },
@@ -158,6 +171,7 @@
   "fields": {
     "title": "GRE Set 2",
     "creation_date": "2019-11-19T04:16:23Z",
+    "creator": 1,
     "words": [
       8,
       12,
@@ -165,7 +179,8 @@
       15,
       19,
       22
-    ]
+    ],
+    "starred_users": []
   }
 },
 {
@@ -174,9 +189,12 @@
   "fields": {
     "title": "Superstar Frog",
     "completed": true,
-    "start_date": "2019-11-19T04:17:17Z",
-    "creation_date": "2019-11-19T04:17:18Z",
-    "word_set": 1
+    "creation_date": "2019-11-23T11:35:51.559Z",
+    "word_set": 1,
+    "starred_users": [
+      1,
+      2
+    ]
   }
 },
 {
@@ -185,9 +203,11 @@
   "fields": {
     "title": "Funny Story 1",
     "completed": false,
-    "start_date": "2019-11-19T04:17:33Z",
-    "creation_date": "2019-11-19T04:17:35Z",
-    "word_set": 2
+    "creation_date": "2019-11-23T11:36:26.352Z",
+    "word_set": 2,
+    "starred_users": [
+      2
+    ]
   }
 },
 {
@@ -196,31 +216,37 @@
   "fields": {
     "title": "Crazy Story",
     "completed": false,
-    "start_date": "2019-11-19T04:17:46Z",
-    "creation_date": "2019-11-19T04:17:47Z",
-    "word_set": 4
+    "creation_date": "2019-11-23T11:36:35.696Z",
+    "word_set": 3,
+    "starred_users": [
+      1
+    ]
   }
 },
 {
   "model": "vocastory.story",
   "pk": 4,
   "fields": {
-    "title": "Life is Good",
+    "title": "Life is good",
     "completed": false,
-    "start_date": "2019-11-19T04:17:59Z",
-    "creation_date": "2019-11-19T04:18:00Z",
-    "word_set": 3
+    "creation_date": "2019-11-23T11:36:46.261Z",
+    "word_set": 4,
+    "starred_users": [
+      1
+    ]
   }
 },
 {
   "model": "vocastory.sentence",
   "pk": 1,
   "fields": {
+    "creation_date": "2019-11-23T11:37:31.130Z",
     "text": "The memory of his parent's death was so painful that he obliterated it from his mind.",
     "order": 0,
     "votes": 3,
     "is_selected": true,
     "story": 1,
+    "creator": 1,
     "used_words": [
       8
     ]
@@ -230,11 +256,13 @@
   "model": "vocastory.sentence",
   "pk": 2,
   "fields": {
+    "creation_date": "2019-11-23T11:38:09.709Z",
     "text": "We constantly told him that he should have heeded the warnings and avoid swamp vacation at any cost.",
     "order": 1,
-    "votes": 3,
+    "votes": 2,
     "is_selected": true,
     "story": 1,
+    "creator": 1,
     "used_words": [
       9
     ]
@@ -244,11 +272,13 @@
   "model": "vocastory.sentence",
   "pk": 3,
   "fields": {
+    "creation_date": "2019-11-23T11:38:36.194Z",
     "text": "But I guess there is a tenuous link between this and his decision to go Hollywood.",
     "order": 2,
-    "votes": 3,
+    "votes": 4,
     "is_selected": true,
     "story": 1,
+    "creator": 1,
     "used_words": [
       10
     ]
@@ -258,11 +288,13 @@
   "model": "vocastory.sentence",
   "pk": 4,
   "fields": {
+    "creation_date": "2019-11-23T11:39:02.818Z",
     "text": "I believe that him being assiduous what made him a great figure.",
     "order": 3,
     "votes": 4,
     "is_selected": true,
     "story": 1,
+    "creator": 2,
     "used_words": [
       11
     ]
@@ -272,13 +304,15 @@
   "model": "vocastory.sentence",
   "pk": 5,
   "fields": {
-    "text": "He suddenly realized the capacity of one possess.",
+    "creation_date": "2019-11-23T12:34:52.011Z",
+    "text": "Exciting sentence avers like hell.",
     "order": 0,
-    "votes": 2,
+    "votes": 0,
     "is_selected": true,
     "story": 2,
+    "creator": 2,
     "used_words": [
-      15
+      13
     ]
   }
 },
@@ -286,13 +320,15 @@
   "model": "vocastory.sentence",
   "pk": 6,
   "fields": {
-    "text": "Interesting sentences from now on incite.",
-    "order": 1,
-    "votes": 2,
-    "is_selected": false,
-    "story": 2,
+    "creation_date": "2019-11-23T12:35:09.371Z",
+    "text": "Second sentence great capacity",
+    "order": 0,
+    "votes": 0,
+    "is_selected": true,
+    "story": 3,
+    "creator": 1,
     "used_words": [
-      22
+      15
     ]
   }
 }

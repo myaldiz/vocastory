@@ -2,7 +2,70 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 
 from .models import Story, Sentence, WordSet
+from accounts.models import CustomUser
 from .forms import SentenceInputForm
+from django.db import models
+
+
+def home_view(request):
+    """
+    This creates the home view when first
+    enter to the website
+    """
+    top_stories = Story.get_top_stories_ordered()
+    top_word_sets = WordSet.get_top_wordsets_ordered()
+
+    top_story_info = [
+        (s.num_stars, s.title, s.get_text())
+        for s in top_stories
+    ]
+    context = {
+        'top_story_info': top_story_info,
+        'top_word_sets': top_word_sets,
+    }
+    return render(request, 'home.html', context)
+
+
+def mypage_view(request):
+    """
+    Stories user is part of and word-sets user created are shown
+    :param request:
+    :return:
+    """
+    user = CustomUser.objects.get(pk=request.user.id)
+    stories = user.get_stories()\
+        .annotate(num_stars=models.Count('starred_users'))\
+        .order_by('-num_stars')
+    story_info = [(s.num_stars, s.title, s.get_text()) for s in stories]
+    word_sets = user.created_word_sets\
+        .annotate(num_stars=models.Count('starred_users'))\
+        .order_by('-num_stars')
+    context = {
+        'story_info': story_info,
+        'word_sets': word_sets,
+    }
+    return render(request, 'my_page.html', context)
+
+
+def starred_page_view(request):
+    """
+    Stories user is part of and word-sets user created are shown
+    :param request:
+    :return:
+    """
+    user = CustomUser.objects.get(pk=request.user.id)
+    stories = user.starred_stories\
+        .annotate(num_stars=models.Count('starred_users'))\
+        .order_by('-num_stars')
+    story_info = [(s.num_stars, s.title, s.get_text()) for s in stories]
+    word_sets = user.starred_word_sets\
+        .annotate(num_stars=models.Count('starred_users'))\
+        .order_by('-num_stars')
+    context = {
+        'story_info': story_info,
+        'word_sets': word_sets,
+    }
+    return render(request, 'starred_page.html', context)
 
 
 def review_story(request, story_id):

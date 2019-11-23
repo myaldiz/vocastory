@@ -29,4 +29,9 @@ Manually created database entries are stored in `fixtures` folder, which you can
 python manage.py loaddata fixtures/accounts.json # for the accounts
 python manage.py loaddata fixtures/vocastory.json # for the main models
 ``` 
+
+In order to save the current state of the DB, run following:
+```bash
+python manage.py dumpdata vocastory --indent=2 > fixtures>vocastory.json
+```
 Website is ready to test, guest password is `guest123123`.

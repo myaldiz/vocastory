@@ -1,0 +1,107 @@
+[
+{
+  "model": "vocastory.word",
+  "pk": 8,
+  "fields": {
+    "text": "obliterate"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 9,
+  "fields": {
+    "text": "heed"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 10,
+  "fields": {
+    "text": "tenuous"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 11,
+  "fields": {
+    "text": "assiduous"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 12,
+  "fields": {
+    "text": "audacious"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 13,
+  "fields": {
+    "text": "aver"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 14,
+  "fields": {
+    "text": "castigate"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 15,
+  "fields": {
+    "text": "capacity"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 16,
+  "fields": {
+    "text": "accustom"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 17,
+  "fields": {
+    "text": "advocate"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 18,
+  "fields": {
+    "text": "realm"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 19,
+  "fields": {
+    "text": "corrode"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 20,
+  "fields": {
+    "text": "eloquent"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 21,
+  "fields": {
+    "text": "recall"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 22,
+  "fields": {
+    "text": "incite"
+  }
+}
+]
