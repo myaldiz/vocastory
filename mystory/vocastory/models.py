@@ -168,7 +168,6 @@ class Sentence(models.Model):
                     used_words.update(found_words)
 
                 for word in used_words:
-                    print(word, type(word))
                     sentence.used_words.add(word)
 
         return sentence
