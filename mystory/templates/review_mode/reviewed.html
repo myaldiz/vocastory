@@ -7,10 +7,6 @@
         {{ story_text }}<br>
     </p>
     <p>
-        <form method="post">
-            {% csrf_token %}
-            {{ rating_form }}
-            <input type="Submit" value="Submit">
-            </form>
+        Your rating for the story is {{your_rating}}
     </p>
 {% endblock %}

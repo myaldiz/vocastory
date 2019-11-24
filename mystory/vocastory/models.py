@@ -138,6 +138,7 @@ class Story(models.Model):
         """
         :return: nothing
         If sufficient time has elapsed, this method selects the sentence with most votes
+        The time elapsed is the time of newest candidate-time of last selected sentence
         """
         sentences = self.sentence_set.order_by('-creation_date')
         max_time = sentences[0].creation_date

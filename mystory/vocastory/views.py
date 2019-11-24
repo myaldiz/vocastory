@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 
 from .models import Story, Sentence, WordSet
 from accounts.models import CustomUser
-from .forms import SentenceInputForm, SentenceSelectForm
+from .forms import SentenceInputForm, SentenceSelectForm, StoryRatingForm
 from django.db import models
 
 
@@ -71,16 +71,23 @@ def starred_page_view(request):
 def review_story(request, story_id):
     try:
         story = Story.objects.get(pk=story_id)
-
-        context = {'story': story, 'story_text': story.get_text(), 'completion': story.completed}
-
-
+        context = {
+            'story': story, 
+            'story_text': story.get_text(), 
+            'completion': story.completed,
+            'rating_form': StoryRatingForm(),
+        }
     except Story.DoesNotExist:
         raise Http404("Story does not exists!!")
-
-    return render(request, 'review_mode/review_story.html', context)
-
-
+    if request.method == 'GET':
+        return render(request, 'review_mode/review_story.html', context)
+    elif request.method == 'POST':
+        form = StoryRatingForm(request.POST)
+        if form.is_valid():
+            context['your_rating'] = form.cleaned_data['rating']
+            return render(request, 'review_mode/reviewed.html', context)
+        else:
+            raise Http404("Invalid form!!")
 def browse_word_sets(request):
     word_sets = WordSet.objects.all()
 
