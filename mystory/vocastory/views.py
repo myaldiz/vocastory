@@ -123,8 +123,13 @@ def read_story(request, story_id):
         if form.is_valid():
             candidates=story.get_candidate_sentences() 
             user = CustomUser.objects.get(pk=request.user.id)
-            candidates[form.cleaned_data['int_option']-1].vote_sentence(user) #add vote by user
-            context['selected_sentence'] = story.sentence_set.filter(order=story.get_last_idx()+1)
+            chosen_sentence = candidates[form.cleaned_data['int_option']-1]
+            chosen_sentence.vote_sentence(user)
+            context['selected_sentence'] = chosen_sentence
+
+            #sentences_with_votes = story.get_sentence_set_with_vote()
+            #the_sentence = sentences_with_votes.filter(creation_date=chosen_sentence.creation_date)
+            #context['votecount'] = the_sentence.votes
             return render(request, 'readers_mode/selected.html', context)
         else:
             raise Http404("Invalid form!!")
