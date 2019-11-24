@@ -28,12 +28,13 @@
                     not completed:
                 {% endif %}
                 <ul>
+                    {% if completion %}
                     <li>
                         <a href="/vocastory/review_mode/{{ story.id }}/">
                         Read/Review the story!
                         </a>
                     </li>
-
+                    {% endif %}
                     {% if not story.completed %}
                         <li>
                             <a href="/vocastory/readers_mode/{{ story.id }}/">

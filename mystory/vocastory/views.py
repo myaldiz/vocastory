@@ -72,7 +72,7 @@ def review_story(request, story_id):
     try:
         story = Story.objects.get(pk=story_id)
 
-        context = {'story': story, 'story_text': story.get_text()}
+        context = {'story': story, 'story_text': story.get_text(), 'completion': story.completed}
 
 
     except Story.DoesNotExist:
