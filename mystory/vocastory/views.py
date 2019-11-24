@@ -150,7 +150,6 @@ def write_story(request, story_id):
             context['candidate_sentence'] = form.cleaned_data['sentence']
             current_user = CustomUser.objects.get(pk=request.user.id)
             s=Sentence.create(text=form.cleaned_data['sentence'], order=story.get_last_idx()+1, story=story, creator=current_user, wordset=story.word_set)
-            s.save()
             return render(request, 'writers_mode/submitted.html', context)
         else:
             raise Http404("Invalid form!!")

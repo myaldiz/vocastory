@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 import string
 
 
@@ -141,6 +141,7 @@ class Sentence(models.Model):
                                 related_name='created_sentences',
                                 null=True)
 
+
     @classmethod
     def create(cls, text, order, story, creator, wordset):
         """
@@ -151,19 +152,24 @@ class Sentence(models.Model):
         if len(text) < 3:
             return None
         text = text+'.' if text[-1] not in string.punctuation else text
-        sentence = cls(text=text, order=order, story=story, creator=creator)
-        text_tokens = nlp(text)
 
-        # if WordSet is provided, check for matches
-        if isinstance(wordset, WordSet):
-            used_words = set()
-            for t in text_tokens:
-                t = t.lemma_.lower()
-                found_words = wordset.words.filter(text=t)
-                used_words.update(found_words)
+        # Make sure it is atomic
+        with transaction.atomic():
+            sentence = cls(text=text, order=order, story=story, creator=creator)
+            sentence.save()
+            text_tokens = nlp(text)
 
-            for word in used_words:
-                sentence.used_words.add(word)
+            # if WordSet is provided, check for matches
+            if isinstance(wordset, WordSet):
+                used_words = set()
+                for t in text_tokens:
+                    t = t.lemma_.lower()
+                    found_words = wordset.words.filter(text=t)
+                    used_words.update(found_words)
+
+                for word in used_words:
+                    print(word, type(word))
+                    sentence.used_words.add(word)
 
         return sentence
 
