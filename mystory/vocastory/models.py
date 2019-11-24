@@ -1,5 +1,6 @@
 from django.db import models, transaction
 import string
+from datetime import timedelta
 
 
 # NLP engine only loaded if needed
@@ -107,9 +108,18 @@ class Story(models.Model):
         return " ".join([str(i) for i in list(sentences)[-2:]])
 
     def get_last_idx(self):
-        #returns order of the last selected sentence
+        """
+        :return: order of the last selected sentence
+        """
         non_selected = self.sentence_set.filter(is_selected=True).order_by('-order')
         return non_selected[0].order
+
+    def get_last_time(self):
+        """
+        :return: time at which the last selected sentence was created
+        """
+        non_selected = self.sentence_set.filter(is_selected=True).order_by('-creation_date')
+        return non_selected[0].creation_date
 
     def get_candidate_sentences(self):
         """
@@ -123,6 +133,24 @@ class Story(models.Model):
             return []
 
         return self.sentence_set.filter(order=last_idx).order_by('creation_date')
+
+    def check_time_and_select(self):
+        """
+        :return: nothing
+        If sufficient time has elapsed, this method selects the sentence with most votes
+        """
+        sentences = self.sentence_set.order_by('-creation_date')
+        max_time = sentences[0].creation_date
+        delta=max_time-self.get_last_time()
+        if delta.seconds>=120:    
+            sentences_with_votes=self.get_sentence_set_with_vote()
+            candidates = sentences_with_votes.filter(order=self.get_last_idx()+1)
+            candidates=candidates.order_by('-votes')
+            s=candidates[0]
+            selected_sentence=Sentence(text=s.text, is_selected=True, order=self.get_last_idx()+1, story=self)
+            selected_sentence.save()
+            
+            
 
 class Sentence(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)

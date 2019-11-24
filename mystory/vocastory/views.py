@@ -130,6 +130,9 @@ def read_story(request, story_id):
             #sentences_with_votes = story.get_sentence_set_with_vote()
             #the_sentence = sentences_with_votes.filter(creation_date=chosen_sentence.creation_date)
             #context['votecount'] = the_sentence.votes
+
+            #perform check to see if it is time to count votes and select a sentence
+            story.check_time_and_select()
             return render(request, 'readers_mode/selected.html', context)
         else:
             raise Http404("Invalid form!!")
