@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Sentence Submitted!{% endblock %}
+{% block title %}Sentence Selected!{% endblock %}
 
 {% block content %}
     <h3>
@@ -8,9 +8,9 @@
     </h3>
 
     <p>
-        Submitted! Your story:<br>
+        Selected! Your story:<br>
         {{ story_last_two }}<br>
-        {{ candidate_sentence }}
+        {{ selected_sentence }}
     </p>
 
 {% endblock %}

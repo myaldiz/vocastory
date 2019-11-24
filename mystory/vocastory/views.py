@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 
 from .models import Story, Sentence, WordSet
 from accounts.models import CustomUser
-from .forms import SentenceInputForm
+from .forms import SentenceInputForm, SentenceSelectForm
 from django.db import models
 
 
@@ -101,7 +101,33 @@ def browse_story_list(request, wordset_id):
 
 
 def read_story(request, story_id):
-    return HttpResponse('Read/Select how to continue!')
+    #return HttpResponse('Read/Select how to continue!')
+    try: 
+        story = Story.objects.get(pk=story_id)
+        last_two = story.get_last_two()
+        candidates_text = ".\n".join([i.text for i in story.get_candidate_sentences()])
+        context = {
+            'story': story,
+            'story_last_two': last_two,
+            'the_candidates': candidates_text,
+            'the_form': SentenceSelectForm(),
+        }
+    except Story.DoesNotExist:
+        raise Http404("Story does not exists!!")
+
+    #return render(request, 'readers_mode/select_sentence.html',context)
+    if request.method == 'GET':
+        return render(request, 'readers_mode/select_sentence.html',context)
+    elif request.method == 'POST':
+        form = SentenceSelectForm(request.POST)
+        if form.is_valid():
+            candidates=story.get_candidate_sentences() 
+            user = CustomUser.objects.get(pk=request.user.id)
+            candidates[form.cleaned_data['int_option']-1].vote_sentence(user) #add vote by user
+            context['selected_sentence'] = story.sentence_set.filter(order=story.get_last_idx()+1)
+            return render(request, 'readers_mode/selected.html', context)
+        else:
+            raise Http404("Invalid form!!")
 
 
 def write_story(request, story_id):
@@ -122,6 +148,9 @@ def write_story(request, story_id):
         form = SentenceInputForm(request.POST)
         if form.is_valid():
             context['candidate_sentence'] = form.cleaned_data['sentence']
+            current_user = CustomUser.objects.get(pk=request.user.id)
+            s=Sentence.create(text=form.cleaned_data['sentence'], order=story.get_last_idx()+1, story=story, creator=current_user, wordset=story.word_set)
+            s.save()
             return render(request, 'writers_mode/submitted.html', context)
         else:
             raise Http404("Invalid form!!")

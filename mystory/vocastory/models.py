@@ -72,6 +72,10 @@ class Story(models.Model):
         'accounts.CustomUser',
         related_name='starred_stories')
 
+    def get_sentence_set_with_vote(self):
+        return self.sentence_set.\
+            annotate(votes=models.Count('voted_users'))
+
     @classmethod
     def get_top_stories_ordered(cls):
         stories = cls.objects.\
@@ -102,29 +106,34 @@ class Story(models.Model):
         sentences = self.get_selected_sentences()
         return " ".join([str(i) for i in list(sentences)[-2:]])
 
+    def get_last_idx(self):
+        #returns order of the last selected sentence
+        non_selected = self.sentence_set.filter(is_selected=True).order_by('-order')
+        return non_selected[0].order
 
     def get_candidate_sentences(self):
         """
         :return: Last written sentences for the continuation of the story
         """
-        non_selected = self.sentence_set.filter(is_selected=False).order_by('order')
-        last_idx = non_selected[-1].order
+        non_selected = self.sentence_set.filter(is_selected=False).order_by('-order')
+        last_idx = non_selected[0].order
 
         # No new sentence is written
         if self.sentence_set.filter(is_selected=True, order=last_idx).exists():
             return []
 
-        return self.sentence_set.filter(is_selected=False, order=last_idx)
-
+        return self.sentence_set.filter(order=last_idx).order_by('creation_date')
 
 class Sentence(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     text = models.CharField(max_length=200)
     order = models.IntegerField(default=0)  # Order in the story
-    votes = models.IntegerField(default=0)  # Number of votes in the selection process
     used_words = models.ManyToManyField(Word)   # Used words from the WordSet
     is_selected = models.BooleanField(default=False)
     story = models.ForeignKey(Story, on_delete=models.CASCADE)  # story reference for the sentence
+    voted_users = models.ManyToManyField(
+        'accounts.CustomUser',
+        related_name='voted_sentences')
 
     # User reference for the sentence
     creator = models.ForeignKey('accounts.CustomUser',
@@ -157,6 +166,16 @@ class Sentence(models.Model):
                 sentence.used_words.add(word)
 
         return sentence
+
+    
+    def vote_sentence(self, user):
+        if user == None:
+            return False
+        
+        #if self.voted_users.filter(pk=user.id).exists():
+        if user not in self.voted_users.all():
+            self.voted_users.add(user)
+        
 
 
     def __str__(self):
