@@ -82,19 +82,31 @@ def review_story(request, story_id):
 
     story = get_object_or_404(Story, id=story_id)
     user = get_object_or_404(CustomUser, id=request.user.id)
+    instance = StoryReview.objects.filter(creator=user, story=story).first()
+    if instance is not None:
+        initial = {
+            'flag': instance.flag,
+            'coherence': instance.coherence,
+            'creativity': instance.creativity,
+            'fun': instance.fun
+        }
+    else:
+        initial = {}
+
     context = {
         'story': story,
+        'instance': instance,
         'story_text': story.get_text(),
         'completion': story.completed,
-        'rating_form': StoryRatingForm(),
+        'rating_form': StoryRatingForm(initial=initial),
     }
 
     if request.method == 'GET':
         return render(request, 'review_mode/review_story.html', context)
     elif request.method == 'POST':
 
-        instance = StoryReview.objects.filter(creator=user, story=story).first()
-        form = StoryRatingForm(request.POST, i)
+        form = StoryRatingForm(request.POST)
+
         if form.is_valid():
             flag = form.cleaned_data['flag']
             coherence = form.cleaned_data['coherence']

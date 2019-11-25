@@ -7,6 +7,9 @@
         {{ story_text }}<br>
     </p>
     <p>
+        {% if instance %}
+            You reviewed this story before, you can edit below:
+        {% endif %}
         <form method="post">
             {% csrf_token %}
             {{ rating_form }}
