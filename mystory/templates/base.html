@@ -4,11 +4,43 @@
 <h1>
     Vocastory
 </h1>
+{% load static %}
 
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Base.html{% endblock %}</title>
+
+<link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'>
+<link rel="stylesheet" href='{% static "css/styles.css" %}'>
+
+
+
+<script src="{% static 'css/bootstrap.min.js' %}"></script>
+<script src="{% static 'css/javascript.js' %}"></script>
+
 </head>
+
+
+
+<div class="top-bar col-md-12 shadow-sm mb5">
+  <form class="form-inline sm-form float-right" style="margin:15px">
+      <button class="btn btn-primary" type="submit">Login</button>
+      <button class="btn btn-primary"
+          style="margin:0 0 0 10px;background:yellow;color: black;border-color: yellow;"
+          type="Search"><a href='{% url "browse_word_sets" %}'>Browse WordSets</a></button>
+          <button class="btn btn-primary"
+          style="margin:0 0 0 10px;background:yellow;color: black;border-color: yellow;"
+          type="Search"><a href='{% url "browse_word_sets" %}'>Browse WordSets</a></button>
+  </form>
+
+  <img src="{% static 'imgs/logo-text.png' %}" style="max-width: 200px;margin-top:15px;" alt="" id="vocastory">
+
+
+
+
+
+</div>
+
 
 
 <p style="text-align: left">
@@ -17,7 +49,7 @@
         <a href='{% url "my_view" %}'>My Page</a>&nbsp;
         <a href='{% url "starred_view" %}'>Starred</a>&nbsp;
     {% endif %}
-    <a href='{% url "browse_word_sets" %}'>Browse WordSets</a>&nbsp;
+    <a href='{% url "browse_word_sets" %}'>Browse WordSets</a>
 
     <span style="float:right;">
     {% if user.is_authenticated %}
