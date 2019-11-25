@@ -1,16 +1,18 @@
 {% if word_set %}
 
-    <div class="card-group" style="margin:5px">
-        <div class="card browse-card" style="overflow-y:auto">
-            <div class="card-body">
-                <a href='{{ word_set.get_absolute_url }}' class="btn btn-primary"
-                   style="margin:2px;">{{ word_set.title }}</a>
-                {% for word in word_set.words.all %}
-                    <p class="card-text">{{ word.text }}<br></p>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+    <a href="{{ word_set.get_absolute_url }}">
+        {{ word_set.title }}
+    </a>,
+    <strong>
+        {{ word_set.starred_users.count }}
+    </strong> likes, words it contain:<br>
+    <ul>
+        {% for word in word_set.words.all %}
+            <li>
+                <p class="card-text">{{ word.text }}<br></p>
+            </li>
+        {% endfor %}
+    </ul>
 
 {% endif %}
 

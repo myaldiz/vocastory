@@ -6,20 +6,21 @@
 {% block content %}
     <article>
 
-    <p>
-        Welcome to the Vocastory
-        {% if user.is_authenticated %}
-            {{ user.username }}.
-        {% else %}
-            ,please signup for contributing to the stories.
-        {% endif %}<br>
-        Description of the website here. <br>
-        Description<br>
-        Description<br>
-    </p>
+        <p>
+            Welcome to the Vocastory,
+            {% if user.is_authenticated %}
+                {{ user.username }}.
+            {% else %}
+                please Login/Signup for contributing to the stories.
+            {% endif %}<br>
+            We struggle to memorise words effectively, this is a platform where
+            you can memorize words by creating stories! <br>
+            In writer's mode, write a sentence using not used word to continue the story! <br>
+            In reader's mode, choose the best sentence you think is the best to continue the story! <br>
+        </p>
 
 
-    <p>
+        <p>
         <h3> Top Stories </h3>
         <ul>
             {% for story in stories %}
@@ -28,54 +29,18 @@
                 </li>
             {% endfor %}
         </ul>
-    </p>
+        </p>
 
-    <p>
+        <p>
         <h3> Top WordSets </h3>
         <ul>
-        {% for word_set in word_sets %}
-            <li>
-                <a href="/vocastory/browse_mode/{{ word_set.id }}/">
-                    {{ word_set.title }}:
-                </a>, {{ word_set.num_stars }} time starred:
-            <ul>
-
-                {% for word in word_set.words.all %}
-                    <li>
-                        {{ word.text }}
-                    </li>
-                {% endfor %}
-            </ul>
-            </li>
-        {% endfor %}
+            {% for word_set in word_sets %}
+                <li>
+                    {% include "show_wordset.html" %}
+                </li>
+            {% endfor %}
         </ul>
-    </p>
+        </p>
 
-
-        <!--
-        {% if user.is_authenticated %}
-            <h2>UserMenu</h2>
-            <p>Hi {{ user.username }}! Here are the possible options to navigate:</p>
-            <ul>
-                <li>
-                    <a href='vocastory/writers_mode'> Writer's Mode</a>
-                </li>
-
-                <li>
-                    <a href='vocastory/readers_mode'> Reader's Mode</a>
-                </li>
-            </ul>
-        {% else %}
-          <p>You are not logged in, here are the possible options to navigate:</p>
-            <ul>
-
-                <li>
-                    <a href='vocastory/browse_mode'> Browse Stories</a>
-                </li>
-            </ul>
-
-
-        {% endif %}
-        -->
     </article>
 {% endblock %}

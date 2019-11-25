@@ -3,19 +3,18 @@
 {% block title %}Word-Lists{% endblock %}
 
 {% block content %}
-
-    <div class="page">
-        <div class="top-half-card shadow p-0 mb-0" style="height:90vh;top:70px">
-            <center>Here are the wordsets</center>
-            {% if word_sets %}
-                {% for word_set in word_sets %}
-                    {% include "show_wordset.html" %}
-                {% endfor %}
-
-            {% else %}
-                <p> No Word-Set is available </p>
-            {% endif %}
-
-        </div>
-    </div>
+    <p>
+    Here is the Word-Sets, and the words they contain:
+    </p>
+    {% if word_sets %}
+        <ul>
+        {% for word_set in word_sets %}
+            <li>
+               {% include "show_wordset.html" %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p> No Word-Set is available </p>
+    {% endif %}
 {% endblock %}

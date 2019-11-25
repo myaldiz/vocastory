@@ -134,3 +134,5 @@ STATICFILES_DIRS = [
 # Modified for login/logout redirection
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+AUTH_PASSWORD_VALIDATORS = []
