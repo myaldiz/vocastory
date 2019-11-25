@@ -10,7 +10,7 @@
         <ul>
         {% for word_set in word_sets %}
             <li>
-                <a href="/vocastory/browse_mode/{{ word_set.id }}/">
+                <a href='{{ word_set.get_absolute_url }}'>
                     {{ word_set.title }}:
                 </a>
             <ul>

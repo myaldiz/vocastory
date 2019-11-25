@@ -7,6 +7,21 @@
         {{ story_text }}<br>
     </p>
     <p>
-        Your rating for the story is {{your_rating}}
+        {% if flag == True %}
+            You flagged the story
+        {% else %}
+            <ul>
+            Your rating for the story:
+                <li>
+                    Creativity: {{ creativity }}
+                </li>
+                <li>
+                    Coherence: {{ coherence }}
+                </li>
+                <li>
+                    Fun: {{ fun }}
+                </li>
+            </ul>
+        {% endif %}
     </p>
 {% endblock %}

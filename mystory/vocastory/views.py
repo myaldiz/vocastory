@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse, Http404
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseForbidden, HttpResponseBadRequest
 
-from .models import Story, Sentence, WordSet
+from .models import Story, Sentence, WordSet, StoryReview
 from accounts.models import CustomUser
 from .forms import SentenceInputForm, SentenceSelectForm, StoryRatingForm
 from django.db import models
@@ -32,7 +32,11 @@ def mypage_view(request):
     :param request:
     :return:
     """
-    user = CustomUser.objects.get(pk=request.user.id)
+    if not request.user.is_authenticated:
+        return HttpResponseForbidden("Please login first!!")
+
+    user = get_object_or_404(CustomUser, id=request.user.id)
+
     stories = user.get_stories()\
         .annotate(num_stars=models.Count('starred_users'))\
         .order_by('-num_stars')
@@ -47,12 +51,16 @@ def mypage_view(request):
     return render(request, 'my_page.html', context)
 
 
+
 def starred_page_view(request):
     """
     Stories user is part of and word-sets user created are shown
     :param request:
     :return:
     """
+    if not request.user.is_authenticated:
+        return HttpResponseForbidden("Please login first!!")
+
     user = CustomUser.objects.get(pk=request.user.id)
     stories = user.starred_stories\
         .annotate(num_stars=models.Count('starred_users'))\
@@ -69,27 +77,46 @@ def starred_page_view(request):
 
 
 def review_story(request, story_id):
-    try:
-        story = Story.objects.get(pk=story_id)
-        context = {
-            'story': story, 
-            'story_text': story.get_text(), 
-            'completion': story.completed,
-            'rating_form': StoryRatingForm(),
-        }
-    except Story.DoesNotExist:
-        raise Http404("Story does not exists!!")
+    if not request.user.is_authenticated:
+        return HttpResponseForbidden("Please login first!!")
+
+    story = get_object_or_404(Story, id=story_id)
+    user = get_object_or_404(CustomUser, id=request.user.id)
+    context = {
+        'story': story,
+        'story_text': story.get_text(),
+        'completion': story.completed,
+        'rating_form': StoryRatingForm(),
+    }
+
     if request.method == 'GET':
         return render(request, 'review_mode/review_story.html', context)
     elif request.method == 'POST':
-        form = StoryRatingForm(request.POST)
+
+        instance = StoryReview.objects.filter(creator=user, story=story).first()
+        form = StoryRatingForm(request.POST, i)
         if form.is_valid():
-            context['your_rating'] = form.cleaned_data['rating']
-            context['your_report'] = form.cleaned_data['report']
-            
+            flag = form.cleaned_data['flag']
+            coherence = form.cleaned_data['coherence']
+            creativity = form.cleaned_data['creativity']
+            fun = form.cleaned_data['fun']
+
+            context['flag'] = flag
+            context['coherence'] = coherence
+            context['creativity'] = creativity
+            context['fun'] = fun
+
+            # This will create the review and save it
+            StoryReview.create_or_edit(
+                user, story, flag,
+                coherence, creativity, fun
+            )
+
             return render(request, 'review_mode/reviewed.html', context)
         else:
-            raise Http404("Invalid form!!")
+            return HttpResponseBadRequest("Invalid form!!")
+
+
 def browse_word_sets(request):
     word_sets = WordSet.objects.all()
 
@@ -98,31 +125,27 @@ def browse_word_sets(request):
 
 
 def browse_story_list(request, wordset_id):
-    try:
-        word_set = WordSet.objects.get(pk=wordset_id)
-        story_list = word_set.story_set.all()
-        context = {'word_set': word_set, 'story_list': story_list}
-
-    except WordSet.DoesNotExist:
-        raise Http404("Sentence does not exists!!")
+    word_set = get_object_or_404(WordSet, id=wordset_id)
+    story_list = word_set.story_set.all()
+    context = {'word_set': word_set, 'story_list': story_list}
 
     return render(request, 'browse_mode/browse_story.html', context)
 
 
 def read_story(request, story_id):
-    #return HttpResponse('Read/Select how to continue!')
-    try: 
-        story = Story.objects.get(pk=story_id)
-        last_two = story.get_last_two()
-        candidates_text = ".\n".join([i.text for i in story.get_candidate_sentences()])
-        context = {
-            'story': story,
-            'story_last_two': last_two,
-            'the_candidates': candidates_text,
-            'the_form': SentenceSelectForm(),
-        }
-    except Story.DoesNotExist:
-        raise Http404("Story does not exists!!")
+    if not request.user.is_authenticated:
+        return HttpResponseForbidden("Please login first!!")
+
+    story = get_object_or_404(Story, id=story_id)
+
+    last_two = story.get_last_two()
+    candidates_text = ".\n".join([i.text for i in story.get_candidate_sentences()])
+    context = {
+        'story': story,
+        'story_last_two': last_two,
+        'the_candidates': candidates_text,
+        'the_form': SentenceSelectForm(),
+    }
 
     #return render(request, 'readers_mode/select_sentence.html',context)
     if request.method == 'GET':
@@ -144,20 +167,20 @@ def read_story(request, story_id):
             story.check_time_and_select()
             return render(request, 'readers_mode/selected.html', context)
         else:
-            raise Http404("Invalid form!!")
+            return HttpResponseBadRequest("Invalid form!!")
 
 
 def write_story(request, story_id):
-    try:
-        story = Story.objects.get(pk=story_id)
-        last_two = story.get_last_two()
-        context = {
-            'story': story,
-            'story_last_two': last_two,
-            'input_form': SentenceInputForm(),
-        }
-    except Story.DoesNotExist:
-        raise Http404("Story does not exists!!")
+    if not request.user.is_authenticated:
+        return HttpResponseForbidden("Please login first!!")
+
+    story = get_object_or_404(Story, id=story_id)
+    last_two = story.get_last_two()
+    context = {
+        'story': story,
+        'story_last_two': last_two,
+        'input_form': SentenceInputForm(),
+    }
 
     if request.method == 'GET':
         return render(request, 'writers_mode/write_story.html', context)
@@ -166,7 +189,7 @@ def write_story(request, story_id):
         if form.is_valid():
             context['candidate_sentence'] = form.cleaned_data['sentence']
             current_user = CustomUser.objects.get(pk=request.user.id)
-            s=Sentence.create(text=form.cleaned_data['sentence'], order=story.get_last_idx()+1, story=story, creator=current_user, wordset=story.word_set)
+            Sentence.create(text=form.cleaned_data['sentence'], order=story.get_last_idx()+1, story=story, creator=current_user, wordset=story.word_set)
             return render(request, 'writers_mode/submitted.html', context)
         else:
-            raise Http404("Invalid form!!")
+            return HttpResponseBadRequest("Invalid form!!")

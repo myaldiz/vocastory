@@ -9,17 +9,15 @@ urlpatterns = [
     path('starred_page', views.starred_page_view, name='starred_view'),
 
     # Browse Mode
-    path('browse_mode', views.browse_word_sets, name='browse_word_set'),
-    path('browse_mode/<int:wordset_id>/', views.browse_story_list, name='browse_story'),
+    path('browse_mode', views.browse_word_sets, name='browse_word_sets'),
+    path('browse_mode/<int:wordset_id>/', views.browse_story_list, name='browse_wordset_stories'),
 
     # Review Mode
     path('review_mode/<int:story_id>/', views.review_story, name='review_story'),
 
     # Readers Mode
-    path('readers_mode/', views.browse_word_sets, name='index1'),
-    path('readers_mode/<int:story_id>/', views.read_story, name='detail1'),
+    path('readers_mode/<int:story_id>/', views.read_story, name='read_story'),
 
     # Writers Mode
-    path('writers_mode/', views.browse_word_sets, name='index2'),
-    path('writers_mode/<int:story_id>/', views.write_story, name='detail2'),
+    path('writers_mode/<int:story_id>/', views.write_story, name='write_story'),
 ]

@@ -1,6 +1,6 @@
 from django.db import models, transaction
 import string
-from datetime import timedelta
+from django.urls import reverse_lazy, reverse
 
 # NLP engine only loaded if needed
 nlp_engine = None
@@ -57,6 +57,9 @@ class WordSet(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("browse_wordset_stories", kwargs={'wordset_id': self.id})
 
 
 class Story(models.Model):
@@ -149,8 +152,14 @@ class Story(models.Model):
             s=candidates[0]
             selected_sentence=Sentence(text=s.text, is_selected=True, order=self.get_last_idx()+1, story=self)
             selected_sentence.save()
-            
-            
+
+    def get_read_url(self):
+        return reverse("read_story", kwargs={'story_id': self.id})
+    def get_write_url(self):
+        return reverse("write_story", kwargs={'story_id': self.id})
+    def get_review_url(self):
+        return reverse("review_story", kwargs={'story_id': self.id})
+
 
 class Sentence(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
@@ -166,8 +175,7 @@ class Sentence(models.Model):
     # User reference for the sentence
     creator = models.ForeignKey('accounts.CustomUser',
                                 on_delete=models.CASCADE,
-                                related_name='created_sentences',
-                                null=True)
+                                related_name='created_sentences')
 
 
     @classmethod
@@ -199,17 +207,44 @@ class Sentence(models.Model):
                     sentence.used_words.add(word)
 
         return sentence
-
     
     def vote_sentence(self, user):
-        if user == None:
+        if user is None:
             return False
         
         #if self.voted_users.filter(pk=user.id).exists():
         if user not in self.voted_users.all():
             self.voted_users.add(user)
-        
-
+            return True
+        return False
 
     def __str__(self):
         return self.text
+
+
+class StoryReview(models.Model):
+    creation_date = models.DateTimeField(auto_now_add=True)
+    creator = models.ForeignKey('accounts.CustomUser',
+                                on_delete=models.CASCADE,
+                                related_name='review_set')
+    story = models.ForeignKey(Story,
+                              on_delete=models.CASCADE,
+                              related_name='review_set')
+    flag = models.BooleanField(default=False, null=True)
+    coherence = models.IntegerField(default=0, null=True)
+    creativity = models.IntegerField(default=0, null=True)
+    fun = models.IntegerField(default=0, null=True)
+
+    class Meta:
+        unique_together = ['creator', 'story']
+
+    @classmethod
+    def create_or_edit(cls, user, story, flag, coherence, creativity, fun):
+        with transaction.atomic():
+            review, _ = cls.objects.get_or_create(creator=user, story=story)
+            review.flag = flag
+            review.coherence = coherence
+            review.creativity = creativity
+            review.fun = fun
+            review.save()
+        return review
