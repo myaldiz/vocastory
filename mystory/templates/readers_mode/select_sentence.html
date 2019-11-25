@@ -4,25 +4,20 @@
 
 {% block content %}
     <h3>
-    {{ story.title }}
+        {{ story.title }}
     </h3>
 
     <p>
         Here is the last two sentences:<br>
-        {{ story.get_last_two }}
-    </p>
-
-    <p>
-        Here are the options:<br>
-        {{the_candidates|linebreaks}}
-
+        {{ story.get_stylized_last_two }}
     </p>
 
 
     <form method="post">
-    {% csrf_token %}
-    {{ the_form }}
-    <input type="Submit" value="Submit">
+        {% csrf_token %}
+        {{ form }}
+        <input type="Submit" value="Submit">
     </form>
+
 
 {% endblock %}

@@ -6,6 +6,7 @@ from django.utils import timezone
 # NLP engine only loaded if needed
 nlp_engine = None
 
+
 def nlp(*args, **kwargs):
     """
     This method tokenizes the sentence
@@ -28,7 +29,7 @@ class Word(models.Model):
         """
         Processes a word into its base form
         """
-        text_processed = text.strip().strip(string.punctuation)\
+        text_processed = text.strip().strip(string.punctuation) \
             .lower().split()[0]
         text = nlp(text_processed)
         word = cls(text=text.lemma_)
@@ -52,7 +53,7 @@ class WordSet(models.Model):
 
     @classmethod
     def get_top_wordsets_ordered(cls):
-        stories = cls.objects\
+        stories = cls.objects \
             .annotate(
             num_stars=models.Count('starred_users')
         ).order_by('-num_stars')
@@ -79,51 +80,35 @@ class Story(models.Model):
 
     @classmethod
     def get_top_stories_ordered(cls):
-        stories = cls.objects\
-            .annotate(num_stars=models.Count('starred_users'))\
+        stories = cls.objects \
+            .annotate(num_stars=models.Count('starred_users')) \
             .order_by('-num_stars')
         return list(stories)
 
     def get_sentence_set_with_vote(self):
-        return self.sentence_set\
+        return self.sentence_set \
             .annotate(votes=models.Count('voted_users'))
 
     def get_selected_sentences(self):
-        return self.sentence_set.filter(is_selected=True)\
+        return self.sentence_set.filter(is_selected=True) \
             .order_by('order')
 
-    def get_stylized_text(self):
-        """
-        TODO: add <strong> to the wordset words
-        :return:
-        """
-        return self.get_text()
-
+    @transaction.atomic
     def get_stylized_last_two(self):
         """
-        TODO: add <strong> to the wordset words
         :return:
         """
-        return self.get_last_two()
+        sentences = list(self.get_selected_sentences())
+        return " ".join([i.text for i in sentences[-2:]])
 
-    def get_num_likes(self):
-        return self.starred_users.count()
-
-    def get_text(self):
+    def get_stylized_text(self):
         """
         Gets the text for selected sentences for visualization
         """
         sentences = self.get_selected_sentences()
-        text = " ".join([i.text for i in sentences])
-        return text
+        return " ".join([i.text for i in sentences])
 
-    def get_last_two(self):
-        """
-        :return: text of the last two selected sentence
-        """
-        sentences = self.get_selected_sentences()
-        return " ".join([str(i) for i in list(sentences)[-2:]])
-
+    @transaction.atomic
     def get_last_selected_index(self):
         """
         :return: order of the last selected sentence, might be -1
@@ -136,7 +121,8 @@ class Story(models.Model):
     def get_candidate_index(self):
         return self.get_last_selected_index() + 1
 
-    def get_last_time(self):
+    @transaction.atomic
+    def get_last_selected_time(self):
         """
         :return: time at which the last selected sentence was created
         """
@@ -146,11 +132,14 @@ class Story(models.Model):
         else:
             return timezone.now()
 
+    @transaction.atomic
     def get_candidate_sentences(self):
         """
         :return: Last written sentences for the continuation of the story
         """
         return self.sentence_set.filter(order=self.get_candidate_index())
+
+    # def check_completed(self):
 
     def check_time_and_select(self):
         """
@@ -162,21 +151,24 @@ class Story(models.Model):
         if not sentences.exists():
             return
 
-        max_time = sentences[0].creation_date
-        delta=max_time-self.get_last_time()
+        last_sentence_time = sentences[0].creation_date
+        delta = last_sentence_time - self.get_last_selected_time()
 
         if delta.seconds >= 120:
-            sentences_with_votes=self.get_sentence_set_with_vote()
-            candidates = sentences_with_votes.filter(order=self.get_last_idx())
-            candidates=candidates.order_by('-votes')
-            s=candidates[0]
-            s.is_selected = True
-            s.save()
+            sentences_with_votes = self.get_sentence_set_with_vote()
+            candidates = sentences_with_votes.filter(order=self.get_candidate_index())
+            candidates = candidates.order_by('-votes')
+            with transaction.atomic():
+                s = candidates[0]
+                s.is_selected = True
+                s.save()
 
     def get_read_url(self):
         return reverse("read_story", kwargs={'story_id': self.id})
+
     def get_write_url(self):
         return reverse("write_story", kwargs={'story_id': self.id})
+
     def get_review_url(self):
         return reverse("review_story", kwargs={'story_id': self.id})
 
@@ -184,8 +176,9 @@ class Story(models.Model):
 class Sentence(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     text = models.CharField(max_length=200)
+    # stylized_text = models.CharField(max_length=300, null=True)
     order = models.IntegerField(default=0)  # Order in the story
-    used_words = models.ManyToManyField(Word)   # Used words from the WordSet
+    used_words = models.ManyToManyField(Word)  # Used words from the WordSet
     is_selected = models.BooleanField(default=False)
     story = models.ForeignKey(Story, on_delete=models.CASCADE)  # story reference for the sentence
     voted_users = models.ManyToManyField(
@@ -197,7 +190,6 @@ class Sentence(models.Model):
                                 on_delete=models.CASCADE,
                                 related_name='created_sentences')
 
-
     @classmethod
     def create(cls, text, story, creator):
         """ TODO: Fix this
@@ -205,15 +197,23 @@ class Sentence(models.Model):
         adds punctuation if not exists
         """
         order = 0
-        word_set= story.word_set
+        word_set = story.word_set
         text = str(text).strip()
         if len(text) < 3:
             return None
-        text = text+'.' if text[-1] not in string.punctuation else text
+        text = text + '.' if text[-1] not in string.punctuation else text
+
+        # def get_dic_reference(word):
+        #     text = "<a href='{{ show_meaning.html }}'>"
+        #     text += word
+        #     text += "</a>"
+        #     return text
 
         with transaction.atomic():
             sentence = cls(text=text, order=order, story=story, creator=creator)
+            # sentence.stylized_text = text
             sentence.save()
+
             text_tokens = nlp(text)
 
             used_words = set()
@@ -222,16 +222,21 @@ class Sentence(models.Model):
                 found_words = word_set.words.filter(text=t)
                 used_words.update(found_words)
 
-            for word in used_words:
-                sentence.used_words.add(word)
+            if len(used_words) == 0:
+                sentence.delete()
+                return None
+            else:
+                for word in used_words:
+                    sentence.used_words.add(word)
 
         return sentence
-    
+
+    @transaction.atomic
     def vote_sentence(self, user):
         if user is None:
             return False
-        
-        #if self.voted_users.filter(pk=user.id).exists():
+
+        # if self.voted_users.filter(pk=user.id).exists():
         if user not in self.voted_users.all():
             self.voted_users.add(user)
             return True

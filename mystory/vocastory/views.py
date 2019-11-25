@@ -4,7 +4,7 @@ from django.http import HttpResponseForbidden, HttpResponseBadRequest
 from .models import Story, Sentence, WordSet, StoryReview
 from accounts.models import CustomUser
 from .forms import SentenceInputForm, SentenceSelectForm, StoryRatingForm
-from django.db import models
+from django.contrib import messages
 
 
 def home_view(request):
@@ -38,7 +38,6 @@ def mypage_view(request):
         'word_sets': user.created_word_sets.all(),
     }
     return render(request, 'my_page.html', context)
-
 
 
 def starred_page_view(request):
@@ -135,9 +134,7 @@ def browse_story_list(request, wordset_id):
     :return:
     """
     word_set = get_object_or_404(WordSet, id=wordset_id)
-    story_list = word_set.story_set.all()
-    context = {'word_set': word_set, 'story_list': story_list}
-
+    context = {'word_set': word_set, 'story_list': word_set.story_set.all()}
     return render(request, 'browse_mode/browse_story.html', context)
 
 
@@ -152,29 +149,27 @@ def read_story(request, story_id):
         return HttpResponseForbidden("Please login first!!")
 
     story = get_object_or_404(Story, id=story_id)
+    candidates = story.get_candidate_sentences()
+    form = SentenceSelectForm()
+    form.fields['sentence_choice'].choices = [(sentence.id, sentence.text) for sentence in candidates]
 
-    candidates_text = ".\n".join([i.text for i in story.get_candidate_sentences()])
     context = {
         'story': story,
-        'the_candidates': candidates_text,
-        'the_form': SentenceSelectForm(),
+        'form': form,
     }
 
     if request.method == 'GET':
-        return render(request, 'readers_mode/select_sentence.html',context)
+        return render(request, 'readers_mode/select_sentence.html', context)
     elif request.method == 'POST':
         form = SentenceSelectForm(request.POST)
-        if form.is_valid():
-            candidates=story.get_candidate_sentences() 
-            user = CustomUser.objects.get(pk=request.user.id)
-            chosen_sentence = candidates[form.cleaned_data['int_option']-1]
-            chosen_sentence.vote_sentence(user)
-            context['selected_sentence'] = chosen_sentence
 
-            # story.check_time_and_select()
-            return render(request, 'readers_mode/selected.html', context)
-        else:
-            return HttpResponseBadRequest("Invalid form!!")
+        user = CustomUser.objects.get(pk=request.user.id)
+        chosen_sentence = candidates.get(id=form.data['sentence_choice'])
+        chosen_sentence.vote_sentence(user)
+        context['selected_sentence'] = chosen_sentence
+
+        story.check_time_and_select()
+        return render(request, 'readers_mode/selected.html', context)
 
 
 def write_story(request, story_id):
@@ -194,7 +189,17 @@ def write_story(request, story_id):
         if form.is_valid():
             context['candidate_sentence'] = form.cleaned_data['sentence']
             current_user = CustomUser.objects.get(pk=request.user.id)
-            Sentence.create(text=form.cleaned_data['sentence'], story=story, creator=current_user)
+            ret = Sentence.create(text=form.cleaned_data['sentence'], story=story, creator=current_user)
+
+            if ret is None:
+                messages.error(request, 'Please use the words from the word-list!')
+                return render(request, 'writers_mode/write_story.html', context)
+
             return render(request, 'writers_mode/submitted.html', context)
         else:
             return HttpResponseBadRequest("Invalid form!!")
+
+
+def show_word_meaning(request, word):
+    meaning = 'meaning'
+    return render(request, 'show_meaning.html', {"word": word, "meaning": meaning})

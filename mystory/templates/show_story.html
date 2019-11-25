@@ -3,7 +3,7 @@
 
     {% if story.completed %}
 
-        {{ story.get_stylized_text|safe }}<br>
+        {{ story.get_stylized_text }}<br>
         <a href='{{ story.get_review_url }}'>
             Read/Review the story!
         </a> <br>
@@ -21,6 +21,6 @@
 
     {% endif %}
 
-    Number of likes: {{ story.get_num_likes }}
+    Number of likes: {{ story.starred_users.count }}
 
 {% endif %}

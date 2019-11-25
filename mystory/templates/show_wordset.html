@@ -9,7 +9,11 @@
     <ul>
         {% for word in word_set.words.all %}
             <li>
-                <p class="card-text">{{ word.text }}<br></p>
+                <p class="card-text">
+                    <a href="show_meaning.html">
+                        {{ word.text }}
+                    </a>
+                </p>
             </li>
         {% endfor %}
     </ul>
