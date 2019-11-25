@@ -2,7 +2,6 @@ from django.db import models, transaction
 import string
 from datetime import timedelta
 
-
 # NLP engine only loaded if needed
 nlp_engine = None
 

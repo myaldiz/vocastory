@@ -85,6 +85,8 @@ def review_story(request, story_id):
         form = StoryRatingForm(request.POST)
         if form.is_valid():
             context['your_rating'] = form.cleaned_data['rating']
+            context['your_report'] = form.cleaned_data['report']
+            
             return render(request, 'review_mode/reviewed.html', context)
         else:
             raise Http404("Invalid form!!")

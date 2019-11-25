@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'vocastory.apps.VocastoryConfig',
     'accounts.apps.AccountsConfig',
+    
+    #'multiselectfield',
 ]
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
