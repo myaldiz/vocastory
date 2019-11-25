@@ -21,6 +21,25 @@ html , body{
     border-radius: 25px;
     border-color: rgb(228, 228, 228);
     position:fixed;
+    width:40vw;
+    bottom:31vh;
+    right:calc(30vw - 100px);
+    z-index: 0;
+    overflow-y: auto;
+    overflow-x:hidden;
+ 
+}
+
+.top-half-card
+{
+    
+    background: white;
+    height: 60vh;
+    margin-top: 20px;
+    padding:25px;
+    border-radius: 25px;
+    border-color: rgb(228, 228, 228);
+    position:fixed;
     width:80vw;
     bottom:31vh;
     right:100px;
@@ -29,7 +48,6 @@ html , body{
     overflow-x:hidden;
  
 }
-
 
 .top-half:hover
 {
