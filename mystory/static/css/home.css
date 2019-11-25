@@ -1,0 +1,27 @@
+h3{
+    font-family: 'Open Sans', sans-serif;
+  color: #555;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 100px;
+  font-weight: 800;
+  letter-spacing: -3px;
+  line-height: 1;
+  text-shadow: #EDEDED 3px 2px 0;
+  position: relative;
+}
+.cunt{
+    font-size: 1.5em;
+}
+.stars{
+    font-size: 2em;
+}
+
+.content{
+    font-size: 1em;
+    width:60%;
+    border:2px solid lightgray;
+    border-radius: 1px;
+    padding: 5px;
+    margin: 20px;
+}

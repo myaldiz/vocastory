@@ -10,11 +10,9 @@
         <h3> My Stories </h3>
         This shows the stories that you contributed.
         <ul>
-            {% for num_stars, title, text in story_info %}
+            {% for story in stories %}
                 <li>
-                    {{ num_stars }} time starred, <br>
-                    <strong> {{ title }}</strong> <br>
-                    {{ text }}
+                    {% include "show_story.html" %}
                 </li>
             {% endfor %}
         </ul>
@@ -26,17 +24,7 @@
         <ul>
         {% for word_set in word_sets %}
             <li>
-                <a href="/vocastory/browse_mode/{{ word_set.id }}/">
-                    {{ word_set.title }}:
-                </a>, {{ word_set.num_stars }} time starred:
-            <ul>
-
-                {% for word in word_set.words.all %}
-                    <li>
-                        {{ word.text }}
-                    </li>
-                {% endfor %}
-            </ul>
+                {% include "show_wordset.html" %}
             </li>
         {% endfor %}
         </ul>

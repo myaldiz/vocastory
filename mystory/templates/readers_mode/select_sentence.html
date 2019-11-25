@@ -9,19 +9,20 @@
 
     <p>
         Here is the last two sentences:<br>
-        {{ story_last_two }}
+        {{ story.get_last_two }}
     </p>
 
     <p>
         Here are the options:<br>
         {{the_candidates|linebreaks}}
+
     </p>
-    <p>
-        <form method="post">
-            {% csrf_token %}
-            {{ the_form}}
-            <input type="Submit" value="Submit">
-            </form>
-    </p>
+
+
+    <form method="post">
+    {% csrf_token %}
+    {{ the_form }}
+    <input type="Submit" value="Submit">
+    </form>
 
 {% endblock %}

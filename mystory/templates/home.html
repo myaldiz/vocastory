@@ -22,11 +22,9 @@
     <p>
         <h3> Top Stories </h3>
         <ul>
-            {% for num_stars, title, text in top_story_info %}
+            {% for story in stories %}
                 <li>
-                    {{ num_stars }} time starred, <br>
-                    <strong> {{ title }}</strong> <br>
-                    {{ text }}
+                    {% include "show_story.html" %}
                 </li>
             {% endfor %}
         </ul>
@@ -35,7 +33,7 @@
     <p>
         <h3> Top WordSets </h3>
         <ul>
-        {% for word_set in top_word_sets %}
+        {% for word_set in word_sets %}
             <li>
                 <a href="/vocastory/browse_mode/{{ word_set.id }}/">
                     {{ word_set.title }}:

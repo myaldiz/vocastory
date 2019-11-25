@@ -1,0 +1,358 @@
+html , body{
+    height: 100%;
+}
+.page
+{
+
+    padding: 0 0 0 20vw;
+    margin: 0 310px 0 0 ;
+    border:0;
+    overflow-y: auto;
+}
+
+
+.top-half
+{
+    
+    background: white;
+    height: 60vh;
+    margin-top: 20px;
+    padding:25px;
+    border-radius: 25px;
+    border-color: rgb(228, 228, 228);
+    position:fixed;
+    width:40vw;
+    bottom:31vh;
+    right:calc(30vw - 100px);
+    z-index: 0;
+    overflow-y: auto;
+    overflow-x:hidden;
+ 
+}
+
+.top-half-card
+{
+    
+    background: white;
+    height: 60vh;
+    margin-top: 20px;
+    padding:25px;
+    border-radius: 25px;
+    border-color: rgb(228, 228, 228);
+    position:fixed;
+    width:80vw;
+    bottom:31vh;
+    right:100px;
+    z-index: 0;
+    overflow-y: auto;
+    overflow-x:hidden;
+ 
+}
+
+.top-half:hover
+{
+
+    background: rgb(240, 240, 240);
+
+}
+
+
+.bottom-half
+{
+    
+    background: rgb(255, 255, 255);
+    height: 27vh;
+    margin-top: 10px;
+    border-radius: 25px;
+    border-color:  rgb(139, 53, 53);
+    position:fixed;
+    width:80vw;
+    top:calc(60vh + 80px);
+    right:100px;
+    
+
+}
+
+
+.bottom-half:hover
+{
+    background: rgb(240, 240, 240);
+
+
+}
+
+
+.top-half-browse:hover
+{
+    background: rgb(240, 240, 240);
+}
+
+
+.top-bar:hover
+{
+    background: rgb(255, 245, 152);
+}
+
+
+
+.top-half-browse
+{
+    
+    background: white;
+    height: 100vh;
+    margin-top: 10px;
+    padding: 80px 0 0px 0vw;
+    border-radius: 25px;
+    border-color: rgb(99, 87, 87);
+    border-style: solid;
+    
+}
+
+
+
+.top-bar
+{
+
+    height:70px;
+    width:100%;
+    min-width: 1200px;
+    padding:0 350px 0 20vw;
+    background: rgb(255, 246, 205);
+    position: fixed;
+    z-index: 50;
+    top:0;
+
+}
+
+
+.side-bar
+{
+    width:300px;
+    background: white;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    z-index: 100;
+    right:-250px;
+    transition: all 500ms;
+ 
+}
+
+
+.side-bar:hover
+{
+    right:0;
+}
+
+.btn
+{
+    border-radius: 30px;
+    
+}
+
+
+#avatar
+{
+    transition: all 500ms;
+}
+
+#avatar:hover
+{
+    filter: brightness(50%);
+}
+
+.browse-card
+{
+    background: yellow;
+    width: 48%;
+    margin:1%;
+   
+}
+
+
+
+
+
+
+.image-card
+{
+    height: 85px;
+    width:auto;
+    margin:1px;
+
+}
+
+.sentence
+{
+    touch-action: none;
+    user-select: none;
+}
+
+
+
+
+.image-icon
+{
+
+    height: 70px;
+    width:70px;
+    margin-top:0px;
+
+}
+
+
+.image-icon:hover
+{
+    filter:brightness(50%)
+}
+
+
+
+.image-card:hover
+{
+    filter: brightness(50%);
+}
+
+.card-title:hover
+{
+    text-decoration: underline;
+}
+
+.browse-card
+{
+    border-radius: 25px;
+    text-align: center;
+    background: white;
+    height: 100%;
+
+    
+}
+
+
+.card-group
+{
+padding:0 20px 0 20px;
+height: 30vh;
+
+}
+
+
+
+.btns
+{
+    border-radius: 0px;
+}
+
+#friends-card
+{
+    overflow:hidden;
+}
+
+
+
+.go-bar
+{
+    background: red;
+    height: 60vh;
+    margin-top: 10px;
+    padding-top:10px;
+    
+    border-radius: 25px;
+    border-color: rgb(228, 228, 228);
+    position:fixed;
+    width:calc(30vw - 5px);
+    top:70px;
+
+    z-index: 150;
+    overflow: auto;
+}
+
+
+#input-text
+{
+    border-color: transparent;
+    height: 25vh;
+    padding:15px;
+    border-radius: 25px;
+    border-color: rgb(228, 228, 228);
+    position:fixed;
+    width:80vw;
+    bottom:10px;
+    right:100px;
+    z-index: 0;
+    overflow-y: hidden;
+
+}
+
+#input-text:hover
+{
+    border-style: solid;
+    border-color: rgb(196, 196, 196);
+    border-width: 3px;
+
+}
+
+#banner
+{
+
+    height: 3vh;
+    padding-top: 3px;
+    padding-left:60px;
+    border-radius: 25px;
+    border-color: rgb(228, 228, 228);
+    position:fixed;
+    width:80vw;
+    bottom:calc(10px + 25vh + 1vh);
+    right:100px;
+    z-index: 0;
+    background: rgb(202, 202, 202);
+    overflow: hidden;
+    
+}
+
+
+.sentence
+{
+    margin:10px 0px 10px 20px;
+    width: 95%;
+    height: 50px;
+    background:white ;
+    border-radius: 25px;
+    padding:12px;
+
+    
+    overflow-x:auto;
+    overflow-y: hidden;
+    border-width: 1px;
+}
+
+.sentence-blur
+{
+    margin:10px 0px 10px 20px;
+    width: 95%;
+    height: 50px;
+    background:white ;
+    border-radius: 25px;
+    padding:12px;
+
+    
+    overflow-x:auto;
+    overflow-y: hidden;
+    border-width: 1px;
+    color: transparent;
+   text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    
+}
+
+
+.sentence-image
+{
+    position: relative;
+    height:45px;
+    width:45px;
+    border-radius: 50px;
+    top:-33px;
+    margin-left:90%;
+    
+    
+}

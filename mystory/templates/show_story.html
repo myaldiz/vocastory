@@ -1,0 +1,26 @@
+{% if story %}
+    <strong> {{ story.title }} </strong> <br>
+
+    {% if story.completed %}
+
+        {{ story.get_stylized_text|safe }}<br>
+        <a href='{{ story.get_review_url }}'>
+            Read/Review the story!
+        </a> <br>
+
+    {% else %}
+        {% if story.get_candidate_sentences|length != 0 %}
+        <a href='{{ story.get_read_url }}'>
+            Contribute in Reader's mode!
+        </a> <br>
+        {% endif %}
+
+        <a href='{{ story.get_write_url }}'>
+            Contribute in Writer's mode!
+        </a> <br>
+
+    {% endif %}
+
+    Number of likes: {{ story.get_num_likes }}
+
+{% endif %}

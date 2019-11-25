@@ -1,6 +1,7 @@
 from django.db import models, transaction
 import string
 from django.urls import reverse_lazy, reverse
+from django.utils import timezone
 
 # NLP engine only loaded if needed
 nlp_engine = None
@@ -30,7 +31,9 @@ class Word(models.Model):
         text_processed = text.strip().strip(string.punctuation)\
             .lower().split()[0]
         text = nlp(text_processed)
-        return cls(text=text.lemma_)
+        word = cls(text=text.lemma_)
+        word.save()
+        return word
 
     def __str__(self):
         return self.text
@@ -69,29 +72,42 @@ class Story(models.Model):
     word_set = models.ForeignKey(
         WordSet,
         on_delete=models.CASCADE,
-        null=True
-    )
+        null=True)
     starred_users = models.ManyToManyField(
         'accounts.CustomUser',
         related_name='starred_stories')
 
-    def get_sentence_set_with_vote(self):
-        return self.sentence_set.\
-            annotate(votes=models.Count('voted_users'))
-
     @classmethod
     def get_top_stories_ordered(cls):
-        stories = cls.objects.\
-            annotate(num_stars=models.Count('starred_users')).\
-            order_by('-num_stars')
+        stories = cls.objects\
+            .annotate(num_stars=models.Count('starred_users'))\
+            .order_by('-num_stars')
         return list(stories)
 
-    def get_selected_sentences(self):
-        """
-        Returns the sentences voted and selected by users
-        """
-        return self.sentence_set.filter(is_selected=True).order_by('order')
+    def get_sentence_set_with_vote(self):
+        return self.sentence_set\
+            .annotate(votes=models.Count('voted_users'))
 
+    def get_selected_sentences(self):
+        return self.sentence_set.filter(is_selected=True)\
+            .order_by('order')
+
+    def get_stylized_text(self):
+        """
+        TODO: add <strong> to the wordset words
+        :return:
+        """
+        return self.get_text()
+
+    def get_stylized_last_two(self):
+        """
+        TODO: add <strong> to the wordset words
+        :return:
+        """
+        return self.get_last_two()
+
+    def get_num_likes(self):
+        return self.starred_users.count()
 
     def get_text(self):
         """
@@ -101,7 +117,6 @@ class Story(models.Model):
         text = " ".join([i.text for i in sentences])
         return text
 
-
     def get_last_two(self):
         """
         :return: text of the last two selected sentence
@@ -109,32 +124,33 @@ class Story(models.Model):
         sentences = self.get_selected_sentences()
         return " ".join([str(i) for i in list(sentences)[-2:]])
 
-    def get_last_idx(self):
+    def get_last_selected_index(self):
         """
-        :return: order of the last selected sentence
+        :return: order of the last selected sentence, might be -1
         """
-        non_selected = self.sentence_set.filter(is_selected=True).order_by('-order')
-        return non_selected[0].order
+        selected = self.sentence_set.filter(is_selected=True).order_by('-order')
+        if not selected.exists():
+            return -1
+        return selected[0].order
+
+    def get_candidate_index(self):
+        return self.get_last_selected_index() + 1
 
     def get_last_time(self):
         """
         :return: time at which the last selected sentence was created
         """
         non_selected = self.sentence_set.filter(is_selected=True).order_by('-creation_date')
-        return non_selected[0].creation_date
+        if non_selected.exists():
+            return non_selected[0].creation_date
+        else:
+            return timezone.now()
 
     def get_candidate_sentences(self):
         """
         :return: Last written sentences for the continuation of the story
         """
-        non_selected = self.sentence_set.filter(is_selected=False).order_by('-order')
-        last_idx = non_selected[0].order
-
-        # No new sentence is written
-        if self.sentence_set.filter(is_selected=True, order=last_idx).exists():
-            return []
-
-        return self.sentence_set.filter(order=last_idx).order_by('creation_date')
+        return self.sentence_set.filter(order=self.get_candidate_index())
 
     def check_time_and_select(self):
         """
@@ -143,15 +159,19 @@ class Story(models.Model):
         The time elapsed is the time of newest candidate-time of last selected sentence
         """
         sentences = self.sentence_set.order_by('-creation_date')
+        if not sentences.exists():
+            return
+
         max_time = sentences[0].creation_date
         delta=max_time-self.get_last_time()
-        if delta.seconds>=120:    
+
+        if delta.seconds >= 120:
             sentences_with_votes=self.get_sentence_set_with_vote()
-            candidates = sentences_with_votes.filter(order=self.get_last_idx()+1)
+            candidates = sentences_with_votes.filter(order=self.get_last_idx())
             candidates=candidates.order_by('-votes')
             s=candidates[0]
-            selected_sentence=Sentence(text=s.text, is_selected=True, order=self.get_last_idx()+1, story=self)
-            selected_sentence.save()
+            s.is_selected = True
+            s.save()
 
     def get_read_url(self):
         return reverse("read_story", kwargs={'story_id': self.id})
@@ -179,32 +199,31 @@ class Sentence(models.Model):
 
 
     @classmethod
-    def create(cls, text, order, story, creator, wordset):
-        """
+    def create(cls, text, story, creator):
+        """ TODO: Fix this
         Matches wordset words of the text,
         adds punctuation if not exists
         """
+        order = 0
+        word_set= story.word_set
         text = str(text).strip()
         if len(text) < 3:
             return None
         text = text+'.' if text[-1] not in string.punctuation else text
 
-        # Make sure it is atomic
         with transaction.atomic():
             sentence = cls(text=text, order=order, story=story, creator=creator)
             sentence.save()
             text_tokens = nlp(text)
 
-            # if WordSet is provided, check for matches
-            if isinstance(wordset, WordSet):
-                used_words = set()
-                for t in text_tokens:
-                    t = t.lemma_.lower()
-                    found_words = wordset.words.filter(text=t)
-                    used_words.update(found_words)
+            used_words = set()
+            for t in text_tokens:
+                t = t.lemma_.lower()
+                found_words = word_set.words.filter(text=t)
+                used_words.update(found_words)
 
-                for word in used_words:
-                    sentence.used_words.add(word)
+            for word in used_words:
+                sentence.used_words.add(word)
 
         return sentence
     

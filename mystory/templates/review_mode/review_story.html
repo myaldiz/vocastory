@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}Review Story{% endblock %}
+{% block title %}{{ block.super }}|Review Story{% endblock %}
 
 {% block content %}
     <p>
-        {{ story_text }}<br>
-    </p>
-    <p>
+        {{ story.get_text }}
+        <br>
+
         {% if instance %}
-            You reviewed this story before, you can edit below:
+            You reviewed this story before, you can edit your response below:
         {% endif %}
         <form method="post">
             {% csrf_token %}

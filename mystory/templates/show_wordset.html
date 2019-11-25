@@ -1,0 +1,16 @@
+{% if word_set %}
+
+    <div class="card-group" style="margin:5px">
+        <div class="card browse-card" style="overflow-y:auto">
+            <div class="card-body">
+                <a href='{{ word_set.get_absolute_url }}' class="btn btn-primary"
+                   style="margin:2px;">{{ word_set.title }}</a>
+                {% for word in word_set.words.all %}
+                    <p class="card-text">{{ word.text }}<br></p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+

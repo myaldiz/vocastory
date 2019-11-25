@@ -4,57 +4,19 @@
 
 {% block content %}
     <p>
-    Here is the {{ word_set.title }}, and the words it contain:
-        <ul>
-        {% for word in word_set.words.all %}
-            <li>
-                {{ word.text }}
-            </li>
-        {% endfor %}
-        </ul>
-    </p>
+    {% include "show_wordset.html" %}
 
-
-    <p>
-        {% if story_list|length != 0 %}
+    {% if story_list|length != 0 %}
         Here are the stories created by that word_set:
             <ul>
             {% for story in story_list %}
-                <li>
-                {{ story.title }},
-                {% if story.completed %}
-                    completed:
-                {% else %}
-                    not completed:
-                {% endif %}
-                <ul>
-                    {% if story.completed %}
-                        <li>
-                            <a href='{{ story.get_review_url }}'>
-                            Read/Review the story!
-                            </a>
-                        </li>
-                    {% endif %}
-                    {% if not story.completed %}
-                        <li>
-                            <a href='{{ story.get_read_url }}'>
-                            Contribute in Reader's mode!
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href='{{ story.get_write_url }}'>
-                            Contribute in Writer's mode!
-                            </a>
-                        </li>
-                    {% endif %}
-                </ul>
-                </li>
+                {% include "show_story.html" %}
             {% endfor %}
             </ul>
         {% else %}
         No stories to show.
         {% endif %}
+
     </p>
 
 {% endblock %}
