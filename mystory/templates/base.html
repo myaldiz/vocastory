@@ -24,24 +24,31 @@
 
 <div class="top-bar col-md-12 shadow-sm mb5">
   <form class="form-inline sm-form float-right" style="margin:15px">
-      <button class="btn btn-primary" type="submit">Login</button>
+    {% if not user.is_authenticated %}
+      <!--<button class="btn btn-primary" type="Search"><a href='{% url "login" %}'>Login</a></button>-->
+      <button class="btn btn-primary"
+          style="margin:0 0 0 10px;background:yellow;color: black;border-color: yellow;"
+          type="Search"><a href='{% url "browse_word_sets" %}'>Browse WordSets</a></button>
+      <button class="btn btn-primary"
+          style="margin:0 0 0 10px;background:yellow;color: black;border-color: yellow;"
+          type="Search"><a href='{% url "login" %}'>Login</a></button>
+          <button class="btn btn-primary"
+          style="margin:0 0 0 10px;background:yellow;color: black;border-color: yellow;"
+          type="Search"><a href='{% url "signup" %}'>Sign up</a></button>
+    {% endif %}
+    {% if user.is_authenticated %}
       <button class="btn btn-primary"
           style="margin:0 0 0 10px;background:yellow;color: black;border-color: yellow;"
           type="Search"><a href='{% url "browse_word_sets" %}'>Browse WordSets</a></button>
           <button class="btn btn-primary"
           style="margin:0 0 0 10px;background:yellow;color: black;border-color: yellow;"
-          type="Search"><a href='{% url "browse_word_sets" %}'>Browse WordSets</a></button>
+          type="Search"><a href='{% url "logout" %}'>Logout</a></button>
+    {% endif %}
   </form>
 
   <img src="{% static 'imgs/logo-text.png' %}" style="max-width: 200px;margin-top:15px;" alt="" id="vocastory">
 
-
-
-
-
 </div>
-
-
 
 <p style="text-align: left">
     <a href="/"> Home </a>&nbsp;
