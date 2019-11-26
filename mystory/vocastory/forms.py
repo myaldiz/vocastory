@@ -1,7 +1,12 @@
 from django import forms
 
+
 class SentenceInputForm(forms.Form):
     sentence = forms.CharField(label='Write a sentence to continue the story', max_length=100)
+
+
+class WordSetInputForm(forms.Form):
+    sentence = forms.CharField(label='Write words to create word list', max_length=200)
 
 
 class SentenceSelectForm(forms.Form):
