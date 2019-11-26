@@ -10,7 +10,7 @@
 - Please read the mystory/README.md
 
 ## Guide to repository structure
-- Enter the mystory directory.
+- Enter the mystory directory. Inside you will see the following folders:
     - ./vocastory contains views.py and models.py which are the most IMPORTANT files
     - ./templates contains html files
     - ./static contains stylesheets and js files
@@ -28,7 +28,7 @@
         - This feature is called ``reader's mode``
         - Winner will be selected as a next sentence to continue the story.
         - Next, users switch back to writing mode to continue the story. (Exact mechanism will be selected by user study in the future)
-    - Task 3 (Review): Review and grade the story as a whole based on the provided criteria (uniqueness, sentence qualities, coherence)
+    - Task 3 (Review): Review and grade the story as a whole based on the provided criteria (creativity, coherence, fun)
         - This feature is called ``reviewer's mode``
 
 
