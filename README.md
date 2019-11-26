@@ -3,11 +3,21 @@
 ## Problem Statement
 - People struggle to memorise words effectively while learning a new language or preparing for an exam. Existing systems mostly rely on repetition without  letting users actively put the words they learn into a context
 
+## Our Solution
+- A website that enables collaborative storytelling to memorise the words in a list. 
+
 ## How to RUN the website
 - Please read the mystory/README.md
 
-
-
+## Guide to repository structure
+- Enter the mystory directory.
+    - ./vocastory contains views.py and models.py which are the most IMPORTANT files
+    - ./templates contains html files
+    - ./static contains stylesheets and js files
+    - ./mystory contains settings file that mentions dependencies and database
+    - ./accounts helps manage users
+    - ./fixtures contains the json files with pre-existing data to partially fill the website
+    
 ## Tasks
 
 - We have three different modes in the game explained below as tasks:
@@ -23,4 +33,4 @@
 
 
 ## Prototype
-* [Link](https://invis.io/UKUQEFBZMXH) to the prototype
+* [Link](https://invis.io/UKUQEFBZMXH) to the low-fi prototype
