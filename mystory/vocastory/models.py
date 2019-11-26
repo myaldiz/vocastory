@@ -1,7 +1,8 @@
 from django.db import models, transaction
 import string
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse
 from django.utils import timezone
+from accounts.models import CustomUser
 
 # NLP engine only loaded if needed
 nlp_engine = None
@@ -68,6 +69,15 @@ class WordSet(models.Model):
     def get_absolute_url(self):
         return reverse("browse_wordset_stories", kwargs={'wordset_id': self.id})
 
+    def get_like_url(self):
+        return reverse("swap_like_wordset", kwargs={'wordset_id': self.id})
+
+    # def get_is_liked(self, user):
+    #     if user is not None and CustomUser.objects.get(id=user.id) in self.starred_users:
+    #         return True
+    #     else:
+    #         return False
+
 
 class Story(models.Model):
     title = models.CharField(max_length=100)
@@ -102,14 +112,14 @@ class Story(models.Model):
         :return:
         """
         sentences = list(self.get_selected_sentences())
-        return " ".join([i.text for i in sentences[-2:]])
+        return " ".join([i.stylized_text for i in sentences[-2:]])
 
     def get_stylized_text(self):
         """
         Gets the text for selected sentences for visualization
         """
         sentences = self.get_selected_sentences()
-        return " ".join([i.text for i in sentences])
+        return " ".join([i.stylized_text for i in sentences])
 
     @transaction.atomic
     def get_last_selected_index(self):
@@ -175,11 +185,21 @@ class Story(models.Model):
     def get_review_url(self):
         return reverse("review_story", kwargs={'story_id': self.id})
 
+    def get_like_url(self):
+        return reverse("swap_like_story", kwargs={'story_id': self.id})
+
+    # def get_is_liked(self, user):
+    #     if user is not None and CustomUser.objects.get(id=user.id) in self.starred_users:
+    #         return True
+    #     else:
+    #         return False
+
+
 
 class Sentence(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     text = models.CharField(max_length=200)
-    # stylized_text = models.CharField(max_length=300, null=True)
+    stylized_text = models.CharField(max_length=300, null=True)
     order = models.IntegerField(default=0)  # Order in the story
     used_words = models.ManyToManyField(Word)  # Used words from the WordSet
     is_selected = models.BooleanField(default=False)
@@ -199,7 +219,7 @@ class Sentence(models.Model):
         Matches wordset words of the text,
         adds punctuation if not exists
         """
-        order = 0
+        order = story.get_candidate_index()
         word_set = story.word_set
         text = str(text).strip()
         if len(text) < 3:
@@ -214,7 +234,7 @@ class Sentence(models.Model):
 
         with transaction.atomic():
             sentence = cls(text=text, order=order, story=story, creator=creator)
-            # sentence.stylized_text = text
+            sentence.stylized_text = text
             sentence.save()
 
             text_tokens = nlp(text)
@@ -261,17 +281,19 @@ class StoryReview(models.Model):
     coherence = models.IntegerField(default=0, null=True)
     creativity = models.IntegerField(default=0, null=True)
     fun = models.IntegerField(default=0, null=True)
+    comment = models.CharField(null=True, max_length=250)
 
     class Meta:
         unique_together = ['creator', 'story']
 
     @classmethod
-    def create_or_edit(cls, user, story, flag, coherence, creativity, fun):
+    def create_or_edit(cls, user, story, flag, coherence, creativity, fun, comment):
         with transaction.atomic():
             review, _ = cls.objects.get_or_create(creator=user, story=story)
             review.flag = flag
             review.coherence = coherence
             review.creativity = creativity
             review.fun = fun
+            review.comment = comment
             review.save()
         return review

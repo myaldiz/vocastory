@@ -242,6 +242,7 @@
   "fields": {
     "creation_date": "2019-11-23T11:37:31.130Z",
     "text": "The memory of his parent's death was so painful that he obliterated it from his mind.",
+    "stylized_text": "The memory of his parent's death was so painful that he <strong>obliterated</strong> it from his mind.",
     "order": 0,
     "is_selected": true,
     "story": 1,
@@ -257,6 +258,7 @@
   "fields": {
     "creation_date": "2019-11-23T11:38:09.709Z",
     "text": "We constantly told him that he should have heeded the warnings and avoid swamp vacation at any cost.",
+    "stylized_text": "We constantly told him that he should have heeded the warnings and avoid swamp vacation at any cost.",
     "order": 1,
     "is_selected": true,
     "story": 1,
@@ -272,6 +274,7 @@
   "fields": {
     "creation_date": "2019-11-23T11:38:36.194Z",
     "text": "But I guess there is a tenuous link between this and his decision to go Hollywood.",
+    "stylized_text": "But I guess there is a tenuous link between this and his decision to go Hollywood.",
     "order": 2,
     "is_selected": true,
     "story": 1,
@@ -287,6 +290,7 @@
   "fields": {
     "creation_date": "2019-11-23T11:39:02.818Z",
     "text": "I believe that him being assiduous what made him a great figure.",
+    "stylized_text": "I believe that him being assiduous what made him a great figure.",
     "order": 3,
     "is_selected": true,
     "story": 1,
@@ -302,6 +306,7 @@
   "fields": {
     "creation_date": "2019-11-23T12:34:52.011Z",
     "text": "Exciting sentence avers like hell.",
+    "stylized_text": "Exciting sentence avers like hell.",
     "order": 0,
     "is_selected": true,
     "story": 2,
@@ -317,6 +322,7 @@
   "fields": {
     "creation_date": "2019-11-23T12:35:09.371Z",
     "text": "Second sentence great capacity",
+    "stylized_text": "Second sentence great capacity",
     "order": 0,
     "is_selected": true,
     "story": 3,

@@ -60,8 +60,6 @@
 
 <body>
 <main>
-    {% block content %}
-    {% endblock %}
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -69,6 +67,8 @@
             {% endfor %}
         </ul>
     {% endif %}
+    {% block content %}
+    {% endblock %}
 </main>
 </body>
 </html>

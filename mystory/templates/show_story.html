@@ -1,26 +1,33 @@
 {% if story %}
-    <strong> {{ story.title }} </strong> <br>
+    <p class="shadow-sm"
+       style="border-radius:50px;border-color:rgb(218, 218, 218);border-style:solid;padding:30px;border-width: 1px;">
 
-    {% if story.completed %}
+        <strong> {{ story.title }} </strong> <br>
 
-        {{ story.get_stylized_text }}<br>
-        <a href='{{ story.get_review_url }}'>
-            Read/Review the story!
-        </a> <br>
+        {% if story.completed %}
 
-    {% else %}
-        {% if story.get_candidate_sentences|length != 0 %}
-        <a href='{{ story.get_read_url }}'>
-            Contribute in Reader's mode!
-        </a> <br>
+            {{ story.get_stylized_text|safe }}<br>
+            <a href='{{ story.get_review_url }}'>
+                Read/Review the story!
+            </a> <br>
+
+        {% else %}
+            {% if story.get_candidate_sentences|length != 0 %}
+                <a href='{{ story.get_read_url }}'>
+                    Contribute in Reader's mode!
+                </a> <br>
+            {% endif %}
+
+            <a href='{{ story.get_write_url }}'>
+                Contribute in Writer's mode!
+            </a> <br>
+
         {% endif %}
 
-        <a href='{{ story.get_write_url }}'>
-            Contribute in Writer's mode!
-        </a> <br>
+        Number of likes: {{ story.starred_users.count }}
+        <a href="{{ story.get_like_url }}">
+            Star/Unstar Story
+        </a>
 
-    {% endif %}
-
-    Number of likes: {{ story.starred_users.count }}
-
+    </p>
 {% endif %}

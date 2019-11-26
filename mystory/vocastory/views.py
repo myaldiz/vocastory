@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseForbidden, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Story, Sentence, WordSet
 from .models import Word, StoryReview
 from accounts.models import CustomUser
 from .forms import SentenceInputForm, SentenceSelectForm, StoryRatingForm
 from django.contrib import messages
+from django.urls import reverse
 
 dict_engine = None
 
@@ -91,7 +93,8 @@ def review_story(request, story_id):
             'flag': instance.flag,
             'coherence': instance.coherence,
             'creativity': instance.creativity,
-            'fun': instance.fun
+            'fun': instance.fun,
+            'comment': instance.comment,
         }
     else:
         initial = {}
@@ -113,16 +116,18 @@ def review_story(request, story_id):
             coherence = form.cleaned_data['coherence']
             creativity = form.cleaned_data['creativity']
             fun = form.cleaned_data['fun']
+            comment = form.cleaned_data['comment']
 
             context['flag'] = flag
             context['coherence'] = coherence
             context['creativity'] = creativity
             context['fun'] = fun
+            context['comment'] = comment
 
             # This will create the review and save it
             StoryReview.create_or_edit(
                 user, story, flag,
-                coherence, creativity, fun
+                coherence, creativity, fun, comment
             )
 
             return render(request, 'review_mode/reviewed.html', context)
@@ -219,3 +224,43 @@ def show_word_meaning(request, word_id):
     word = get_object_or_404(Word, id=word_id)
     meaning = dict(word.text)
     return render(request, 'show_meaning.html', {"word": word, "word_info": meaning})
+
+
+def swap_like_wordset(request, wordset_id):
+    if not request.user.is_authenticated:
+        return HttpResponseForbidden("Please login first!!")
+
+    wordset = get_object_or_404(WordSet, id=wordset_id)
+    current_user = CustomUser.objects.get(pk=request.user.id)
+
+    if wordset in current_user.starred_word_sets.all():
+        current_user.starred_word_sets.remove(wordset)
+        messages.info(request, 'You removed the like from the story!')
+        return HttpResponseRedirect(reverse('home'))
+    else:
+        current_user.starred_word_sets.add(wordset)
+        current_user.save()
+        messages.info(request, 'You liked the wordset!')
+        return HttpResponseRedirect(reverse('home'))
+
+
+def swap_like_story(request, story_id):
+    if not request.user.is_authenticated:
+        return HttpResponseForbidden("Please login first!!")
+
+    story = get_object_or_404(Story, id=story_id)
+    current_user = CustomUser.objects.get(pk=request.user.id)
+
+    if story in current_user.starred_stories.all():
+        current_user.starred_stories.remove(story)
+        messages.info(request, 'You removed the like from the story!')
+        return HttpResponseRedirect(reverse('home'))
+    else:
+        current_user.starred_stories.add(story)
+        current_user.save()
+        messages.info(request, 'You liked the story!')
+        return HttpResponseRedirect(reverse('home'))
+
+
+
+

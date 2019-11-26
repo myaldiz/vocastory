@@ -1,22 +1,29 @@
 {% if word_set %}
 
-    <a href="{{ word_set.get_absolute_url }}">
-        {{ word_set.title }}
-    </a>,
-    <strong>
-        {{ word_set.starred_users.count }}
-    </strong> likes, words it contain:<br>
-    <ul>
-        {% for word in word_set.words.all %}
-            <li>
+    <p class="shadow-sm"
+       style="border-radius:50px;border-color:rgb(218, 218, 218);border-style:solid;padding:30px;border-width: 1px;">
+
+        <a href="{{ word_set.get_absolute_url }}">
+            {{ word_set.title }}
+        </a>,
+        <strong>
+            {{ word_set.starred_users.count }}
+        </strong> likes, words it contain:<br>
+        <ul>
+            {% for word in word_set.words.all %}
+                <li>
                 <p class="card-text">
                     <a href="{{ word.get_absolute_url }}">
                         {{ word.text }}
                     </a>
                 </p>
-            </li>
-        {% endfor %}
-    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    <a href="{{ word_set.get_like_url }}">
+        Star/Unstar Wordset
+    </a>
+
+    </p>
 
 {% endif %}
-
