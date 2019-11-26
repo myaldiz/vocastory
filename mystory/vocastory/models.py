@@ -175,6 +175,9 @@ class Story(models.Model):
                 s = candidates[0]
                 s.is_selected = True
                 s.save()
+                if self.get_selected_sentences().count() >= self.word_set.objects.count():
+                    self.completed = True
+                    self.save()
 
     def get_read_url(self):
         return reverse("read_story", kwargs={'story_id': self.id})
