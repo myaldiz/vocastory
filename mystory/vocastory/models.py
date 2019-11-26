@@ -39,6 +39,9 @@ class Word(models.Model):
     def __str__(self):
         return self.text
 
+    def get_absolute_url(self):
+        return reverse("show_word_meaning", kwargs={'word_id': self.id})
+
 
 class WordSet(models.Model):
     title = models.CharField(max_length=50)

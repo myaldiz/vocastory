@@ -22,5 +22,5 @@ urlpatterns = [
     path('writers_mode/<int:story_id>/', views.write_story, name='write_story'),
 
     # Dictionary
-    path('dic/<str:word>/', views.show_word_meaning, name='word_meaning'),
+    path('show_meaning/<int:word_id>/', views.show_word_meaning, name='show_word_meaning'),
 ]

@@ -1,11 +1,26 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseForbidden, HttpResponseBadRequest
 
-from .models import Story, Sentence, WordSet, StoryReview
+from .models import Story, Sentence, WordSet
+from .models import Word, StoryReview
 from accounts.models import CustomUser
 from .forms import SentenceInputForm, SentenceSelectForm, StoryRatingForm
 from django.contrib import messages
 
+dict_engine = None
+
+def dict(*args, **kwargs):
+    """
+    This method tokenizes the sentence
+    """
+    global dict_engine
+    if dict_engine is None:
+        import warnings
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            from PyDictionary import PyDictionary
+            dict_engine=PyDictionary()
+    return dict_engine.meaning(*args, **kwargs)
 
 def home_view(request):
     """ C
@@ -200,6 +215,7 @@ def write_story(request, story_id):
             return HttpResponseBadRequest("Invalid form!!")
 
 
-def show_word_meaning(request, word):
-    meaning = 'meaning'
-    return render(request, 'show_meaning.html', {"word": word, "meaning": meaning})
+def show_word_meaning(request, word_id):
+    word = get_object_or_404(Word, id=word_id)
+    meaning = dict(word.text)
+    return render(request, 'show_meaning.html', {"word": word, "word_info": meaning})

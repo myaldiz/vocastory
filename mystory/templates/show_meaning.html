@@ -10,7 +10,17 @@
             {{ word }}
         </h3>
         <p>
-            {{ meaning }}
+            {% for type, meanings in word_info.items %}
+                <strong> {{ type }}: </strong> <br>
+                <ul>
+                    {% for meaning in meanings %}
+                        <li>
+                            {{ meaning }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+
         </p>
 
     </article>

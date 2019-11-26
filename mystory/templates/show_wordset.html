@@ -10,7 +10,7 @@
         {% for word in word_set.words.all %}
             <li>
                 <p class="card-text">
-                    <a href="show_meaning.html">
+                    <a href="{{ word.get_absolute_url }}">
                         {{ word.text }}
                     </a>
                 </p>
