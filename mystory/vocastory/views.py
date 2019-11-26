@@ -207,9 +207,9 @@ def write_story(request, story_id):
     elif request.method == 'POST':
         form = SentenceInputForm(request.POST)
         if form.is_valid():
-            context['candidate_sentence'] = form.cleaned_data['sentence']
             current_user = CustomUser.objects.get(pk=request.user.id)
             ret = Sentence.create(text=form.cleaned_data['sentence'], story=story, creator=current_user)
+            context['candidate_sentence'] = ret
 
             if ret is None:
                 messages.error(request, 'Please use the words from the word-list!')
@@ -235,12 +235,12 @@ def swap_like_wordset(request, wordset_id):
 
     if wordset in current_user.starred_word_sets.all():
         current_user.starred_word_sets.remove(wordset)
-        messages.info(request, 'You removed the like from the story!')
+        messages.info(request, 'You removed the star from the story!')
         return HttpResponseRedirect(reverse('home'))
     else:
         current_user.starred_word_sets.add(wordset)
         current_user.save()
-        messages.info(request, 'You liked the wordset!')
+        messages.info(request, 'You starred the wordset!')
         return HttpResponseRedirect(reverse('home'))
 
 
@@ -253,12 +253,12 @@ def swap_like_story(request, story_id):
 
     if story in current_user.starred_stories.all():
         current_user.starred_stories.remove(story)
-        messages.info(request, 'You removed the like from the story!')
+        messages.info(request, 'You removed the star from the story!')
         return HttpResponseRedirect(reverse('home'))
     else:
         current_user.starred_stories.add(story)
         current_user.save()
-        messages.info(request, 'You liked the story!')
+        messages.info(request, 'You starred the story!')
         return HttpResponseRedirect(reverse('home'))
 
 

@@ -9,8 +9,8 @@
 
     <p>
         Submitted! Your story:<br>
-        {{ story_last_two }}<br>
-        {{ candidate_sentence }}
+        {{ story.get_stylized_last_two|safe }}<br>
+        {{ candidate_sentence.stylized_text|safe }}
     </p>
 
 {% endblock %}

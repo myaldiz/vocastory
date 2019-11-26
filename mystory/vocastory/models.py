@@ -226,32 +226,40 @@ class Sentence(models.Model):
             return None
         text = text + '.' if text[-1] not in string.punctuation else text
 
-        # def get_dic_reference(word):
-        #     text = "<a href='{{ show_meaning.html }}'>"
-        #     text += word
-        #     text += "</a>"
-        #     return text
+        def get_dic_reference(id, t):
+            text = "<a href='"\
+                   +"/vocastory/show_meaning/"\
+                   +str(id)\
+                   +"/'>"
+            text += t
+            text += "</a>"
+            return text
 
         with transaction.atomic():
             sentence = cls(text=text, order=order, story=story, creator=creator)
-            sentence.stylized_text = text
-            sentence.save()
-
             text_tokens = nlp(text)
 
             used_words = set()
             for t in text_tokens:
-                t = t.lemma_.lower()
-                found_words = word_set.words.filter(text=t)
+                t_l = t.lemma_.lower()
+                found_words = word_set.words.filter(text=t_l)
+                if found_words.exists():
+                    text = text.replace(
+                        t.text,
+                        get_dic_reference(found_words.first().id, t.text)
+                    )
                 used_words.update(found_words)
 
             if len(used_words) == 0:
                 sentence.delete()
                 return None
             else:
+                print(text)
+                sentence.stylized_text = text
+                sentence.save()
                 for word in used_words:
                     sentence.used_words.add(word)
-
+                sentence.save()
         return sentence
 
     @transaction.atomic
