@@ -10,6 +10,7 @@
         {% if instance %}
             You reviewed this story before, you can edit your response below:
         {% endif %}
+        <br>
         <form method="post">
             {% csrf_token %}
             {{ rating_form }}
