@@ -167,7 +167,7 @@ class Story(models.Model):
         last_sentence_time = sentences[0].creation_date
         delta = last_sentence_time - self.get_last_selected_time()
 
-        if delta.seconds >= 120:
+        if delta.seconds >= 30:
             sentences_with_votes = self.get_sentence_set_with_vote()
             candidates = sentences_with_votes.filter(order=self.get_candidate_index())
             candidates = candidates.order_by('-votes')
