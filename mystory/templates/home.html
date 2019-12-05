@@ -21,22 +21,16 @@
 
 
         <p>
+            <h3> Notifications </h3>
+        </p>
+
+
+        <p>
         <h3> Top Stories </h3>
         <ul>
             {% for story in stories %}
                 <li>
                     {% include "show_story.html" %}
-                </li>
-            {% endfor %}
-        </ul>
-        </p>
-
-        <p>
-        <h3> Top WordSets </h3>
-        <ul>
-            {% for word_set in word_sets %}
-                <li>
-                    {% include "show_wordset.html" %}
                 </li>
             {% endfor %}
         </ul>

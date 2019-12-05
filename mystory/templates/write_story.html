@@ -17,6 +17,7 @@
         {% csrf_token %}
         {{ input_form }}
         <input type="Submit" value="Submit">
+        <input type="hidden" name="order" value="{{ story.get_candidate_index }}">
     </form>
     </p>
 

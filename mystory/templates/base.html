@@ -36,12 +36,6 @@
         {% endif %}
         {% if user.is_authenticated %}
             <button class="btn btn-primary"
-                    style="margin:0 0 0 10px;background:yellow;color: black;border-color: yellow;"
-                    type="Search"><a href='{% url "my_view" %}'>My page</a></button>
-            <button class="btn btn-primary"
-                    style="margin:0 0 0 10px;background:yellow;color: black;border-color: yellow;"
-                    type="Search"><a href='{% url "starred_view" %}'>Starred</a></button>
-            <button class="btn btn-primary"
                     style="margin:0px 50px 0px 10px;background:yellow;color: black;border-color: yellow;"
                     type="Search"><a href='{% url "browse_word_sets" %}'>Browse</a></button>
             {{ user.username }}

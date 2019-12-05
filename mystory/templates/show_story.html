@@ -12,7 +12,7 @@
             </a> <br>
 
         {% else %}
-            {% if story.get_candidate_sentences|length != 0 %}
+            {% if story.is_readable %}
                 <a href='{{ story.get_read_url }}'>
                     Contribute in Reader's mode!
                 </a> <br>
@@ -23,11 +23,6 @@
             </a> <br>
 
         {% endif %}
-
-        Number of likes: {{ story.starred_users.count }}
-        <a href="{{ story.get_like_url }}">
-            Star/Unstar Story
-        </a>
 
     </p>
 {% endif %}
