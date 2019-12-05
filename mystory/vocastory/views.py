@@ -69,8 +69,8 @@ def read_story(request, story_id):
             candidates = story.get_candidate_sentences(order)
             chosen_sentence = candidates.get(id=form.data['sentence_choice'])
             chosen_sentence.vote_sentence(user)
-            # print("Voting is successful")
-    return redirect('home')
+
+    return HttpResponseRedirect(reverse('home'))
 
 
 def write_story(request, story_id):
@@ -99,7 +99,7 @@ def write_story(request, story_id):
                     return render(request, 'write_story.html', context)
             # print("Writing a sentence is successful!")
 
-    return redirect('home')
+    return HttpResponseRedirect(reverse('home'))
 
 
 def review_story(request, story_id):
@@ -158,10 +158,8 @@ def review_story(request, story_id):
                     user, story, flag,
                     coherence, creativity, fun, comment
                 )
-                return render(request, 'review_mode/reviewed.html', context)
-        else:
-            return HttpResponseBadRequest("Invalid form!!")
 
+    return HttpResponseRedirect(reverse('home'))
 
 @transaction.atomic
 def browse_word_sets(request):
@@ -211,26 +209,3 @@ def swap_like_wordset(request, wordset_id):
         current_user.save()
         messages.info(request, 'You starred the wordset!')
         return HttpResponseRedirect(reverse('home'))
-
-
-@transaction.atomic
-def swap_like_story(request, story_id):
-    if not request.user.is_authenticated:
-        return HttpResponseForbidden("Please login first!!")
-
-    story = get_object_or_404(Story, id=story_id)
-    current_user = CustomUser.objects.get(pk=request.user.id)
-
-    if story in current_user.starred_stories.all():
-        current_user.starred_stories.remove(story)
-        messages.info(request, 'You removed the star from the story!')
-        return HttpResponseRedirect(reverse('home'))
-    else:
-        current_user.starred_stories.add(story)
-        current_user.save()
-        messages.info(request, 'You starred the story!')
-        return HttpResponseRedirect(reverse('home'))
-
-
-
-

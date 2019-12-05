@@ -29,9 +29,11 @@
         <h3> Top Stories </h3>
         <ul>
             {% for story in stories %}
+                {% if story.completed %}
                 <li>
                     {% include "show_story.html" %}
                 </li>
+                {% endif %}
             {% endfor %}
         </ul>
         </p>
