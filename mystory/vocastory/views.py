@@ -52,23 +52,35 @@ def read_story(request, story_id):
         return HttpResponseForbidden("Please login first!!")
 
     story = get_object_or_404(Story, id=story_id)
+    user = CustomUser.objects.get(pk=request.user.id)
 
     if request.method == 'GET':
         with transaction.atomic():
             order = story.get_candidate_index()
-            candidates = story.get_candidate_sentences(order)
             form = SentenceSelectForm()
-            form.fields['sentence_choice'].choices = [(sentence.id, sentence.text) for sentence in candidates]
+            choices = []
+            for i in story.get_candidate_sentences(order):
+                if i.creator != user:
+                    choices.append((i.id, i.text))
+            form.fields['sentence_choice'].choices = choices
             context = {'story': story, 'form': form}
-            return render(request, 'select_sentence.html', context)
+            if len(form.fields['sentence_choice'].choices) != 0:
+                return render(request, 'select_sentence.html', context)
+            else:
+                messages.info(request, 'All the sentences written by you!')
+
     elif request.method == 'POST':
         form = SentenceSelectForm(request.POST)
         order = int(request.POST.get("order", "-1"))
-        user = CustomUser.objects.get(pk=request.user.id)
         with transaction.atomic():
             candidates = story.get_candidate_sentences(order)
             chosen_sentence = candidates.get(id=form.data['sentence_choice'])
             chosen_sentence.vote_sentence(user)
+            messages.info(request, 'Your response is recorded')
+            # This selects sentence is certain conditions
+            # are fulfilled, and finishes the story
+            story.close_sentence_poll()
+            story.finish_story()
 
     return HttpResponseRedirect(reverse('home'))
 
@@ -97,7 +109,6 @@ def write_story(request, story_id):
                 context['input_form'] = form
                 with transaction.atomic():
                     return render(request, 'write_story.html', context)
-            # print("Writing a sentence is successful!")
 
     return HttpResponseRedirect(reverse('home'))
 

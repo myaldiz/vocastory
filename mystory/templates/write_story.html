@@ -8,7 +8,19 @@
     </h3>
 
     <p>
-        Here is the last two sentences:<br>
+        {% if story.get_last_selected_index == -1 %}
+            You will write the first sentence of the story,
+            have a creative start!
+        {% elif story.get_last_selected_index == 0 %}
+            Here is the first sentence of the story, continue
+            from where it left!
+        {% elif story.get_unused_word_list|length == 1 %}
+            You will write the last sentence of the story.
+            Use the last unused word, have a creative finish!
+            Here is the last two sentence written:
+        {% else %}
+            Here is the last two sentence written:
+        {% endif %} <br>
         {{ story.get_stylized_last_two|safe }}
     </p>
 
@@ -22,14 +34,21 @@
     </p>
 
     <p>
-        Here is the wordset:
+    Here is the word list:
     <ul>
-        {% for word in story.word_set.words.all %}
+        {% for word in story.get_unused_word_list %}
             <li>
                 {{ word }}
             </li>
         {% endfor %}
+
+        {% for word in story.get_used_word_list %}
+            <li>
+                <strike> {{ word }} </strike>
+            </li>
+        {% endfor %}
     </ul>
+
     </p>
 
 {% endblock %}

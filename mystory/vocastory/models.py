@@ -1,7 +1,8 @@
-from django.db import models
 import string
-from django.urls import reverse
 from django.utils import timezone
+from django.db import models
+from django.urls import reverse
+
 from accounts.models import CustomUser
 
 # NLP engine only loaded if needed
@@ -54,7 +55,6 @@ class WordSet(models.Model):
 
 
 class Story(models.Model):
-    title = models.CharField(max_length=100)
     completed = models.BooleanField(default=False)
     creation_date = models.DateTimeField(auto_now_add=True)
     word_set = models.ForeignKey(
@@ -99,13 +99,18 @@ class Story(models.Model):
         sentences = self.get_selected_sentences(order)
         return " ".join([i.stylized_text for i in sentences])
 
-    def get_used_word_list(self, order):
-        """
-        TODO: Get used words until that order
-        :param order:
-        :return:
-        """
-        pass
+    def get_used_word_list(self):
+        order = self.get_last_selected_index()
+        sentences = self.get_selected_sentences(order)
+        used_words = set()
+        for sentence in sentences:
+            used_words.update(set(sentence.used_words.all()))
+        return list(used_words)
+
+    def get_unused_word_list(self):
+        used_words = set(self.get_used_word_list())
+        all_words = set(self.word_set.words.all())
+        return list(all_words.difference(used_words))
 
     def get_last_selected_index(self):
         """
@@ -119,18 +124,9 @@ class Story(models.Model):
     def get_candidate_index(self):
         return self.get_last_selected_index() + 1
 
-    def get_last_selected_time(self):
-        """
-        :return: time at which the last selected sentence was created
-        """
-        non_selected = self.sentence_set.filter(is_selected=True).order_by('-creation_date')
-        if non_selected.exists():
-            return non_selected[0].creation_date
-
-        return timezone.now()
-
     def is_readable(self):
-        if len(self.get_candidate_sentences(self.get_candidate_index())) != 0:
+        candidates = self.get_candidate_sentences(self.get_candidate_index())
+        if len(candidates) != 0:
             return True
         return False
 
@@ -141,6 +137,25 @@ class Story(models.Model):
         if order < 0:
             return []
         return self.sentence_set.filter(order=order)
+
+    def close_sentence_poll(self):
+        order = self.get_candidate_index()
+        candidate_sentences = self.get_candidate_sentences(order)
+        if len(candidate_sentences) == 0:
+            return
+        candidate_sentences = candidate_sentences.order_by('-creation_date')
+        delta = timezone.now() - candidate_sentences[0].creation_date
+
+        if delta > timezone.timedelta(minutes=15) or len(candidate_sentences) > 4:
+            candidate_sentences = candidate_sentences\
+                .annotate(votes=models.Count('voted_users')).order_by('-votes')
+            candidate_sentences[0].is_selected = True
+            candidate_sentences[0].save()
+
+    def finish_story(self):
+        if len(self.get_unused_word_list()) == 0:
+            self.completed = True
+            self.save()
 
     def get_read_url(self):
         return reverse("read_story", kwargs={'story_id': self.id})

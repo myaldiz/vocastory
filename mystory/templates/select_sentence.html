@@ -3,12 +3,21 @@
 {% block title %}Select Sentence{% endblock %}
 
 {% block content %}
-    <h3>
-        {{ story.title }}
-    </h3>
 
     <p>
-        Here is the last two sentences:<br>
+        {% if story.get_last_selected_index == -1 %}
+            You will select the first sentence of the story,
+            have a creative start!
+        {% elif story.get_last_selected_index == 0 %}
+            Here is the first sentence of the story, continue
+            from where it left!
+        {% elif story.get_unused_word_list|length == 1 %}
+            You will select the last sentence of the story.
+            Use the last unused word, have a creative finish!
+            Here is the last two sentence written:
+        {% else %}
+            Here is the last two sentence written:
+        {% endif %} <br>
         {{ story.get_stylized_last_two|safe }}
     </p>
 

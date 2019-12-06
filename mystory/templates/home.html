@@ -19,9 +19,19 @@
             In reader's mode, choose the best sentence you think is the best to continue the story! <br>
         </p>
 
+        <p>
+            <a href='/'>
+                Play Starred WordSets!
+            </a><br>
+
+            <a href='/'>
+                Play Random!
+            </a><br>
+        </p>
+
 
         <p>
-            <h3> Notifications </h3>
+        <h3> Notifications </h3>
         </p>
 
 
@@ -30,9 +40,9 @@
         <ul>
             {% for story in stories %}
                 {% if story.completed %}
-                <li>
-                    {% include "show_story.html" %}
-                </li>
+                    <li>
+                        {% include "show_story.html" %}
+                    </li>
                 {% endif %}
             {% endfor %}
         </ul>

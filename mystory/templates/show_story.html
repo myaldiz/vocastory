@@ -2,8 +2,6 @@
     <p class="shadow-sm"
        style="border-radius:50px;border-color:rgb(218, 218, 218);border-style:solid;padding:30px;border-width: 1px;">
 
-        <strong> {{ story.title }} </strong> <br>
-
         {% if story.completed %}
 
             {{ story.get_stylized_text|safe }}<br>
