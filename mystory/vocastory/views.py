@@ -248,7 +248,8 @@ def play_loop(request):
                 if s.is_readable(current_user):
                     readable_stories.append(s)
         if len(readable_stories) == 0:
-            return HttpResponseRedirect(reverse('play'))
+            messages.info(request, "You read all the stories, check back later!")
+            return HttpResponseRedirect(reverse('home'))
         else:
             story = random.choice(readable_stories)
         return HttpResponseRedirect(reverse('read_story', args=(story.id,)))

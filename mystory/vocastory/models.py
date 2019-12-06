@@ -62,12 +62,22 @@ class Story(models.Model):
         on_delete=models.CASCADE,
         null=True)
 
+    @property
+    def score(self):
+        coherence = self.review_set.aggregate(models.Avg('coherence'))
+        creativity = self.review_set.aggregate(models.Avg('creativity'))
+        fun = self.review_set.aggregate(models.Avg('fun'))
+        # comment_score = 1 if self.review_set.aggregate()
+        return coherence + creativity + fun
+
     @classmethod
     def get_top_stories_ordered(cls):
         """
         TODO: Sort by rating!!
         :return:
         """
+        # stories = cls.objects.annotate(coherence=models.Avg('review_set.coherence'))
+        # https://stackoverflow.com/questions/41766714/get-the-average-from-list-of-values-of-foreign-key-object-fields
         stories = cls.objects.all()
         return list(stories)
 
@@ -139,7 +149,7 @@ class Story(models.Model):
         candidates = self.get_candidate_sentences(self.get_candidate_index())
         if candidates.filter(creator=user).exists():
             return False
-        return False
+        return True
 
     def is_reviewable(self, user):
         if not self.completed:
