@@ -142,6 +142,7 @@ def review_story(request, story_id):
         'story': story,
         'instance': instance,
         'rating_form': StoryRatingForm(initial=initial),
+        'review_list': story.review_set.all()
     }
 
     if request.method == 'GET':

@@ -17,4 +17,10 @@
             <input type="Submit" value="Submit">
         </form>
     </p>
+    <p>
+        Other's comments:<br>
+        {% for review in review_list %}
+            {{review.comment}}<br>
+        {% endfor %}
+    </p>
 {% endblock %}
