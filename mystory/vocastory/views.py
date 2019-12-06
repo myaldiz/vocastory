@@ -221,3 +221,6 @@ def swap_like_wordset(request, wordset_id):
         current_user.save()
         messages.info(request, 'You starred the wordset!')
         return HttpResponseRedirect(reverse('home'))
+
+def see_leaderboard(request):
+    return render(request, 'leaderboard.html')

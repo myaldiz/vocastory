@@ -16,7 +16,10 @@ urlpatterns = [
 
     # Writers Mode
     path('writers_mode/<int:story_id>/', views.write_story, name='write_story'),
+    
+    # Leaderboard
+    path('leaderboard', views.see_leaderboard, name='see_leaderboard'),
 
     # Dictionary
-    path('show_meaning/<int:word_id>/', views.show_word_meaning, name='show_word_meaning'),
+    path('show_meaning/<int:word_id>/', views.show_word_meaning, name='show_word_meaning')
 ]
