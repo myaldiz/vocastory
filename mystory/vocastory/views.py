@@ -141,6 +141,7 @@ def review_story(request, story_id):
         'story': story,
         'instance': instance,
         'rating_form': StoryRatingForm(initial=initial),
+        'review_list': story.review_set.all()
     }
 
     if request.method == 'GET':
@@ -272,3 +273,6 @@ def play_loop(request, mode):
             return HttpResponseRedirect(reverse('review_story', args=(story.id,)))
 
     return HttpResponse("Could not select")
+
+def see_leaderboard(request):
+    return render(request, 'leaderboard.html')

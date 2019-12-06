@@ -17,4 +17,14 @@
             <input type="Submit" value="Submit">
         </form>
     </p>
+    <p>
+        {% if review_list|length != 0 %}
+            Other's reviews:
+            <ul>
+            {% for review in review_list %}
+                <li>{% include "show_comment.html" %}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </p>
 {% endblock %}
