@@ -83,7 +83,7 @@ def read_story(request, story_id):
         story.close_sentence_poll()
         story.finish_story()
 
-    return HttpResponseRedirect(reverse('play'), args=(0,))
+    return HttpResponseRedirect(reverse('play'))
 
 
 @transaction.atomic
@@ -109,7 +109,7 @@ def write_story(request, story_id):
                 context['input_form'] = form
                 return render(request, 'write_story.html', context)
 
-    return HttpResponseRedirect(reverse('play'), args=(0,))
+    return HttpResponseRedirect(reverse('play'))
 
 @transaction.atomic
 def review_story(request, story_id):
@@ -170,7 +170,7 @@ def review_story(request, story_id):
                 coherence, creativity, fun, comment
             )
 
-    return HttpResponseRedirect(reverse('play'), args=(0,))
+    return HttpResponseRedirect(reverse('play'))
 
 
 @transaction.atomic
@@ -223,56 +223,62 @@ def swap_like_wordset(request, wordset_id):
         return HttpResponseRedirect(reverse('home'))
 
 
-def play_loop(request, mode):
+@transaction.atomic
+def play_loop(request):
     if not request.user.is_authenticated:
         return HttpResponseForbidden("Please login first!!")
 
+
+
     current_user = CustomUser.objects.get(pk=request.user.id)
-    if mode == 0:
-        word_sets = WordSet.objects.all()
-    else:
-        word_sets = current_user.starred_word_sets.all()
+
+    # TODO: implement playing on starred word sets
+    # word_sets = current_user.starred_word_sets.all()
+    word_sets = WordSet.objects.all()
 
     if len(word_sets) == 0:
-        return HttpResponse("No word set :(")
+        return HttpResponseBadRequest("No word set :(")
 
-    for i in range(25):
-        val = random.uniform(0, 1)
-        if val < read_chance:
-            readable_stories = []
-            for word_set in word_sets:
-                stories = word_set.story_set.all()
-                for s in stories:
-                    if s.is_readable(current_user):
-                        readable_stories.append(s)
-            if len(readable_stories) == 0:
-                continue
-            story = random.choice(readable_stories)
-            return HttpResponseRedirect(reverse('read_story', args=(story.id,)))
-        elif val < read_chance + write_chance:
-            writable_stories = []
-            for word_set in word_sets:
-                stories = word_set.story_set.all()
-                for s in stories:
-                    if s.is_writable(current_user):
-                        writable_stories.append(s)
-            if len(writable_stories) == 0:
-                continue
-            story = random.choice(writable_stories)
-            return HttpResponseRedirect(reverse('write_story', args=(story.id,)))
+    val = random.uniform(0, 1)
+    if val < read_chance:
+        readable_stories = []
+        for word_set in word_sets:
+            stories = word_set.story_set.all()
+            for s in stories:
+                if s.is_readable(current_user):
+                    readable_stories.append(s)
+        if len(readable_stories) == 0:
+            return HttpResponseRedirect(reverse('play'))
         else:
-            reviewable_stories = []
-            for word_set in word_sets:
-                stories = word_set.story_set.all()
-                for s in stories:
-                    if s.is_reviewable(current_user):
-                        reviewable_stories.append(s)
-            if len(reviewable_stories) == 0:
-                continue
-            story = random.choice(reviewable_stories)
-            return HttpResponseRedirect(reverse('review_story', args=(story.id,)))
+            story = random.choice(readable_stories)
+        return HttpResponseRedirect(reverse('read_story', args=(story.id,)))
+    elif val < read_chance + write_chance:
+        writable_stories = []
+        for word_set in word_sets:
+            stories = word_set.story_set.all()
+            for s in stories:
+                if s.is_writable(current_user):
+                    writable_stories.append(s)
+        if len(writable_stories) == 0:
+            # Will create a new story if no suitable story to write
+            rand_wordset = random.choice(word_sets)
+            story = Story(word_set=rand_wordset)
+            story.save()
+        else:
+            story = random.choice(writable_stories)
+        return HttpResponseRedirect(reverse('write_story', args=(story.id,)))
+    else:
+        reviewable_stories = []
+        for word_set in word_sets:
+            stories = word_set.story_set.all()
+            for s in stories:
+                if s.is_reviewable(current_user):
+                    reviewable_stories.append(s)
+        if len(reviewable_stories) == 0:
+            return HttpResponseRedirect(reverse('play'))
+        story = random.choice(reviewable_stories)
+        return HttpResponseRedirect(reverse('review_story', args=(story.id,)))
 
-    return HttpResponse("Could not select")
 
 def see_leaderboard(request):
     return render(request, 'leaderboard.html')
