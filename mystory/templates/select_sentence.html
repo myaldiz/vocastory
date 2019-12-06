@@ -29,5 +29,23 @@
         <input type="hidden" name="order" value="{{ story.get_candidate_index }}">
     </form>
 
+    <p>
+    Here is the word list:
+    <ul>
+        {% for word in story.get_unused_word_list %}
+            <li>
+                {{ word }}
+            </li>
+        {% endfor %}
+
+        {% for word in story.get_used_word_list %}
+            <li>
+                <strike> {{ word }} </strike>
+            </li>
+        {% endfor %}
+    </ul>
+
+    </p>
+
 
 {% endblock %}

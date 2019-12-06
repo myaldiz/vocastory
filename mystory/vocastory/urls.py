@@ -19,4 +19,8 @@ urlpatterns = [
 
     # Dictionary
     path('show_meaning/<int:word_id>/', views.show_word_meaning, name='show_word_meaning'),
+
+    # Play mode
+    path('play/<int:mode>/', views.play_loop, name='play'),
+
 ]

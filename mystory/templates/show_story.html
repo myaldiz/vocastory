@@ -10,11 +10,11 @@
             </a> <br>
 
         {% else %}
-            {% if story.is_readable %}
+{#            {% if story.is_readable %}#}
                 <a href='{{ story.get_read_url }}'>
                     Contribute in Reader's mode!
                 </a> <br>
-            {% endif %}
+{#            {% endif %}#}
 
             <a href='{{ story.get_write_url }}'>
                 Contribute in Writer's mode!

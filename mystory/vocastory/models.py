@@ -14,7 +14,7 @@ def nlp(*args, **kwargs):
     This method tokenizes the sentence
     """
     global nlp_engine
-    if nlp_engine == None:
+    if nlp_engine is None:
         import warnings
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
@@ -124,11 +124,30 @@ class Story(models.Model):
     def get_candidate_index(self):
         return self.get_last_selected_index() + 1
 
-    def is_readable(self):
+    def is_readable(self, user):
+        if self.completed:
+            return False
         candidates = self.get_candidate_sentences(self.get_candidate_index())
-        if len(candidates) != 0:
+        candidates = candidates.exclude(creator=user)
+        if candidates.exists():
             return True
         return False
+
+    def is_writable(self, user):
+        if self.completed:
+            return False
+        candidates = self.get_candidate_sentences(self.get_candidate_index())
+        if candidates.filter(creator=user).exists():
+            return False
+        return False
+
+    def is_reviewable(self, user):
+        if not self.completed:
+            return False
+
+        if self.review_set.filter(creator=user).exists():
+            return False
+        return True
 
     def get_candidate_sentences(self, order):
         """
@@ -139,16 +158,20 @@ class Story(models.Model):
         return self.sentence_set.filter(order=order)
 
     def close_sentence_poll(self):
+        if self.completed:
+            return
         order = self.get_candidate_index()
         candidate_sentences = self.get_candidate_sentences(order)
         if len(candidate_sentences) == 0:
             return
         candidate_sentences = candidate_sentences.order_by('-creation_date')
         delta = timezone.now() - candidate_sentences[0].creation_date
+        candidate_sentences = candidate_sentences \
+            .annotate(votes=models.Count('voted_users')).order_by('-votes')
 
-        if delta > timezone.timedelta(minutes=15) or len(candidate_sentences) > 4:
-            candidate_sentences = candidate_sentences\
-                .annotate(votes=models.Count('voted_users')).order_by('-votes')
+        if delta > timezone.timedelta(minutes=30) \
+                or candidate_sentences[0].votes > 3 \
+                or (delta > timezone.timedelta(minutes=15) and candidate_sentences[0].votes > 1):
             candidate_sentences[0].is_selected = True
             candidate_sentences[0].save()
 
