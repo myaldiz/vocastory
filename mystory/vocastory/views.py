@@ -122,7 +122,6 @@ def write_story(request, story_id):
     return HttpResponseRedirect(reverse('home'))
 
 
-@transaction.atomic
 def review_story(request, story_id):
     """C
     Review page
@@ -178,16 +177,14 @@ def review_story(request, story_id):
             context['comment'] = comment
 
             # This will create the review and save it
-
-            StoryReview.create_or_edit(
-                user, story, flag,
-                coherence, creativity, fun, comment
-            )
+            with transaction.atomic():
+                StoryReview.create_or_edit(
+                    user, story, flag,
+                    coherence, creativity, fun, comment)
 
     return HttpResponseRedirect(reverse('home'))
 
 
-@transaction.atomic
 def browse_word_sets(request):
     """C
     Wordset browsing page
@@ -199,7 +196,6 @@ def browse_word_sets(request):
     return render(request, 'browse_mode/index.html', context)
 
 
-@transaction.atomic
 def browse_story_list(request, wordset_id):
     """C
     Given wordset it shows the stories
@@ -218,7 +214,6 @@ def show_word_meaning(request, word_id):
     return render(request, 'show_meaning.html', {"word": word, "word_info": meaning})
 
 
-@transaction.atomic
 def swap_like_wordset(request, wordset_id):
     if not request.user.is_authenticated:
         return HttpResponseForbidden("Please login first!!")
@@ -226,18 +221,17 @@ def swap_like_wordset(request, wordset_id):
     wordset = get_object_or_404(WordSet, id=wordset_id)
     current_user = CustomUser.objects.get(pk=request.user.id)
 
-    if wordset in current_user.starred_word_sets.all():
-        current_user.starred_word_sets.remove(wordset)
-        messages.info(request, 'You removed the star from the story!')
-        return HttpResponseRedirect(reverse('home'))
-    else:
-        current_user.starred_word_sets.add(wordset)
-        current_user.save()
-        messages.info(request, 'You starred the wordset!')
-        return HttpResponseRedirect(reverse('home'))
+    with transaction.atomic():
+        if wordset in current_user.starred_word_sets.all():
+            current_user.starred_word_sets.remove(wordset)
+            messages.info(request, 'You removed the star from the story!')
+        else:
+            current_user.starred_word_sets.add(wordset)
+            current_user.save()
+            messages.info(request, 'You starred the wordset!')
+    return HttpResponseRedirect(reverse('home'))
 
 
-@transaction.atomic
 def play_loop(request):
     if not request.user.is_authenticated:
         return HttpResponseForbidden("Please login first!!")
