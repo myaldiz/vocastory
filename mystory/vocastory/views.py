@@ -111,6 +111,7 @@ def write_story(request, story_id):
 
     return HttpResponseRedirect(reverse('play'))
 
+
 @transaction.atomic
 def review_story(request, story_id):
     """C
@@ -228,8 +229,6 @@ def play_loop(request):
     if not request.user.is_authenticated:
         return HttpResponseForbidden("Please login first!!")
 
-
-
     current_user = CustomUser.objects.get(pk=request.user.id)
 
     # TODO: implement playing on starred word sets
@@ -282,4 +281,5 @@ def play_loop(request):
 
 
 def see_leaderboard(request):
-    return render(request, 'leaderboard.html')
+    users_scored = CustomUser.get_users_scored().order_by('-score')
+    return render(request, 'leaderboard.html', {'users_scored': users_scored})

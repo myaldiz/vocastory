@@ -8,10 +8,10 @@ from django.urls import reverse
 
 from accounts.models import CustomUser
 
-
 # NLP engine only loaded if needed
 nlp_engine = None
 CharField.register_lookup(Length, 'len')
+
 
 def nlp(*args, **kwargs):
     """
@@ -67,7 +67,7 @@ class Story(models.Model):
         null=True)
 
     @classmethod
-    def get_top_stories_ordered(cls):
+    def get_stories_scored(cls):
         stories = cls.objects.filter(completed=True).annotate(
             q_score=
             models.Avg('review_set__coherence')
@@ -76,11 +76,16 @@ class Story(models.Model):
             p_score=models.Count(
                 'review_set',
                 filter=Q(review_set__comment__len__gte=5),
-                output_field=models.FloatField()),
+                output_field=models.FloatField(),
+                distinct=True),
             score=F('q_score') + F('p_score'),
-        ).order_by('-score')
-
+        )
         return stories
+
+    @classmethod
+    def get_top_stories_ordered(cls):
+        return cls.get_stories_scored().order_by('-score')
+
 
     def get_sentence_set_with_vote(self):
         return self.sentence_set \

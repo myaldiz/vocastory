@@ -25,6 +25,4 @@ urlpatterns = [
 
     # Play mode
     path('play/', views.play_loop, name='play'),
-
-    path('show_meaning/<int:word_id>/', views.show_word_meaning, name='show_word_meaning')
 ]

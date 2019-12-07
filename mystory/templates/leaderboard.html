@@ -4,21 +4,20 @@
 {% block title %}Leaderboard{% endblock %}
 
 {% block content %}
+
     <table style="width:100%">
+
         <tr>
         <th style="text-align:center">Rank</th>
         <th style="text-align:center">User</th>
         <th style="text-align:center">Points</th>
         </tr>
-        <tr>
-        <td style="text-align:center">1</td>
-        <td style="text-align:center">Augustus</td>
-        <td style="text-align:center">3490</td>
-        </tr>
-        <tr>
-        <td style="text-align:center">2</td>
-        <td style="text-align:center">Mark</td>
-        <td style="text-align:center">2640</td>
-        </tr>
+        {% for user in users_scored %}
+            <tr>
+                <td style="text-align:center"> {{ forloop.counter }} </td>
+                <td style="text-align:center"> {{ user.username }} </td>
+                <td style="text-align:center"> {{ user.score }} </td>
+            </tr>
+        {% endfor %}
     </table>
 {% endblock %}
