@@ -49,18 +49,18 @@ class CustomUser(AbstractUser):
             .filter(is_selected=True).order_by('-creation_date')
         for sentence in voted_selected:
             notification = f"Sentence you vote selected: " \
-                f"{sentence.text}, +2 points!"
+                f"{sentence.stylized_text}, +2 points!"
             notifications[sentence.creation_date] = notification
 
         write_selected = self.created_sentences \
             .filter(is_selected=True).order_by('-creation_date')
         for sentence in write_selected:
             notification = f"Sentence you wrote selected: " \
-                f"{sentence.text}, +10 points!"
+                f"{sentence.stylized_text}, +10 points!"
             notifications[sentence.creation_date] = notification
 
         notifications = [
-            i.value for i in sorted(notifications.items(), key=lambda x: x[0])
+            i[1] for i in sorted(notifications.items(), key=lambda x: x[0])
         ]
         return notifications
 

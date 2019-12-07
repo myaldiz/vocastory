@@ -1,8 +1,3 @@
 {% if notification %}
-    <li>
-        <p class="shadow-sm"
-           style="border-radius:50px;border-color:rgb(218, 218, 218);border-style:solid;padding:30px;border-width: 1px;">
-            {{ notification }}
-        </p>
-    </li>
+    {{ notification|safe }}
 {% endif %}
