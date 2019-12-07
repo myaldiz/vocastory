@@ -3,17 +3,17 @@
 {% block title %}Word-Lists{% endblock %}
 
 {% block content %}
-    <p>
-    Here is the Word-Sets, and the words they contain:
+    <p class="display-4" style="text-align: center;">
+    Browse word sets
     </p>
     {% if word_sets %}
-        <ul>
+        
         {% for word_set in word_sets %}
-            <li>
+            
                {% include "show_wordset.html" %}
-            </li>
+            
         {% endfor %}
-        </ul>
+        
     {% else %}
         <p> No Word-Set is available </p>
     {% endif %}

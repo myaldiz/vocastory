@@ -4,55 +4,67 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <article>
+    
 
-        <p>
-            Welcome to the Vocastory,
+        <div class="display-4" style="background:rgb(255, 255, 255);font-size: 25px;width:90vw;margin:auto;line-height: 50px;border-radius: 25px;">
+            <div style="text-align: center;">Welcome to the Vocastory,
             {% if user.is_authenticated %}
-                {{ user.username }}.
-            {% else %}
+               <strong>{{ user.username }}.</strong>
+            {% else %}</div>
                 please Login/Signup for contributing to the stories.
             {% endif %}<br>
-            We struggle to memorise words effectively, this is a platform where
-            you can memorize words by creating stories! <br>
-            In writer's mode, write a sentence using not used word to continue the story! <br>
-            In reader's mode, choose the best sentence you think is the best to continue the story! <br>
-            You will get additional score if your sentences are selected to the story.
-        </p>
+            <span style="font-style: italic;font-weight: bolder;">We struggle to memorise words effectively, this is a platform where
+                    you can memorize words by creating stories!</span> <br>
+                    <span style="background: lightgreen;">In writer's mode, write a sentence using not used word to continue the story!</span> <br>
+             <span style="background: lightpink;"> In reader's mode, choose the best sentence you think is the best to continue the story!</span> <br>
+            
+             <strong>You will get additional score if your sentences are selected to the story.</strong>
+             
+            </div>
 
         <p>
-
-            <a href='{% url 'play' %}'>
+<br>
+            <a href='{% url 'play' %}' id="play" class="shadow-lg btn btn-primary btn-lg" style="background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(115,37,219,1) 21%, rgba(253,29,29,1) 53%, rgba(252,226,69,1) 100%);color:white;font-size:30px;text-align:center;width:50%;border-radius:50px;height: 70px;margin-left:25%">
                 Play Random!
-            </a><br>
+            </a><br><br>
         </p>
 
 
-        {% if notifications %}
-        <h3> Notifications </h3>
-        <p>
-        <ul>
-            {% for notification in notifications %}
-                <li>
-                    {% include "show_notification.html" %}
-                </li>
-            {% endfor %}
-        </ul>
-        </p>
-        {% endif %}
 
-        <p>
-        <h3> Top Stories </h3>
-        <ul>
-            {% for story in stories %}
-                {% if story.completed %}
-                    <li>
-                        {% include "show_story.html" %}
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-        </p>
 
-    </article>
+        
+
+
+
+    <div class="card shadow" style="width:100%;margin:auto;margin-bottom: 10px;overflow-y:auto ;">
+            <h5 class="card-header"><span  style="margin:2px;">
+                    Notifications
+            </span></h5>
+            <div class="card-body">
+                    <p class="card-text">
+                            <ul>
+                                    {% for notification in notifications %}<li><p class="card-text" style="font-size: 25px;text-align: left;line-height: 30px;">{% include "show_notification.html" %}</p></li>{% endfor %}
+                            </ul>
+                    </p>
+
+            </div>
+          </div>
+
+          
+          <div class="card bg-light" style="width:100%;margin:auto;margin-bottom: 10px;overflow-y:auto ;">
+                <h5 class="card-header"><span  style="margin:2px;">
+                        Top Stories
+                </span></h5>
+                <div class="card-body">
+                        <p class="card-text">
+                                <ul>
+                                        {% for story in stories %}
+                                            {% if story.completed %}    
+                                        <li><p class="card-text" style="font-size: 25px;text-align: left;line-height: 30px;"> {% include "show_story.html" %}</p></li>{% endif %}{% endfor %}
+                                </ul>
+                        </p>
+    
+                </div>
+              </div>
+
 {% endblock %}
