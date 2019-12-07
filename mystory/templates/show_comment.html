@@ -1,6 +1,10 @@
 {% if review %}
-    <p class="shadow-sm"
-       style="border-radius:50px;border-color:rgb(218, 218, 218);border-style:solid;padding:30px;border-width: 1px;">
-        {{review.comment}}
-    </p>
+    {% if review.comment|length > 5 %}
+        <li>
+            <p class="shadow-sm"
+               style="border-radius:50px;border-color:rgb(218, 218, 218);border-style:solid;padding:30px;border-width: 1px;">
+                {{ review.comment }}
+            </p>
+        </li>
+    {% endif %}
 {% endif %}

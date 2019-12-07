@@ -33,6 +33,13 @@
 
         <p>
         <h3> Notifications </h3>
+        <ul>
+            {% for notification in notifications %}
+                <li>
+                    {% include "show_notification.html" %}
+                </li>
+            {% endfor %}
+        </ul>
         </p>
 
 

@@ -39,9 +39,13 @@ def home_view(request):
     """
     with transaction.atomic():
         top_stories = Story.get_top_stories_ordered()
+        notifications = None
+        # if request.user.is_authenticated:
+        #     notifications =
 
     context = {
         'stories': top_stories,
+        'notifications': notifications,
     }
     return render(request, 'home.html', context)
 

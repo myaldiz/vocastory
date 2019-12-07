@@ -7,7 +7,9 @@
             {{ story.get_stylized_text|safe }}<br>
             <a href='{{ story.get_review_url }}'>
                 Read/Review the story!
-            </a> <br>
+            </a>
+            Score is {{ story.score }}.
+            <br>
 
         {% else %}
 {#            {% if story.is_readable %}#}

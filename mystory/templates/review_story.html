@@ -22,7 +22,7 @@
             Other's reviews:
             <ul>
             {% for review in review_list %}
-                <li>{% include "show_comment.html" %}</li>
+                {% include "show_comment.html" %}
             {% endfor %}
             </ul>
         {% endif %}
