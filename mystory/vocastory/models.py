@@ -283,6 +283,10 @@ class Sentence(models.Model):
             sentence.save()
         return sentence
 
+    @classmethod
+    def num_entries_range(cls, date1, date2):
+        return cls.objects.filter(creation_date__gte=date1, creation_date__lte=date2).count()
+    
     def vote_sentence(self, user):
         if user is None:
             return False
