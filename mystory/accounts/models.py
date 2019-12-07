@@ -48,7 +48,7 @@ class CustomUser(AbstractUser):
         voted_selected = self.voted_sentences \
             .filter(is_selected=True).order_by('-creation_date')
         for sentence in voted_selected:
-            notification = f"Sentence you vote selected: " \
+            notification = f"Sentence you voted for got selected: " \
                 f"{sentence.stylized_text}, +2 points!"
             notifications[sentence.creation_date] = notification
 

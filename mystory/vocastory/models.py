@@ -148,7 +148,7 @@ class Story(models.Model):
         candidate_ids = candidates.values_list('pk', flat=True)
         if user.voted_sentences.filter(pk__in=candidate_ids).exists():
             return False
-        if candidates.exists():
+        if len(candidates) > 1:
             return True
         return False
 
@@ -188,9 +188,9 @@ class Story(models.Model):
         candidate_sentences = candidate_sentences \
             .annotate(votes=models.Count('voted_users')).order_by('-votes')
 
-        # if delta > timezone.timedelta(minutes=30) \
+        # if delta > timezone.timedelta(minutes=20) \
         #         or candidate_sentences[0].votes > 3 \ 
-        #         or (delta > timezone.timedelta(minutes=15) and candidate_sentences[0].votes > 1):
+        #         or (delta > timezone.timedelta(minutes=5) and candidate_sentences[0].votes > 1):
         if delta > timezone.timedelta(minutes=2) \
                 or candidate_sentences[0].votes > 3 \
                 or (delta > timezone.timedelta(minutes=1) and candidate_sentences[0].votes > 1):
@@ -308,7 +308,7 @@ class StoryReview(models.Model):
     coherence = models.IntegerField(default=0, null=True)
     creativity = models.IntegerField(default=0, null=True)
     fun = models.IntegerField(default=0, null=True)
-    comment = CharField(null=True, max_length=250)
+    comment = CharField(null=True, max_length=200)
 
     class Meta:
         unique_together = ['creator', 'story']
