@@ -1,13 +1,17 @@
 import string
 from django.utils import timezone
 from django.db import models
+from django.db.models import F, Q
+from django.db.models.functions import Length
+from django.db.models import CharField
 from django.urls import reverse
 
 from accounts.models import CustomUser
 
+
 # NLP engine only loaded if needed
 nlp_engine = None
-
+CharField.register_lookup(Length, 'len')
 
 def nlp(*args, **kwargs):
     """
@@ -24,7 +28,7 @@ def nlp(*args, **kwargs):
 
 
 class Word(models.Model):
-    text = models.CharField(max_length=30)
+    text = CharField(max_length=30)
 
     def __str__(self):
         return self.text
@@ -34,7 +38,7 @@ class Word(models.Model):
 
 
 class WordSet(models.Model):
-    title = models.CharField(max_length=50)
+    title = CharField(max_length=50)
     creation_date = models.DateTimeField(auto_now_add=True)
     words = models.ManyToManyField(Word)
     creator = models.ForeignKey('accounts.CustomUser',
@@ -62,24 +66,21 @@ class Story(models.Model):
         on_delete=models.CASCADE,
         null=True)
 
-    @property
-    def score(self):
-        coherence = self.review_set.aggregate(models.Avg('coherence'))
-        creativity = self.review_set.aggregate(models.Avg('creativity'))
-        fun = self.review_set.aggregate(models.Avg('fun'))
-        # comment_score = 1 if self.review_set.aggregate()
-        return coherence + creativity + fun
-
     @classmethod
     def get_top_stories_ordered(cls):
-        """
-        TODO: Sort by rating!!
-        :return:
-        """
-        # stories = cls.objects.annotate(coherence=models.Avg('review_set.coherence'))
-        # https://stackoverflow.com/questions/41766714/get-the-average-from-list-of-values-of-foreign-key-object-fields
-        stories = cls.objects.all()
-        return list(stories)
+        stories = cls.objects.filter(completed=True).annotate(
+            q_score=
+            models.Avg('review_set__coherence')
+            + models.Avg('review_set__creativity')
+            + models.Avg('review_set__fun'),
+            p_score=models.Count(
+                'review_set',
+                filter=Q(review_set__comment__len__gte=5),
+                output_field=models.FloatField()),
+            score=F('q_score') + F('p_score'),
+        ).order_by('-score')
+
+        return stories
 
     def get_sentence_set_with_vote(self):
         return self.sentence_set \
@@ -202,8 +203,8 @@ class Story(models.Model):
 
 class Sentence(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
-    text = models.CharField(max_length=200)
-    stylized_text = models.CharField(max_length=300, null=True)
+    text = CharField(max_length=200)
+    stylized_text = CharField(max_length=300, null=True)
     order = models.IntegerField(default=0)  # Order in the story
     used_words = models.ManyToManyField(Word)  # Used words from the WordSet
     is_selected = models.BooleanField(default=False)
@@ -232,10 +233,10 @@ class Sentence(models.Model):
         text = text + '.' if text[-1] not in string.punctuation else text
 
         def get_dic_reference(id, t):
-            text = "<a href='"\
-                   +"/vocastory/show_meaning/"\
-                   +str(id)\
-                   +"/'>"
+            text = "<a href='" \
+                   + "/vocastory/show_meaning/" \
+                   + str(id) \
+                   + "/'>"
             text += t
             text += "</a>"
             return text
@@ -290,14 +291,13 @@ class StoryReview(models.Model):
     coherence = models.IntegerField(default=0, null=True)
     creativity = models.IntegerField(default=0, null=True)
     fun = models.IntegerField(default=0, null=True)
-    comment = models.CharField(null=True, max_length=250)
+    comment = CharField(null=True, max_length=250)
 
     class Meta:
         unique_together = ['creator', 'story']
 
     @classmethod
     def create_or_edit(cls, user, story, flag, coherence, creativity, fun, comment):
-
         review, _ = cls.objects.get_or_create(creator=user, story=story)
         review.flag = flag
         review.coherence = coherence

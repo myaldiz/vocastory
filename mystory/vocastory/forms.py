@@ -15,7 +15,7 @@ class SentenceSelectForm(forms.Form):
 
 class StoryRatingForm(forms.Form):
     flag = forms.BooleanField(label='Report this story', required=False)
-    coherence = forms.IntegerField(label='Coherence', min_value=1, max_value=10, required=False)
-    creativity = forms.IntegerField(label='Creativity', min_value=1, max_value=10, required=False)
-    fun = forms.IntegerField(label='Fun', min_value=1, max_value=10, required=False)
-    comment = forms.CharField(label='Comment', max_length=250, widget=forms.Textarea)
+    coherence = forms.IntegerField(label='Coherence', min_value=1, max_value=10)
+    creativity = forms.IntegerField(label='Creativity', min_value=1, max_value=10)
+    fun = forms.IntegerField(label='Fun', min_value=1, max_value=10)
+    comment = forms.CharField(label='Comment', max_length=250, widget=forms.Textarea, required=False)
