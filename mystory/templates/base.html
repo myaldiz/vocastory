@@ -19,7 +19,7 @@
     <script src="{% static 'js/popper.min.js' %}"></script>
 </head>
 
-
+<body style=overflow:auto>
 <div class="top-bar col-md-12 shadow-sm mb5">
     <form class="form-inline sm-form float-right" style="margin:15px">
         {% if not user.is_authenticated %}
@@ -55,7 +55,7 @@
 </div>
 <hr>
 
-<body>
+
 <main>
     {% if messages %}
         <ul class="messages">

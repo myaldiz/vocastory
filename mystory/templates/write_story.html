@@ -5,14 +5,14 @@
 {% block content %}
 
 
-<div class="side-bar shadow p-0 mb-0" id="side-bar" style="height:calc(100vh -70px);top:70px;right:0px;z-index: 0;">
+<div class="side-bar shadow p-0 mb-0" id="side-bar" style="overflow:auto;height:calc(100vh -70px);top:70px;right:0px;z-index: 0;">
     <div class="row">
         <div class="shadow" style="min-width: 250px;background: white;min-height: 250px;margin:45px;padding:20px;border-radius: 500px;">
     <div class="display-4" style="margin:40px 10px 30px 10px;font-size:50px;">WRITER'S<br>MODE</div></div>
     </div>
 
     <div class="shadow card browse-card"
-        style="padding:0 0 0 10px;border-radius:50px;background:white;margin:0px 10px 10px 10px;padding:5px;height:50%;width:90%;overflow:auto">
+        style="padding:0 0 0 10px;border-radius:50px;background:white;margin:0px 10px 10% 10px;padding:5px;height:50%;width:90%;overflow:auto">
         <div class="card-body">
             <a href="#" class="btn btn-primary w-100" style="margin:2px;">WORD SET</a>
                 {% for word in story.get_unused_word_list %}
@@ -36,8 +36,8 @@
 
 
 
-<div class="page">
-        <div class="top-half shadow p-0 mb-0" style="background:rgb(235, 235, 235);width:70vw;right:320px;height:85vh;top:100px" >
+<div class="page" style="overflow:auto;">
+        <div class="top-half shadow p-0 mb-0" style="padding:20px;background:rgb(235, 235, 235);width:70vw;right:320px;height:85vh;top:60px" >
 
                 <p style="margin-left: 10px;margin-top: 10px;text-align: center;font-size: 20px;" >
                         <mark>Story id: {{ story.id }} <br>
@@ -65,7 +65,7 @@
         <p style="margin-left: 10px;margin-top: 10px;text-align: center;font-size: 20px;" >
 
         <mark >continue the story below</mark></p>
-        <form method="post" style="margin:auto;width:68vw;position: relative;top:50px;">
+        <form method="post" style="margin:auto;width:68vw;top:50px;">
         {% csrf_token %}
         <input style="width:100%;height:30vh;border-style: solid;border-color:gray;border-radius: 15px;padding:10px" class="shadow-sm" type="text"
        name="{{ input_form.sentence.name }}"
@@ -74,7 +74,7 @@
        maxlength="{{ input_form.sentence.field.max_length }}"
        {% if input_form.sentence.field.required %}required{% endif %}>
        
-        <input type="Submit" value="Submit" style="display: block;width:100%;color:white;position: relative;top:10px" class="btn btn-primary shadow-sm">
+        <input type="Submit" value="Submit" style="display: block;width:100%;color:white;" class="btn btn-primary shadow-sm">
         <input type="hidden" name="order" value="{{ story.get_candidate_index }}">
     </form>    
 
