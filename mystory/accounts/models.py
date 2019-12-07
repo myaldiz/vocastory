@@ -1,7 +1,7 @@
 # users/models.py
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.db.models import F, Q
+from django.db.models import Q, Subquery
 from django.apps import apps
 
 
@@ -25,7 +25,7 @@ class CustomUser(AbstractUser):
 
     @classmethod
     def get_users_scored(cls):
-        # stories_scored = apps.get_model('vocastory', 'Story').get_stories_scored()
+        stories_scored = apps.get_model('vocastory', 'Story').get_stories_scored()
         users_scored = cls.objects.annotate(
             score=models.Count(
                 'created_sentences',
