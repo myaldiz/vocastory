@@ -40,8 +40,8 @@ def home_view(request):
     with transaction.atomic():
         top_stories = Story.get_top_stories_ordered()
         notifications = None
-        # if request.user.is_authenticated:
-        #     notifications =
+        if request.user.is_authenticated:
+            notifications = CustomUser.objects.get(pk=request.user.id).get_notifications()
 
     context = {
         'stories': top_stories,
