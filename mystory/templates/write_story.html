@@ -3,11 +3,12 @@
 {% block title %}Write Story{% endblock %}
 
 {% block content %}
-    <h3>
-        {{ story.id }}
-    </h3>
+    <h2>
+        Writer's Mode
+    </h2>
 
     <p>
+        Story id: {{ story.id }} <br>
         {% if story.get_last_selected_index == -1 %}
             You will write the first sentence of the story,
             have a creative start!
@@ -21,6 +22,9 @@
         {% else %}
             Here is the last two sentence written:
         {% endif %} <br>
+    </p>
+
+    <p>
         {{ story.get_stylized_last_two|safe }}
     </p>
 
@@ -38,13 +42,21 @@
     <ul>
         {% for word in story.get_unused_word_list %}
             <li>
-                {{ word }}
+                <p class="card-text">
+                    <a href="{{ word.get_absolute_url }}">
+                        {{ word.text }}
+                    </a>
+                </p>
             </li>
         {% endfor %}
 
         {% for word in story.get_used_word_list %}
             <li>
-                <strike> {{ word }} </strike>
+                <p class="card-text">
+                    <a href="{{ word.get_absolute_url }}">
+                        <strike> {{ word.text }} </strike>
+                    </a>
+                </p>
             </li>
         {% endfor %}
     </ul>

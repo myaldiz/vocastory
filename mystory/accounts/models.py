@@ -42,6 +42,9 @@ class CustomUser(AbstractUser):
             # + models.Avg('created_sentences__review_set__fun')
         )
         return users_scored
+    
+    def get_notifications(self):
+        pass
 
     def __str__(self):
         return self.username

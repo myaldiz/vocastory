@@ -12,11 +12,18 @@
         <th style="text-align:center">User</th>
         <th style="text-align:center">Points</th>
         </tr>
-        {% for user in users_scored %}
+        {% for u in users_scored %}
             <tr>
-                <td style="text-align:center"> {{ forloop.counter }} </td>
-                <td style="text-align:center"> {{ user.username }} </td>
-                <td style="text-align:center"> {{ user.score }} </td>
+                {% if user.id == u.id %}
+                
+                    <td style="text-align:center"> <strong>{{ forloop.counter }}</strong>  </td>
+                    <td style="text-align:center"> <strong>{{ u.username }}</strong> </td>
+                    <td style="text-align:center"> <strong>{{ u.score }}</strong> </td>
+                {% else %}
+                    <td style="text-align:center"> {{ forloop.counter }} </td>
+                    <td style="text-align:center"> {{ u.username }} </td>
+                    <td style="text-align:center"> {{ u.score }} </td>
+                {% endif %}
             </tr>
         {% endfor %}
     </table>

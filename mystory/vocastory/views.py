@@ -61,6 +61,10 @@ def read_story(request, story_id):
     story = get_object_or_404(Story, id=story_id)
     user = CustomUser.objects.get(pk=request.user.id)
 
+    if not story.is_readable(user):
+        messages.info(request, 'This story is not readable :(')
+        return HttpResponseRedirect(reverse('home'))
+
     if request.method == 'GET':
         order = story.get_candidate_index()
         form = SentenceSelectForm()
@@ -72,8 +76,6 @@ def read_story(request, story_id):
         context = {'story': story, 'form': form}
         if len(form.fields['sentence_choice'].choices) != 0:
             return render(request, 'read_story.html', context)
-        else:
-            messages.info(request, 'All the sentences written by you!')
 
     elif request.method == 'POST':
         form = SentenceSelectForm(request.POST)
@@ -87,7 +89,7 @@ def read_story(request, story_id):
         story.close_sentence_poll()
         story.finish_story()
 
-    return HttpResponseRedirect(reverse('play'))
+    return HttpResponseRedirect(reverse('home'))
 
 
 @transaction.atomic
@@ -96,7 +98,12 @@ def write_story(request, story_id):
         return HttpResponseForbidden("Please login first!!")
 
     story = get_object_or_404(Story, id=story_id)
+    user = CustomUser.objects.get(pk=request.user.id)
     context = {'story': story}
+
+    if not story.is_writable(user):
+        messages.info(request, 'This story is not readable :(')
+        return HttpResponseRedirect(reverse('home'))
 
     if request.method == 'GET':
         context['input_form'] = SentenceInputForm()
@@ -106,14 +113,13 @@ def write_story(request, story_id):
         order = int(request.POST.get("order", "0"))
         form = SentenceInputForm(request.POST)
         if form.is_valid():
-            current_user = CustomUser.objects.get(pk=request.user.id)
-            ret = Sentence.create(order=order, text=form.cleaned_data['sentence'], story=story, creator=current_user)
+            ret = Sentence.create(order=order, text=form.cleaned_data['sentence'], story=story, creator=user)
             if ret is None:
                 messages.error(request, 'Please use the words from the word-list!')
                 context['input_form'] = form
                 return render(request, 'write_story.html', context)
 
-    return HttpResponseRedirect(reverse('play'))
+    return HttpResponseRedirect(reverse('home'))
 
 
 @transaction.atomic
@@ -129,8 +135,12 @@ def review_story(request, story_id):
 
     story = get_object_or_404(Story, id=story_id)
     user = get_object_or_404(CustomUser, id=request.user.id)
-    instance = StoryReview.objects.filter(creator=user, story=story).first()
 
+    if not story.is_reviewable(user):
+        messages.info(request, 'This story is not readable :(')
+        return HttpResponseRedirect(reverse('home'))
+
+    instance = StoryReview.objects.filter(creator=user, story=story).first()
     if instance is not None:
         initial = {
             'flag': instance.flag,
@@ -154,7 +164,6 @@ def review_story(request, story_id):
     elif request.method == 'POST':
 
         form = StoryRatingForm(request.POST)
-
         if form.is_valid():
             flag = form.cleaned_data['flag']
             coherence = form.cleaned_data['coherence']
@@ -175,7 +184,7 @@ def review_story(request, story_id):
                 coherence, creativity, fun, comment
             )
 
-    return HttpResponseRedirect(reverse('play'))
+    return HttpResponseRedirect(reverse('home'))
 
 
 @transaction.atomic
@@ -251,7 +260,7 @@ def play_loop(request):
                 if s.is_readable(current_user):
                     readable_stories.append(s)
         if len(readable_stories) == 0:
-            messages.info(request, "You read all the stories, check back later!")
+            messages.info(request, "You read all the stories, check back little later!")
             return HttpResponseRedirect(reverse('home'))
         else:
             story = random.choice(readable_stories)

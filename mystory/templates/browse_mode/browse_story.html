@@ -10,11 +10,9 @@
         Here are the stories created by that word_set:
             <ul>
             {% for story in story_list %}
-{#                {% if story.completed %}#}
                     <li>
                     {% include "show_story.html" %}
                     </li>
-{#                {% endif %}#}
             {% endfor %}
             </ul>
         {% else %}
