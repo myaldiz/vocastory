@@ -71,7 +71,7 @@ def read_story(request, story_id):
         form.fields['sentence_choice'].choices = choices
         context = {'story': story, 'form': form}
         if len(form.fields['sentence_choice'].choices) != 0:
-            return render(request, 'select_sentence.html', context)
+            return render(request, 'read_story.html', context)
         else:
             messages.info(request, 'All the sentences written by you!')
 

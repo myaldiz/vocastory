@@ -145,6 +145,9 @@ class Story(models.Model):
             return False
         candidates = self.get_candidate_sentences(self.get_candidate_index())
         candidates = candidates.exclude(creator=user)
+        candidate_ids = candidates.values_list('pk', flat=True)
+        if user.voted_sentences.filter(pk__in=candidate_ids).exists():
+            return False
         if candidates.exists():
             return True
         return False
@@ -185,11 +188,15 @@ class Story(models.Model):
         candidate_sentences = candidate_sentences \
             .annotate(votes=models.Count('voted_users')).order_by('-votes')
 
-        if delta > timezone.timedelta(minutes=30) \
+        # if delta > timezone.timedelta(minutes=30) \
+        #         or candidate_sentences[0].votes > 3 \ 
+        #         or (delta > timezone.timedelta(minutes=15) and candidate_sentences[0].votes > 1):
+        if delta > timezone.timedelta(minutes=2) \
                 or candidate_sentences[0].votes > 3 \
-                or (delta > timezone.timedelta(minutes=15) and candidate_sentences[0].votes > 1):
-            candidate_sentences[0].is_selected = True
-            candidate_sentences[0].save()
+                or (delta > timezone.timedelta(minutes=1) and candidate_sentences[0].votes > 1):
+            sentence = Sentence.objects.get(id=candidate_sentences[0].id)
+            sentence.is_selected = True
+            sentence.save()
 
     def finish_story(self):
         if len(self.get_unused_word_list()) == 0:
@@ -248,20 +255,25 @@ class Sentence(models.Model):
 
         sentence = cls(text=text, order=order, story=story, creator=creator)
         text_tokens = nlp(text)
-
         used_words = set()
         for t in text_tokens:
             t_l = t.lemma_.lower()
             found_words = word_set.words.filter(text=t_l)
+            found_exact = word_set.words.filter(text=t.text.lower())
             if found_words.exists():
                 text = text.replace(
                     t.text,
                     get_dic_reference(found_words.first().id, t.text)
                 )
-            used_words.update(found_words)
+                used_words.update(found_words)
+            elif found_exact.exists():
+                text = text.replace(
+                    t.text,
+                    get_dic_reference(found_exact.first().id, t.text)
+                )
+                used_words.update(found_exact)
 
         if len(used_words) == 0:
-            sentence.delete()
             return None
         else:
             sentence.stylized_text = text
