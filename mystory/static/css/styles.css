@@ -23,7 +23,7 @@ html , body{
     position:fixed;
     width:40vw;
     bottom:31vh;
-    right:calc(30vw - 100px);
+    right:calc(30vw - 300px);
     z-index: 0;
     overflow-y: auto;
     overflow-x:hidden;
@@ -122,6 +122,7 @@ html , body{
     z-index: 50;
     top:0;
 
+
 }
 
 
@@ -133,16 +134,12 @@ html , body{
     position: fixed;
     top:0;
     z-index: 100;
-    right:-250px;
-    transition: all 500ms;
+    right:0;
+
  
 }
 
 
-.side-bar:hover
-{
-    right:0;
-}
 
 .btn
 {
