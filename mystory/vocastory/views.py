@@ -50,7 +50,6 @@ def home_view(request):
     return render(request, 'home.html', context)
 
 
-@transaction.atomic
 def read_story(request, story_id):
     """
     Given story id it prepares selection form
@@ -82,17 +81,17 @@ def read_story(request, story_id):
         order = int(request.POST.get("order", "-1"))
         candidates = story.get_candidate_sentences(order)
         chosen_sentence = candidates.get(id=form.data['sentence_choice'])
-        chosen_sentence.vote_sentence(user)
+        with transaction.atomic():
+            chosen_sentence.vote_sentence(user)
+            # This selects sentence is certain conditions
+            # are fulfilled, and finishes the story
+            story.close_sentence_poll()
+            story.finish_story()
         messages.info(request, 'Your response is recorded')
-        # This selects sentence is certain conditions
-        # are fulfilled, and finishes the story
-        story.close_sentence_poll()
-        story.finish_story()
 
     return HttpResponseRedirect(reverse('home'))
 
 
-@transaction.atomic
 def write_story(request, story_id):
     if not request.user.is_authenticated:
         return HttpResponseForbidden("Please login first!!")
@@ -113,7 +112,8 @@ def write_story(request, story_id):
         order = int(request.POST.get("order", "0"))
         form = SentenceInputForm(request.POST)
         if form.is_valid():
-            ret = Sentence.create(order=order, text=form.cleaned_data['sentence'], story=story, creator=user)
+            with transaction.atomic():
+                ret = Sentence.create(order=order, text=form.cleaned_data['sentence'], story=story, creator=user)
             if ret is None:
                 messages.error(request, 'Please use the words from the word-list!')
                 context['input_form'] = form

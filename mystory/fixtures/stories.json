@@ -3,53 +3,54 @@
   "model": "vocastory.story",
   "pk": 1,
   "fields": {
-    "title": "Superstar Frog",
-    "completed": true,
-    "creation_date": "2019-11-23T11:35:51.559Z",
-    "word_set": 1,
-    "starred_users": [
-      1,
-      2
-    ]
+    "completed": false,
+    "creation_date": "2019-12-07T12:52:12.609Z",
+    "word_set": 4
   }
 },
 {
   "model": "vocastory.story",
   "pk": 2,
   "fields": {
-    "title": "Funny Story 1",
     "completed": false,
-    "creation_date": "2019-11-23T11:36:26.352Z",
-    "word_set": 2,
-    "starred_users": [
-      2
-    ]
+    "creation_date": "2019-12-07T12:52:46.648Z",
+    "word_set": 1
   }
 },
 {
   "model": "vocastory.story",
   "pk": 3,
   "fields": {
-    "title": "Crazy Story",
     "completed": false,
-    "creation_date": "2019-11-23T11:36:35.696Z",
-    "word_set": 3,
-    "starred_users": [
-      1
-    ]
+    "creation_date": "2019-12-07T12:56:30.390Z",
+    "word_set": 5
   }
 },
 {
   "model": "vocastory.story",
   "pk": 4,
   "fields": {
-    "title": "Life is good",
     "completed": false,
-    "creation_date": "2019-11-23T11:36:46.261Z",
-    "word_set": 4,
-    "starred_users": [
-      1
-    ]
+    "creation_date": "2019-12-07T13:00:01.455Z",
+    "word_set": 3
+  }
+},
+{
+  "model": "vocastory.story",
+  "pk": 5,
+  "fields": {
+    "completed": false,
+    "creation_date": "2019-12-07T13:09:28.791Z",
+    "word_set": 4
+  }
+},
+{
+  "model": "vocastory.story",
+  "pk": 6,
+  "fields": {
+    "completed": false,
+    "creation_date": "2019-12-07T13:40:08.877Z",
+    "word_set": 3
   }
 }
 ]
