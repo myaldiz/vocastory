@@ -24,27 +24,26 @@
     <form class="form-inline sm-form float-right" style="margin:15px">
         {% if not user.is_authenticated %}
             <!--<button class="btn btn-primary" type="Search"><a href='{% url "login" %}'>Login</a></button>-->
-            <button class="btn btn-primary"
+            <a href='{% url "browse_word_sets" %}' class="btn btn-primary"
+                    style="margin:0 0 0 10px;background:rgb(230, 230, 230);color: black;border-color: yellow;">Browse Manually</a>
+            <a href='{% url "login" %}' class="btn btn-primary"
                     style="margin:0 0 0 10px;background:rgb(230, 230, 230);color: black;border-color: yellow;"
-                    type="Search"><a href='{% url "browse_word_sets" %}'>Browse Manually</a></button>
-            <button class="btn btn-primary"
-                    style="margin:0 0 0 10px;background:rgb(230, 230, 230);color: black;border-color: yellow;"
-                    type="Search"><a href='{% url "login" %}'>Login</a></button>
-            <button class="btn btn-primary"
-                    style="margin:0 0 0 10px;background:rgb(230, 230, 230);color: black;border-color: yellow;"
-                    type="Search"><a href='{% url "signup" %}'>Sign up</a></button>
+                    >Login</a>
+            <a class="btn btn-primary"
+            href='{% url "signup" %}' style="margin:0 0 0 10px;background:rgb(230, 230, 230);color: black;border-color: yellow;"
+                    >Sign up</a>
         {% endif %}
         {% if user.is_authenticated %}
-            <button class="btn btn-primary"
+            <a href='{% url "browse_word_sets" %}' class="btn btn-primary"
                     style="margin:0px 50px 0px 10px;background:rgb(230, 230, 230);color: black;border-color: yellow;"
-                    type="Search"><a href='{% url "browse_word_sets" %}'>Browse Manually</a></button>
-            <button class="btn btn-primary"
+                    >Browse Manually</a>
+            <a href='{% url "see_leaderboard" %}' class="btn btn-primary"
                     style="margin:0px 50px 0px 10px;background:rgb(230, 230, 230);color: black;border-color: yellow;"
-                    type="Search"><a href='{% url "see_leaderboard" %}'>Leaderboard</a></button>
+                    >Leaderboard</a>
             <mark style="background:yellow">{{ user.username }}</mark>
-            <button class="btn btn-primary"
+            <a href='{% url "logout" %}' class="btn btn-primary"
                     style="margin:0 0 0 10px;background:rgb(230, 230, 230);color: black;border-color: yellow;"
-                    type="Search"><a href='{% url "logout" %}'>Logout</a></button>
+                    >Logout</a>
         {% endif %}
     </form>
 

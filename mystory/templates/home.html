@@ -6,7 +6,7 @@
 {% block content %}
     
 
-        <div class="display-4" style="background:rgb(255, 255, 255);font-size: 25px;width:90vw;margin:auto;line-height: 50px;border-radius: 25px;">
+        <div class="display-4" style="font-size: 25px;width:90vw;margin:auto;line-height: 50px;border-radius: 25px;">
             <div style="text-align: center;">Welcome to the Vocastory,
             {% if user.is_authenticated %}
                <strong>{{ user.username }}.</strong>
@@ -34,10 +34,10 @@
 
         
 
+        {% if user.is_authenticated %}
 
-
-    <div class="card shadow" style="width:100%;margin:auto;margin-bottom: 10px;overflow-y:auto ;">
-            <h5 class="card-header"><span  style="margin:2px;">
+    <div class="card shadow" style="width:100%;margin:auto;margin-bottom: 10px;overflow-y:auto ;border-radius: 25px;">
+            <h5 class="card-header" style="text-align: center;"><span  style="margin:2px;">
                     Notifications
             </span></h5>
             <div class="card-body" style="background: rgb(233, 233, 233);height:400px;overflow: auto;">
@@ -53,8 +53,8 @@
           
 <br>
 
-              <div class="card shadow" style="width:100%;margin:auto;margin-bottom: 10px;overflow-y:auto ;">
-                    <h5 class="card-header"><span  style="margin:2px;">
+              <div class="card shadow" style="border-radius:25px;width:100%;margin:auto;margin-bottom: 10px;overflow-y:auto ;">
+                    <h5 class="card-header" style="text-align: center;"><span  style="margin:2px;">
                             Top Stories
                     </span></h5>
                     <div class="card-body" style="background: rgb(233, 233, 233);height:400px;overflow: auto;">
@@ -67,5 +67,5 @@
         
                     </div>
                   </div>
-
+                  {% endif %}
 {% endblock %}
