@@ -3,64 +3,66 @@
 {% block title %}Select Sentence{% endblock %}
 
 {% block content %}
-    <h2>
-        Reader's Mode
-    </h2>
+    <div class="side-bar shadow p-0 mb-0" id="side-bar" style="overflow:auto;height:calc(100vh -70px);top:70px;right:0px;z-index: 0;">
+    <div class="row">
+        <div class="shadow" style="min-width: 250px;border-color:rgb(255, 214, 214);border-style:solid;background: white;min-height: 250px;margin:45px;padding:20px;border-radius: 70px;">
+    <div class="display-4" style="text-align:center;margin:40px 10px 30px 10px;font-size:50px;">READER'S<br>MODE</div></div>
+    </div>
 
-    <p>
-        Story id: {{ story.id }} <br>
-        {% if story.get_last_selected_index == -1 %}
-            You will select the first sentence of the story,
-            have a creative start!
-        {% elif story.get_last_selected_index == 0 %}
-            Here is the first sentence of the story, continue
-            from where it left!
-        {% elif story.get_unused_word_list|length == 1 %}
-            You will select the last sentence of the story.
-            Use the last unused word, have a creative finish!
-            Here is the last two sentence written:
-        {% else %}
-            Here is the last two sentence written:
-        {% endif %} <br>
+    <div class="shadow card browse-card"
+        style="padding:0 0 0 10px;border-radius:50px;background:white;margin:0px 10px 10% 10px;padding:5px;height:50%;width:90%;overflow:auto">
+        <div class="card-body">
+            <a href="#" class="btn btn-primary w-100" style="margin:2px;">WORD SET</a>
+                {% for word in story.get_unused_word_list %}
+                        
+                <a href="{{ word.get_absolute_url }}">
+                    <h5 class="card-title">{{ word.text }}</h5> 
+                </a>
+            
+                    
+                {% endfor %}
         
-    </p>
-
-    <p>
-        {{ story.get_stylized_last_two|safe }}
-    </p>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="Submit" value="Submit">
-        <input type="hidden" name="order" value="{{ story.get_candidate_index }}">
-    </form>
-
-    <p>
-    Here is the word list:
-    <ul>
-        {% for word in story.get_unused_word_list %}
-            <li>
-                <p class="card-text">
-                    <a href="{{ word.get_absolute_url }}">
-                        {{ word.text }}
-                    </a>
-                </p>
-            </li>
-        {% endfor %}
-
-        {% for word in story.get_used_word_list %}
-            <li>
-                <p class="card-text">
-                    <a href="{{ word.get_absolute_url }}">
-                        <strike> {{ word.text }} </strike>
-                    </a>
-                </p>
-            </li>
-        {% endfor %}
-    </ul>
-
-    </p>
-
-
+                {% for word in story.get_used_word_list %}
+                <a href="{{ word.get_absolute_url }}">
+                <h5 class="card-title"><strike>{{ word.text }}</strike></h5> 
+            </a>
+                {% endfor %}
+        </div>
+    </div>
+    </div>
+        <div class="page" style="overflow:auto;">
+            <div class="top-half shadow p-0 mb-0" style="padding:20px;background:rgb(235, 235, 235);width:50vw;right:320px;height:85vh;top:60px">
+                <p style="margin-left: 10px;margin-top: 10px;text-align: center;font-size: 20px;" >
+                        <mark>Story id: {{ story.id }} <br>
+                        {% if story.get_last_selected_index == -1 %}
+                            You will select the first sentence of the story,
+                            have a creative start!
+                        {% elif story.get_last_selected_index == 0 %}
+                            Here is the first sentence of the story, continue
+                            from where it left!
+                        {% elif story.get_unused_word_list|length == 1 %}
+                            You will select the last sentence of the story.
+                            Use the last unused word, have a creative finish!
+                            Here are the last two sentences written:
+                        {% else %}
+                            Here are the last two sentences written:
+                        {% endif %} <br>
+                    </mark> </p>
+                <div class="sentence shadow-sm" style="height:30%;font-size: 25px;margin:auto;overflow: auto;">
+                {{ story.get_stylized_last_two|safe }}
+                </div>
+                <div style="margin-top: 15px;margin-right: 30px;margin-left: 30px;">
+                    <form method="post">
+                            {% csrf_token %}
+                            {% for choice in form.sentence_choice %}
+                                <p class="sentence shadow-sm" style="background-color: lightcyan;">{{ choice }}</p>
+                            {% endfor %}
+                            <input type="Submit" value="Submit" class="btn btn-primary shadow-sm" style="width:100%;margin-top: 20px;">
+                            <input type="hidden" name="order" value="{{ story.get_candidate_index }}">
+                    </form>
+                </div>
+        
+        </div>
+        
+    </div>
 {% endblock %}

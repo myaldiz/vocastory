@@ -7,6 +7,10 @@ from django.apps import apps
 
 class CustomUser(AbstractUser):
 
+    @classmethod
+    def num_entries_range(cls, date1, date2):
+        return cls.objects.filter(date_joined__gte=date1, date_joined__lte=date2).count()
+    
     def get_stories(self):
         story_values = self.created_sentences.filter(is_selected=True).values('story').distinct()
         return apps.get_model('vocastory', 'Story').objects.get(story_values)

@@ -125,7 +125,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    #'/var/www/static/',
+    # os.path.join(BASE_DIR, "/opt/bitnami/apps/django/django_projects/vocastory/mystory/static"),
 ]
 
 # Modified for login/logout redirection

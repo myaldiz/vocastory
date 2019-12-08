@@ -15,20 +15,47 @@
     <script src="{% static 'js/popper.min.js' %}"></script>
 </head>
 
-<a href="/">
-    <img src="{% static 'imgs/logo-text.png' %}" style="max-width: 200px;margin-top:15px;" alt="" id="vocastory">
-</a>
+
 
 <title>
     Sign-up
 </title>
 
-<h2>Sign up</h2>
 
-<form method="post" >
+<form method="post" class="shadow-lg" style="background: white;border-radius: 25px;width:500px;height:560px;margin:auto;padding:20px;margin-top: 50px;">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
+    <div class="form-group">
+        <a href="/">
+            <img src="{% static 'imgs/logo.png' %}" style="max-width: 120px;margin-top:2px;margin-bottom: 15px;margin-left: calc( 50% - 60px );" alt="" id="vocastory">
+        </a>
+        <table class="table">
+            <tr>
+                <td>{{ form.username.label_tag }}
+                    <p style="color:red;font-size:12px;">*Required. no more than 150 characters. Letters, digits and @./+/-/_ only.</p>
+                </td>
+                <td>{{ form.username }}</td>
+                
+            </tr>
+            <tr>
+                <td>{{ form.email.label_tag }}</td>
+                <td>{{ form.email }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password1.label_tag }}</td>
+                <td>{{ form.password1 }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password2.label_tag }}</td>
+                <td>
+                    {{ form.password2 }}
+                    {% if form.errors %}
+                        <p style="color:red;font-size:12px;">Your username and password didn't match. Please try again.</p>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <button type="submit" class="btn btn-primary"style="width:100%">Sign up</button>
 </form>
-
+{{ form.as_p }}
 </html>
