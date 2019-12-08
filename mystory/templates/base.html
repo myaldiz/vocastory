@@ -25,8 +25,8 @@
         {% if not user.is_authenticated %}
             <!--<button class="btn btn-primary" type="Search"><a href='{% url "login" %}'>Login</a></button>-->
             <button class="btn btn-primary"
-                    style="margin:0 0 0 10px;background:rgb(230, 230, 230): black;border-color: yellow;"
-                    type="Search"><a href='{% url "browse_word_sets" %}'>Browse</a></button>
+                    style="margin:0 0 0 10px;background:rgb(230, 230, 230);color: black;border-color: yellow;"
+                    type="Search"><a href='{% url "browse_word_sets" %}'>Browse Manually</a></button>
             <button class="btn btn-primary"
                     style="margin:0 0 0 10px;background:rgb(230, 230, 230);color: black;border-color: yellow;"
                     type="Search"><a href='{% url "login" %}'>Login</a></button>
@@ -37,7 +37,7 @@
         {% if user.is_authenticated %}
             <button class="btn btn-primary"
                     style="margin:0px 50px 0px 10px;background:rgb(230, 230, 230);color: black;border-color: yellow;"
-                    type="Search"><a href='{% url "browse_word_sets" %}'>Browse</a></button>
+                    type="Search"><a href='{% url "browse_word_sets" %}'>Browse Manually</a></button>
             <button class="btn btn-primary"
                     style="margin:0px 50px 0px 10px;background:rgb(230, 230, 230);color: black;border-color: yellow;"
                     type="Search"><a href='{% url "see_leaderboard" %}'>Leaderboard</a></button>

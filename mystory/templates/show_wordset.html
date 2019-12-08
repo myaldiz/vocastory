@@ -5,7 +5,7 @@
                 {{ word_set.title }}
 </a></h5>
         <div class="card-body">
-                <h5 class="card-title"><strong style="background: rgb(255, 255, 146);">{{ word_set.starred_users.count }} likes</strong> </h5>              
+                <h5 class="card-title"><strong style="background: rgb(255, 255, 146);">{{ word_set.starred_users.count }} stars </strong> </h5>              
                 <p class="card-text">
                         <ul>
                                 {% for word in word_set.words.all %}
