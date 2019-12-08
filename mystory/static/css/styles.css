@@ -1,5 +1,7 @@
+
 html , body{
     height: 100%;
+    overflow: auto;
 }
 .page
 {
@@ -23,7 +25,7 @@ html , body{
     position:fixed;
     width:40vw;
     bottom:31vh;
-    right:calc(30vw - 100px);
+    right:calc(30vw - 300px);
     z-index: 0;
     overflow-y: auto;
     overflow-x:hidden;
@@ -88,9 +90,15 @@ html , body{
 }
 
 
+#play:hover
+{
+    background: gray;
+}
+
+
 .top-bar:hover
 {
-    background: rgb(255, 245, 152);
+    background: rgb(255, 248, 190);
 }
 
 
@@ -117,10 +125,11 @@ html , body{
     width:100%;
     min-width: 1200px;
     padding:0 350px 0 20vw;
-    background: rgb(255, 246, 205);
+    background: white;
     position: fixed;
     z-index: 50;
     top:0;
+
 
 }
 
@@ -133,21 +142,16 @@ html , body{
     position: fixed;
     top:0;
     z-index: 100;
-    right:-250px;
-    transition: all 500ms;
+    right:0;
+
  
 }
 
 
-.side-bar:hover
-{
-    right:0;
-}
 
 .btn
 {
     border-radius: 30px;
-    
 }
 
 

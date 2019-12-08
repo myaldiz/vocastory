@@ -4,24 +4,37 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <article>
 
-        <h3>
-            {{ word }}
-        </h3>
-        <p>
+
+
+
+
+    <div class="page">
+        <div class="top-half shadow p-0 mb-0" style="background:rgb(235, 235, 235);width:500px;left:50px;height:85vh;top:80px" >
+
+                <p class="display-1" style="margin-left: 10px;margin-top: 30px;margin-bottom:30px;text-align: center;font-size: 30px;" >
+                        <mark>
+                                {{ word }}
+                            <br>
+                    </mark> </p>
+
+
+    <div class="sentence shadow-sm" style="height:80%;font-size: 25px;margin:auto;overflow: auto;">
             {% for type, meanings in word_info.items %}
-                <strong> {{ type }}: </strong> <br>
-                <ul>
-                    {% for meaning in meanings %}
-                        <li>
-                            {{ meaning }}
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endfor %}
+            <strong> {{ type }}: </strong> <br>
+            <ul>
+                {% for meaning in meanings %}
+                    <li>
+                        {{ meaning }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+        </div>
 
-        </p>
 
-    </article>
 {% endblock %}
+
+
+
+

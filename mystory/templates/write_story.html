@@ -3,64 +3,94 @@
 {% block title %}Write Story{% endblock %}
 
 {% block content %}
-    <h2>
-        Writer's Mode
-    </h2>
 
-    <p>
-        Story id: {{ story.id }} <br>
-        {% if story.get_last_selected_index == -1 %}
-            You will write the first sentence of the story,
-            have a creative start!
-        {% elif story.get_last_selected_index == 0 %}
-            Here is the first sentence of the story, continue
-            from where it left!
-        {% elif story.get_unused_word_list|length == 1 %}
-            You will write the last sentence of the story.
-            Use the last unused word, have a creative finish!
-            Here is the last two sentence written:
-        {% else %}
-            Here is the last two sentence written:
-        {% endif %} <br>
-    </p>
 
-    <p>
-        {{ story.get_stylized_last_two|safe }}
-    </p>
+<div class="side-bar shadow p-0 mb-0" id="side-bar" style="overflow:auto;height:calc(100vh -70px);top:70px;right:0px;z-index: 0;">
+    <div class="row">
+        <div class="shadow" style="min-width: 250px;border-color:rgb(255, 214, 214);border-style:solid;background: white;min-height: 250px;margin:45px;padding:20px;border-radius: 70px;">
+    <div class="display-4" style="text-align:center;margin:40px 10px 30px 10px;font-size:50px;">WRITER'S<br>MODE</div></div>
+    </div>
 
-    <p>
-    <form method="post">
+    <div class="shadow card browse-card"
+        style="padding:0 0 0 10px;border-radius:50px;background:white;margin:0px 10px 10% 10px;padding:5px;height:50%;width:90%;overflow:auto">
+        <div class="card-body">
+            <a href="#" class="btn btn-primary w-100" style="margin:2px;">WORD SET</a>
+                {% for word in story.get_unused_word_list %}
+                        
+                <a href="{{ word.get_absolute_url }}">
+                    <h5 class="card-title">{{ word.text }}</h5> 
+                </a>
+            
+                    
+                {% endfor %}
+        
+                {% for word in story.get_used_word_list %}
+                <a href="{{ word.get_absolute_url }}">
+                <h5 class="card-title"><strike>{{ word.text }}</strike></h5> 
+            </a>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="page" style="overflow:auto;">
+        <div class="top-half shadow p-0 mb-0" style="padding:20px;background:rgb(235, 235, 235);width:50vw;right:320px;height:85vh;top:60px" >
+
+                <p style="margin-left: 10px;margin-top: 10px;text-align: center;font-size: 20px;" >
+                        <mark>Story id: {{ story.id }} <br>
+                        {% if story.get_last_selected_index == -1 %}
+                            You will write the first sentence of the story,
+                            have a creative start!
+                        {% elif story.get_last_selected_index == 0 %}
+                            Here is the first sentence of the story, continue
+                            from where it left!
+                        {% elif story.get_unused_word_list|length == 1 %}
+                            You will write the last sentence of the story.
+                            Use the last unused word, have a creative finish!
+                            Here are the last two sentence written:
+                        {% else %}
+                            Here are the last two sentences written:
+                        {% endif %} <br>
+                    </mark> </p>
+
+
+    <div class="sentence shadow-sm" style="height:30%;font-size: 25px;margin:auto;overflow: auto;">
+            {{ story.get_stylized_last_two|safe }}
+        </div>
+
+        <br>
+        <p style="margin-left: 10px;margin-top: 10px;text-align: center;font-size: 20px;" >
+
+        <mark >continue the story below</mark></p>
+        <form method="post" style="margin:auto;width:48vw;top:50px;">
         {% csrf_token %}
-        {{ input_form }}
-        <input type="Submit" value="Submit">
+        <input style="width:100%;height:30vh;border-style: solid;border-color:rgb(255, 214, 214);border-radius: 15px;padding:10px" class="shadow-sm" type="text"
+       name="{{ input_form.sentence.name }}"
+       id="{{ input_form.sentence.id_for_label }}"
+       {% if input_form.sentence.value != None %}value="{{ input_form.sentence.value|stringformat:'s' }}"{% endif %}
+       maxlength="{{ input_form.sentence.field.max_length }}"
+       {% if input_form.sentence.field.required %}required{% endif %}>
+       
+        <input type="Submit" value="Submit" style="display: block;width:100%;color:white;margin-top: 10px;" class="btn btn-primary shadow-sm">
         <input type="hidden" name="order" value="{{ story.get_candidate_index }}">
-    </form>
-    </p>
+    </form>    
 
-    <p>
-    Here is the word list:
-    <ul>
-        {% for word in story.get_unused_word_list %}
-            <li>
-                <p class="card-text">
-                    <a href="{{ word.get_absolute_url }}">
-                        {{ word.text }}
-                    </a>
-                </p>
-            </li>
-        {% endfor %}
+            </div>
 
-        {% for word in story.get_used_word_list %}
-            <li>
-                <p class="card-text">
-                    <a href="{{ word.get_absolute_url }}">
-                        <strike> {{ word.text }} </strike>
-                    </a>
-                </p>
-            </li>
-        {% endfor %}
-    </ul>
 
-    </p>
+        </div>
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}
