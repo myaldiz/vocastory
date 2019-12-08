@@ -25,4 +25,5 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('vocastory/', include('vocastory.urls')),
+    path('analytics/', include('analytics.urls')),
 ]
