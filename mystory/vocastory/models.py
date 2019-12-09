@@ -23,7 +23,7 @@ def nlp(*args, **kwargs):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
             import spacy
-            nlp_engine = spacy.load("en_core_web_sm")
+            nlp_engine = spacy.load("en_core_web_md")
     return nlp_engine(*args, **kwargs)
 
 
