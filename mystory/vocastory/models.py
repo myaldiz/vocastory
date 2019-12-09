@@ -188,7 +188,7 @@ class Story(models.Model):
         candidate_sentences = candidate_sentences \
             .annotate(votes=models.Count('voted_users')).order_by('-votes')
 
-        if delta > timezone.timedelta(minutes=45) \
+        if (delta > timezone.timedelta(minutes=50) and candidate_sentences[0].votes > 1)\
                 or candidate_sentences[0].votes > 4 \
                 or (delta > timezone.timedelta(minutes=5) and candidate_sentences[0].votes > 2):
             sentence = Sentence.objects.get(id=candidate_sentences[0].id)
