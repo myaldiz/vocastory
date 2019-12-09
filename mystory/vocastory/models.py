@@ -188,12 +188,12 @@ class Story(models.Model):
         candidate_sentences = candidate_sentences \
             .annotate(votes=models.Count('voted_users')).order_by('-votes')
 
-        # if delta > timezone.timedelta(minutes=20) \
-        #         or candidate_sentences[0].votes > 3 \ 
-        #         or (delta > timezone.timedelta(minutes=5) and candidate_sentences[0].votes > 1):
-        if delta > timezone.timedelta(minutes=2) \
-                or candidate_sentences[0].votes > 3 \
-                or (delta > timezone.timedelta(minutes=1) and candidate_sentences[0].votes > 1):
+        # if delta > timezone.timedelta(minutes=2) \
+        #         or candidate_sentences[0].votes > 3 \
+        #         or (delta > timezone.timedelta(minutes=1) and candidate_sentences[0].votes > 1):
+        if delta > timezone.timedelta(minutes=20) \
+                or candidate_sentences[0].votes > 3 \ 
+                or (delta > timezone.timedelta(minutes=10) and candidate_sentences[0].votes > 2):
             sentence = Sentence.objects.get(id=candidate_sentences[0].id)
             sentence.is_selected = True
             sentence.save()

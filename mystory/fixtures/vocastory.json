@@ -917,1585 +917,757 @@
   }
 },
 {
-  "model": "vocastory.wordset",
-  "pk": 1,
+  "model": "vocastory.word",
+  "pk": 135,
   "fields": {
-    "title": "Fun Collection 1",
-    "creation_date": "2019-12-07T08:05:13.866Z",
-    "creator": 3,
-    "words": [
-      88,
-      93,
-      98,
-      103,
-      108,
-      113,
-      118,
-      123,
-      128,
-      133
-    ],
-    "starred_users": [
-      3,
-      6
-    ]
+    "text": "car"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 136,
+  "fields": {
+    "text": "caravan"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 137,
+  "fields": {
+    "text": "space"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 138,
+  "fields": {
+    "text": "soar"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 139,
+  "fields": {
+    "text": "oblivion"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 140,
+  "fields": {
+    "text": "trajectory"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 141,
+  "fields": {
+    "text": "terror"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 142,
+  "fields": {
+    "text": "sunrise"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 143,
+  "fields": {
+    "text": "philosophical"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 144,
+  "fields": {
+    "text": "sea-salt"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 145,
+  "fields": {
+    "text": "Ferry"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 146,
+  "fields": {
+    "text": "hunt"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 147,
+  "fields": {
+    "text": "torrent"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 148,
+  "fields": {
+    "text": "apprehensive"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 149,
+  "fields": {
+    "text": "accursed"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 150,
+  "fields": {
+    "text": "demise"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 151,
+  "fields": {
+    "text": "azure"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 152,
+  "fields": {
+    "text": "sweat"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 153,
+  "fields": {
+    "text": "blood"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 154,
+  "fields": {
+    "text": "soccer"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 155,
+  "fields": {
+    "text": "labour"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 156,
+  "fields": {
+    "text": "yield"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 157,
+  "fields": {
+    "text": "ramifications"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 158,
+  "fields": {
+    "text": "phalanx"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 159,
+  "fields": {
+    "text": "spear"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 160,
+  "fields": {
+    "text": "frugal"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 161,
+  "fields": {
+    "text": "unyielding"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 162,
+  "fields": {
+    "text": "sheer"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 163,
+  "fields": {
+    "text": "brawn"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 164,
+  "fields": {
+    "text": "avenue"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 165,
+  "fields": {
+    "text": "asphalt"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 166,
+  "fields": {
+    "text": "velocity"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 167,
+  "fields": {
+    "text": "perspiration"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 168,
+  "fields": {
+    "text": "wind"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 169,
+  "fields": {
+    "text": "circuitous"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 170,
+  "fields": {
+    "text": "bebop"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 171,
+  "fields": {
+    "text": "brass"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 172,
+  "fields": {
+    "text": "ivory"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 173,
+  "fields": {
+    "text": "chant"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 174,
+  "fields": {
+    "text": "singer"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 175,
+  "fields": {
+    "text": "cigar"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 176,
+  "fields": {
+    "text": "whiskey"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 177,
+  "fields": {
+    "text": "conference"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 178,
+  "fields": {
+    "text": "sharp"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 179,
+  "fields": {
+    "text": "voguish"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 180,
+  "fields": {
+    "text": "discourse"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 181,
+  "fields": {
+    "text": "snob"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 182,
+  "fields": {
+    "text": "ranch"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 183,
+  "fields": {
+    "text": "livestock"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 184,
+  "fields": {
+    "text": "feedlot"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 185,
+  "fields": {
+    "text": "outhouse"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 186,
+  "fields": {
+    "text": "paddy"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 187,
+  "fields": {
+    "text": "aviary"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 188,
+  "fields": {
+    "text": "aerospace"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 189,
+  "fields": {
+    "text": "fuselage"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 190,
+  "fields": {
+    "text": "aviatrix"
   }
 },
 {
   "model": "vocastory.wordset",
-  "pk": 2,
-  "fields": {
-    "title": "Fun Collection 2",
-    "creation_date": "2019-12-07T08:06:03.536Z",
-    "creator": 3,
-    "words": [
-      89,
-      94,
-      98,
-      102,
-      107,
-      112,
-      117,
-      122,
-      127,
-      132
-    ],
-    "starred_users": [
-      1,
-      3
-    ]
-  }
-},
-{
-  "model": "vocastory.wordset",
-  "pk": 3,
-  "fields": {
-    "title": "Fun Collection 3",
-    "creation_date": "2019-12-07T08:40:52.451Z",
-    "creator": 3,
-    "words": [
-      86,
-      91,
-      96,
-      101,
-      106,
-      111,
-      116,
-      121,
-      126,
-      131
-    ],
-    "starred_users": [
-      3
-    ]
-  }
-},
-{
-  "model": "vocastory.wordset",
-  "pk": 4,
-  "fields": {
-    "title": "Fun Collection 4",
-    "creation_date": "2019-12-07T08:44:02.947Z",
-    "creator": 3,
-    "words": [
-      85,
-      90,
-      95,
-      100,
-      105,
-      110,
-      115,
-      120,
-      125,
-      130
-    ],
-    "starred_users": [
-      3
-    ]
-  }
-},
-{
-  "model": "vocastory.wordset",
-  "pk": 5,
-  "fields": {
-    "title": "Fun Collection 5",
-    "creation_date": "2019-12-07T08:44:54.535Z",
-    "creator": 3,
-    "words": [
-      84,
-      89,
-      94,
-      99,
-      104,
-      109,
-      114,
-      119,
-      124,
-      129
-    ],
-    "starred_users": [
-      3
-    ]
-  }
-},
-{
-  "model": "vocastory.story",
-  "pk": 1,
-  "fields": {
-    "completed": false,
-    "creation_date": "2019-12-07T12:52:12.609Z",
-    "word_set": 4
-  }
-},
-{
-  "model": "vocastory.story",
-  "pk": 2,
-  "fields": {
-    "completed": false,
-    "creation_date": "2019-12-07T12:52:46.648Z",
-    "word_set": 1
-  }
-},
-{
-  "model": "vocastory.story",
-  "pk": 3,
-  "fields": {
-    "completed": false,
-    "creation_date": "2019-12-07T12:56:30.390Z",
-    "word_set": 5
-  }
-},
-{
-  "model": "vocastory.story",
-  "pk": 4,
-  "fields": {
-    "completed": false,
-    "creation_date": "2019-12-07T13:00:01.455Z",
-    "word_set": 3
-  }
-},
-{
-  "model": "vocastory.story",
-  "pk": 5,
-  "fields": {
-    "completed": false,
-    "creation_date": "2019-12-07T13:09:28.791Z",
-    "word_set": 4
-  }
-},
-{
-  "model": "vocastory.story",
   "pk": 6,
   "fields": {
-    "completed": false,
-    "creation_date": "2019-12-07T13:40:08.877Z",
-    "word_set": 3
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 1,
-  "fields": {
-    "creation_date": "2019-12-07T12:52:42.013Z",
-    "text": "This whimsical truth can no longer exist.",
-    "stylized_text": "This <a href='/vocastory/show_meaning/130/'>whimsical</a> truth can no longer exist.",
-    "order": 0,
-    "is_selected": false,
-    "story": 1,
-    "creator": 1,
-    "used_words": [
-      130
+    "title": "Space",
+    "creation_date": "2019-12-07T14:54:16.054Z",
+    "creator": 5,
+    "words": [
+      54,
+      76,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142
     ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 2,
-  "fields": {
-    "creation_date": "2019-12-07T12:53:08.553Z",
-    "text": "Stop all the glitz he screamed.",
-    "stylized_text": "Stop all the <a href='/vocastory/show_meaning/123/'>glitz</a> he screamed.",
-    "order": 0,
-    "is_selected": true,
-    "story": 2,
-    "creator": 1,
-    "used_words": [
-      123
-    ],
-    "voted_users": [
+    "starred_users": [
       4
     ]
   }
 },
 {
-  "model": "vocastory.sentence",
-  "pk": 3,
-  "fields": {
-    "creation_date": "2019-12-07T12:57:18.596Z",
-    "text": "pugnacious people make me crazy.",
-    "stylized_text": "<a href='/vocastory/show_meaning/124/'>pugnacious</a> people make me crazy.",
-    "order": 0,
-    "is_selected": false,
-    "story": 3,
-    "creator": 1,
-    "used_words": [
-      124
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 4,
-  "fields": {
-    "creation_date": "2019-12-07T13:00:14.130Z",
-    "text": "Here is my jacuzzi he said.",
-    "stylized_text": "Here is my <a href='/vocastory/show_meaning/111/'>jacuzzi</a> he said.",
-    "order": 0,
-    "is_selected": true,
-    "story": 4,
-    "creator": 1,
-    "used_words": [
-      111
-    ],
-    "voted_users": [
-      4,
-      5,
-      9
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 5,
-  "fields": {
-    "creation_date": "2019-12-07T13:07:23.589Z",
-    "text": "Madcap brained people makes me crazy.",
-    "stylized_text": "<a href='/vocastory/show_meaning/113/'>Madcap</a> brained people makes me crazy.",
-    "order": 1,
-    "is_selected": true,
-    "story": 2,
-    "creator": 1,
-    "used_words": [
-      113
-    ],
-    "voted_users": [
-      6
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 6,
-  "fields": {
-    "creation_date": "2019-12-07T13:17:55.721Z",
-    "text": "It is difficult to concoct a sentence when one is under such emotional weight but I'll try.",
-    "stylized_text": "It is difficult to <a href='/vocastory/show_meaning/90/'>concoct</a> a sentence when one is under such emotional weight but I'll try.",
-    "order": 0,
-    "is_selected": true,
-    "story": 1,
-    "creator": 5,
-    "used_words": [
-      90
-    ],
-    "voted_users": [
-      8
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
+  "model": "vocastory.wordset",
   "pk": 7,
   "fields": {
-    "creation_date": "2019-12-07T13:19:12.161Z",
-    "text": "Run! They screamed and dumped the contraband in the river.",
-    "stylized_text": "Run! They screamed and dumped the <a href='/vocastory/show_meaning/88/'>contraband</a> in the river.",
-    "order": 1,
-    "is_selected": false,
-    "story": 2,
-    "creator": 5,
-    "used_words": [
-      88
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 8,
-  "fields": {
-    "creation_date": "2019-12-07T13:19:52.056Z",
-    "text": "I have a bulbous head.",
-    "stylized_text": "I have a <a href='/vocastory/show_meaning/85/'>bulbous</a> head.",
-    "order": 0,
-    "is_selected": false,
-    "story": 5,
-    "creator": 5,
-    "used_words": [
-      85
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 9,
-  "fields": {
-    "creation_date": "2019-12-07T13:28:20.666Z",
-    "text": "Their tomfoolery infuriates me.",
-    "stylized_text": "Their <a href='/vocastory/show_meaning/128/'>tomfoolery</a> infuriates me.",
-    "order": 2,
-    "is_selected": false,
-    "story": 2,
-    "creator": 5,
-    "used_words": [
-      128
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 10,
-  "fields": {
-    "creation_date": "2019-12-07T13:28:51.130Z",
-    "text": "He traveled incognito in the crowd.",
-    "stylized_text": "He traveled <a href='/vocastory/show_meaning/109/'>incognito</a> in the crowd.",
-    "order": 0,
-    "is_selected": true,
-    "story": 3,
-    "creator": 5,
-    "used_words": [
-      109
-    ],
-    "voted_users": [
-      6
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 11,
-  "fields": {
-    "creation_date": "2019-12-07T13:32:52.219Z",
-    "text": "i found a glitch in our code.",
-    "stylized_text": "i found a <a href='/vocastory/show_meaning/105/'>glitch</a> in our code.",
-    "order": 0,
-    "is_selected": true,
-    "story": 5,
-    "creator": 7,
-    "used_words": [
-      105
-    ],
-    "voted_users": [
+    "title": "Courtroom",
+    "creation_date": "2019-12-07T15:12:03.385Z",
+    "creator": 9,
+    "words": [
+      3,
       6,
-      8
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 12,
-  "fields": {
-    "creation_date": "2019-12-07T13:34:38.314Z",
-    "text": "My tale is of an encounter with the monstrous and terrifying jabberwocky.",
-    "stylized_text": "My tale is of an encounter with the monstrous and terrifying <a href='/vocastory/show_meaning/110/'>jabberwocky</a>.",
-    "order": 1,
-    "is_selected": false,
-    "story": 1,
-    "creator": 5,
-    "used_words": [
-      110
+      10,
+      17,
+      25,
+      34,
+      47
     ],
-    "voted_users": [
-      8
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 13,
-  "fields": {
-    "creation_date": "2019-12-07T13:35:08.785Z",
-    "text": "\"We are Venom!\"",
-    "stylized_text": "\"We are <a href='/vocastory/show_meaning/91/'>Venom</a>!\"",
-    "order": 0,
-    "is_selected": false,
-    "story": 4,
-    "creator": 8,
-    "used_words": [
-      91
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 14,
-  "fields": {
-    "creation_date": "2019-12-07T13:35:56.370Z",
-    "text": "We got into fisticuffs over everything.",
-    "stylized_text": "We got into <a href='/vocastory/show_meaning/101/'>fisticuffs</a> over everything.",
-    "order": 0,
-    "is_selected": false,
-    "story": 4,
-    "creator": 10,
-    "used_words": [
-      101
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 15,
-  "fields": {
-    "creation_date": "2019-12-07T13:36:18.913Z",
-    "text": "All the sentences I make are whimsical, like this one.",
-    "stylized_text": "All the sentences I make are <a href='/vocastory/show_meaning/130/'>whimsical</a>, like this one.",
-    "order": 1,
-    "is_selected": true,
-    "story": 1,
-    "creator": 9,
-    "used_words": [
-      130
-    ],
-    "voted_users": [
-      5,
-      10
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 16,
-  "fields": {
-    "creation_date": "2019-12-07T13:36:50.203Z",
-    "text": "This glitch was made by a numbskull named Mustafa.",
-    "stylized_text": "This <a href='/vocastory/show_meaning/105/'>glitch</a> was made by a <a href='/vocastory/show_meaning/120/'>numbskull</a> named Mustafa.",
-    "order": 1,
-    "is_selected": false,
-    "story": 5,
-    "creator": 10,
-    "used_words": [
-      105,
-      120
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 17,
-  "fields": {
-    "creation_date": "2019-12-07T13:36:53.981Z",
-    "text": "But perhaps it is that small glitch in my codes that determines my emotions.",
-    "stylized_text": "But perhaps it is that small <a href='/vocastory/show_meaning/105/'>glitch</a> in my codes that determines my emotions.",
-    "order": 1,
-    "is_selected": false,
-    "story": 1,
-    "creator": 1,
-    "used_words": [
-      105
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 18,
-  "fields": {
-    "creation_date": "2019-12-07T13:37:16.545Z",
-    "text": "Despite knowing it was a bad idea but she invited him to the Jacuzzi anyway.",
-    "stylized_text": "Despite knowing it was a bad idea but she invited him to the <a href='/vocastory/show_meaning/111/'>Jacuzzi</a> anyway.",
-    "order": 0,
-    "is_selected": false,
-    "story": 4,
-    "creator": 5,
-    "used_words": [
-      111
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 19,
-  "fields": {
-    "creation_date": "2019-12-07T13:37:19.340Z",
-    "text": "Morons exist everywhere, including the person who reads this sentence.",
-    "stylized_text": "<a href='/vocastory/show_meaning/121/'>Morons</a> exist everywhere, including the person who reads this sentence.",
-    "order": 0,
-    "is_selected": false,
-    "story": 4,
-    "creator": 9,
-    "used_words": [
-      121
-    ],
-    "voted_users": [
-      1
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 20,
-  "fields": {
-    "creation_date": "2019-12-07T13:37:23.049Z",
-    "text": "Of course we will start with jacuzzi he said!",
-    "stylized_text": "Of course we will start with <a href='/vocastory/show_meaning/111/'>jacuzzi</a> he said!",
-    "order": 0,
-    "is_selected": false,
-    "story": 4,
-    "creator": 3,
-    "used_words": [
-      111
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 21,
-  "fields": {
-    "creation_date": "2019-12-07T13:37:40.362Z",
-    "text": "I am a numbskull so I can't think of any sentences.",
-    "stylized_text": "I am a <a href='/vocastory/show_meaning/120/'>numbskull</a> so I can't think of any sentences.",
-    "order": 1,
-    "is_selected": false,
-    "story": 1,
-    "creator": 10,
-    "used_words": [
-      120
-    ],
-    "voted_users": [
-      9
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 22,
-  "fields": {
-    "creation_date": "2019-12-07T13:37:59.470Z",
-    "text": "His intention was to usurp nobody in the crowd.",
-    "stylized_text": "His intention was to <a href='/vocastory/show_meaning/129/'>usurp</a> nobody in the crowd.",
-    "order": 1,
-    "is_selected": true,
-    "story": 3,
-    "creator": 9,
-    "used_words": [
-      129
-    ],
-    "voted_users": [
-      5,
-      10
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 23,
-  "fields": {
-    "creation_date": "2019-12-07T13:38:35.503Z",
-    "text": "Discombobulated thoughts make me wanna fart.",
-    "stylized_text": "<a href='/vocastory/show_meaning/94/'>Discombobulated</a> thoughts make me wanna fart.",
-    "order": 1,
-    "is_selected": false,
-    "story": 3,
-    "creator": 1,
-    "used_words": [
-      94
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 24,
-  "fields": {
-    "creation_date": "2019-12-07T13:38:42.385Z",
-    "text": "\"Tomfoolery is unacceptable\", said the clown.",
-    "stylized_text": "\"<a href='/vocastory/show_meaning/128/'>Tomfoolery</a> is unacceptable\", said the clown.",
-    "order": 2,
-    "is_selected": true,
-    "story": 2,
-    "creator": 9,
-    "used_words": [
-      128
-    ],
-    "voted_users": [
-      10
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 25,
-  "fields": {
-    "creation_date": "2019-12-07T13:38:55.582Z",
-    "text": "My encounter with the riffraff of this town has left me beaten but I remain hopeful still for a miracle.",
-    "stylized_text": "My encounter with the <a href='/vocastory/show_meaning/125/'>riffraff</a> of this town has left me beaten but I remain hopeful still for a miracle.",
-    "order": 1,
-    "is_selected": false,
-    "story": 1,
-    "creator": 8,
-    "used_words": [
-      125
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 26,
-  "fields": {
-    "creation_date": "2019-12-07T13:39:02.768Z",
-    "text": "He was a pugnacious bulldog who nobody noticed.",
-    "stylized_text": "He was a <a href='/vocastory/show_meaning/124/'>pugnacious</a> bulldog who nobody noticed.",
-    "order": 1,
-    "is_selected": false,
-    "story": 3,
-    "creator": 10,
-    "used_words": [
-      124
-    ],
-    "voted_users": [
-      9
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 27,
-  "fields": {
-    "creation_date": "2019-12-07T13:39:48.877Z",
-    "text": "That glitch was made by a bulbous head.",
-    "stylized_text": "That <a href='/vocastory/show_meaning/105/'>glitch</a> was made by a <a href='/vocastory/show_meaning/85/'>bulbous</a> head.",
-    "order": 1,
-    "is_selected": false,
-    "story": 5,
-    "creator": 9,
-    "used_words": [
-      85,
-      105
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 28,
-  "fields": {
-    "creation_date": "2019-12-07T13:39:56.927Z",
-    "text": "Instead of a plane, it keeps rendering doohickey that resembles a penis.",
-    "stylized_text": "Instead of a plane, it keeps rendering <a href='/vocastory/show_meaning/95/'>doohickey</a> that resembles a penis.",
-    "order": 1,
-    "is_selected": true,
-    "story": 5,
-    "creator": 5,
-    "used_words": [
-      95
-    ],
-    "voted_users": [
-      10
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 29,
-  "fields": {
-    "creation_date": "2019-12-07T13:40:06.616Z",
-    "text": "They create hullabaloos that I cannot tolerate.",
-    "stylized_text": "They create <a href='/vocastory/show_meaning/108/'>hullabaloos</a> that I cannot tolerate.",
-    "order": 2,
-    "is_selected": false,
-    "story": 2,
-    "creator": 10,
-    "used_words": [
-      108
-    ],
-    "voted_users": [
-      9
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 30,
-  "fields": {
-    "creation_date": "2019-12-07T13:40:13.395Z",
-    "text": "I will throw a Thor's maelstrom to your freaking head he immediately said.",
-    "stylized_text": "I will throw a Thor's <a href='/vocastory/show_meaning/115/'>maelstrom</a> to your freaking head he immediately said.",
-    "order": 1,
-    "is_selected": false,
-    "story": 5,
-    "creator": 3,
-    "used_words": [
-      115
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 31,
-  "fields": {
-    "creation_date": "2019-12-07T13:40:49.836Z",
-    "text": "I'm getting goosebumps from all the nonsense I'm writing.",
-    "stylized_text": "I'm getting <a href='/vocastory/show_meaning/106/'>goosebumps</a> from all the nonsense I'm writing.",
-    "order": 0,
-    "is_selected": true,
-    "story": 6,
-    "creator": 9,
-    "used_words": [
-      106
-    ],
-    "voted_users": [
+    "starred_users": [
       3
     ]
   }
 },
 {
-  "model": "vocastory.sentence",
-  "pk": 32,
+  "model": "vocastory.wordset",
+  "pk": 8,
   "fields": {
-    "creation_date": "2019-12-07T13:41:10.493Z",
-    "text": "He numbskull jumped in front of everything.",
-    "stylized_text": "He <a href='/vocastory/show_meaning/120/'>numbskull</a> jumped in front of everything.",
-    "order": 1,
+    "title": "Soccer",
+    "creation_date": "2019-12-07T16:30:50.961Z",
+    "creator": 4,
+    "words": [
+      152,
+      153,
+      154,
+      155,
+      156,
+      157
+    ],
+    "starred_users": [
+      10
+    ]
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 9,
+  "fields": {
+    "title": "Sparta",
+    "creation_date": "2019-12-07T16:34:24.517Z",
+    "creator": 7,
+    "words": [
+      158,
+      159,
+      160,
+      161,
+      162,
+      163
+    ],
+    "starred_users": [
+      6
+    ]
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 10,
+  "fields": {
+    "title": "Zeus",
+    "creation_date": "2019-12-07T16:35:54.081Z",
+    "creator": 10,
+    "words": [
+      12,
+      15,
+      16,
+      18,
+      28,
+      35,
+      41
+    ],
+    "starred_users": [
+      6
+    ]
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 11,
+  "fields": {
+    "title": "Road Trip",
+    "creation_date": "2019-12-07T16:42:38.610Z",
+    "creator": 1,
+    "words": [
+      164,
+      165,
+      166,
+      167,
+      168,
+      169
+    ],
+    "starred_users": [
+      6
+    ]
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 12,
+  "fields": {
+    "title": "Jazz Bar",
+    "creation_date": "2019-12-07T16:45:56.384Z",
+    "creator": 8,
+    "words": [
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176
+    ],
+    "starred_users": [
+      7
+    ]
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 13,
+  "fields": {
+    "title": "Conference",
+    "creation_date": "2019-12-07T16:53:09.766Z",
+    "creator": 10,
+    "words": [
+      177,
+      178,
+      179,
+      180,
+      181
+    ],
+    "starred_users": []
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 14,
+  "fields": {
+    "title": "Farm",
+    "creation_date": "2019-12-07T17:01:53.897Z",
+    "creator": 3,
+    "words": [
+      182,
+      183,
+      184,
+      185,
+      186,
+      187
+    ],
+    "starred_users": [
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "vocastory.wordset",
+  "pk": 15,
+  "fields": {
+    "title": "Drunk night",
+    "creation_date": "2019-12-07T17:10:48.250Z",
+    "creator": 5,
+    "words": [
+      21,
+      24,
+      29,
+      30,
+      39,
+      94,
+      176
+    ],
+    "starred_users": [
+      7
+    ]
+  }
+},
+{
+  "model": "vocastory.story",
+  "pk": 7,
+  "fields": {
+    "completed": false,
+    "creation_date": "2019-12-07T16:31:56.042Z",
+    "word_set": 6
+  }
+},
+{
+  "model": "vocastory.story",
+  "pk": 8,
+  "fields": {
+    "completed": false,
+    "creation_date": "2019-12-08T00:58:56.376Z",
+    "word_set": 12
+  }
+},
+{
+  "model": "vocastory.story",
+  "pk": 9,
+  "fields": {
+    "completed": false,
+    "creation_date": "2019-12-08T01:00:00.238Z",
+    "word_set": 11
+  }
+},
+{
+  "model": "vocastory.story",
+  "pk": 10,
+  "fields": {
+    "completed": false,
+    "creation_date": "2019-12-08T11:11:28.792Z",
+    "word_set": 8
+  }
+},
+{
+  "model": "vocastory.sentence",
+  "pk": 81,
+  "fields": {
+    "creation_date": "2019-12-07T16:47:38.172Z",
+    "text": "What space is actually?",
+    "stylized_text": "What <a href='/vocastory/show_meaning/137/'>space</a> is actually?",
+    "order": 0,
+    "is_selected": true,
+    "story": 7,
+    "creator": 1,
+    "used_words": [
+      137
+    ],
+    "voted_users": [
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "vocastory.sentence",
+  "pk": 82,
+  "fields": {
+    "creation_date": "2019-12-08T00:58:52.492Z",
+    "text": "The obvious terror that brought made me crazy.",
+    "stylized_text": "The obvious <a href='/vocastory/show_meaning/141/'>terror</a> that brought made me crazy.",
+    "order": 0,
     "is_selected": false,
-    "story": 1,
+    "story": 7,
     "creator": 3,
     "used_words": [
-      120
+      141
     ],
     "voted_users": []
   }
 },
 {
   "model": "vocastory.sentence",
-  "pk": 33,
+  "pk": 83,
   "fields": {
-    "creation_date": "2019-12-07T13:41:26.131Z",
-    "text": "His erect penis making it difficult to walk in  his tight pants.",
-    "stylized_text": "His <a href='/vocastory/show_meaning/89/'>erect</a> penis making it difficult to walk in  his tight pants.",
-    "order": 1,
-    "is_selected": false,
-    "story": 3,
-    "creator": 5,
+    "creation_date": "2019-12-08T00:59:16.869Z",
+    "text": "Being a singer was always my dream.",
+    "stylized_text": "Being a <a href='/vocastory/show_meaning/174/'>singer</a> was always my dream.",
+    "order": 0,
+    "is_selected": true,
+    "story": 8,
+    "creator": 3,
     "used_words": [
-      89
+      174
     ],
     "voted_users": [
-      8
+      7
     ]
   }
 },
 {
   "model": "vocastory.sentence",
-  "pk": 34,
+  "pk": 84,
   "fields": {
-    "creation_date": "2019-12-07T13:42:08.531Z",
-    "text": "Their tomfoolery infuriates me.",
-    "stylized_text": "Their <a href='/vocastory/show_meaning/128/'>tomfoolery</a> infuriates me.",
-    "order": 2,
-    "is_selected": false,
-    "story": 2,
-    "creator": 8,
-    "used_words": [
-      128
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 35,
-  "fields": {
-    "creation_date": "2019-12-07T13:43:09.054Z",
-    "text": "He generates mayhem from his pea-brain.",
-    "stylized_text": "He generates <a href='/vocastory/show_meaning/116/'>mayhem</a> from his pea-brain.",
+    "creation_date": "2019-12-08T05:04:04.266Z",
+    "text": "space.",
+    "stylized_text": "<a href='/vocastory/show_meaning/137/'>space</a>.",
     "order": 0,
     "is_selected": false,
-    "story": 6,
-    "creator": 10,
+    "story": 7,
+    "creator": 7,
     "used_words": [
-      116
+      137
     ],
     "voted_users": []
   }
 },
 {
   "model": "vocastory.sentence",
-  "pk": 36,
+  "pk": 85,
   "fields": {
-    "creation_date": "2019-12-07T13:44:06.869Z",
-    "text": "The cantankerous bastard got a kick to the bum.",
-    "stylized_text": "The <a href='/vocastory/show_meaning/86/'>cantankerous</a> bastard got a kick to the bum.",
-    "order": 1,
-    "is_selected": false,
-    "story": 4,
-    "creator": 9,
-    "used_words": [
-      86
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 37,
-  "fields": {
-    "creation_date": "2019-12-07T13:46:10.439Z",
-    "text": "I studied aerospace engineering at the Esteemed Academy of numbskulls.",
-    "stylized_text": "I studied aerospace engineering at the Esteemed Academy of <a href='/vocastory/show_meaning/120/'>numbskulls</a>.",
-    "order": 2,
-    "is_selected": true,
-    "story": 5,
-    "creator": 9,
-    "used_words": [
-      120
-    ],
-    "voted_users": [
-      5
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 38,
-  "fields": {
-    "creation_date": "2019-12-07T13:46:23.742Z",
-    "text": "The mother goose's honking as she chased her down the road, gave her goosebumps down her spine.",
-    "stylized_text": "The mother goose's honking as she chased her down the road, gave her <a href='/vocastory/show_meaning/106/'>goosebumps</a> down her spine.",
+    "creation_date": "2019-12-08T09:23:13.155Z",
+    "text": "ivory.",
+    "stylized_text": "<a href='/vocastory/show_meaning/172/'>ivory</a>.",
     "order": 0,
     "is_selected": false,
-    "story": 6,
-    "creator": 5,
+    "story": 8,
+    "creator": 6,
     "used_words": [
-      106
+      172
     ],
     "voted_users": []
   }
 },
 {
   "model": "vocastory.sentence",
-  "pk": 39,
+  "pk": 86,
   "fields": {
-    "creation_date": "2019-12-07T13:46:56.299Z",
-    "text": "There are 3 morons inside it.",
-    "stylized_text": "There are 3 <a href='/vocastory/show_meaning/121/'>morons</a> inside it.",
-    "order": 1,
-    "is_selected": true,
-    "story": 4,
-    "creator": 10,
-    "used_words": [
-      121
-    ],
-    "voted_users": [
-      8
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 40,
-  "fields": {
-    "creation_date": "2019-12-07T13:48:39.210Z",
-    "text": "My writing has the special quality of generating self-defeating mayhem inside your head.",
-    "stylized_text": "My writing has the special quality of generating self-defeating <a href='/vocastory/show_meaning/116/'>mayhem</a> inside your head.",
-    "order": 1,
-    "is_selected": true,
-    "story": 6,
-    "creator": 10,
-    "used_words": [
-      116
-    ],
-    "voted_users": [
-      8
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 41,
-  "fields": {
-    "creation_date": "2019-12-07T13:51:02.776Z",
-    "text": "The clown lambasted himself for missing the irony.",
-    "stylized_text": "The clown <a href='/vocastory/show_meaning/133/'>lambasted</a> himself for missing the irony.",
-    "order": 3,
+    "creation_date": "2019-12-08T11:10:21.439Z",
+    "text": "avenue.",
+    "stylized_text": "<a href='/vocastory/show_meaning/164/'>avenue</a>.",
+    "order": 0,
     "is_selected": false,
-    "story": 2,
-    "creator": 9,
+    "story": 9,
+    "creator": 6,
     "used_words": [
-      133
+      164
     ],
     "voted_users": []
   }
 },
 {
   "model": "vocastory.sentence",
-  "pk": 42,
+  "pk": 87,
   "fields": {
-    "creation_date": "2019-12-07T13:51:19.914Z",
-    "text": "Behind the clown was a menagerie of chickens.",
-    "stylized_text": "Behind the clown was a <a href='/vocastory/show_meaning/118/'>menagerie</a> of chickens.",
-    "order": 3,
-    "is_selected": true,
-    "story": 2,
-    "creator": 10,
-    "used_words": [
-      118
-    ],
-    "voted_users": [
-      5
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 43,
-  "fields": {
-    "creation_date": "2019-12-07T13:52:20.131Z",
-    "text": "As an author, I'm truly a wunderkind.",
-    "stylized_text": "As an author, I'm truly a <a href='/vocastory/show_meaning/131/'>wunderkind</a>.",
+    "creation_date": "2019-12-08T11:11:26.323Z",
+    "text": "space is enormous.",
+    "stylized_text": "<a href='/vocastory/show_meaning/137/'>space</a> is enormous.",
     "order": 1,
     "is_selected": false,
-    "story": 6,
-    "creator": 9,
+    "story": 7,
+    "creator": 6,
     "used_words": [
-      131
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 44,
-  "fields": {
-    "creation_date": "2019-12-07T13:52:48.442Z",
-    "text": "I festooned the university walls with that doohickey.",
-    "stylized_text": "I <a href='/vocastory/show_meaning/100/'>festooned</a> the university walls with that <a href='/vocastory/show_meaning/95/'>doohickey</a>.",
-    "order": 2,
-    "is_selected": false,
-    "story": 5,
-    "creator": 10,
-    "used_words": [
-      95,
-      100
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 45,
-  "fields": {
-    "creation_date": "2019-12-07T13:53:31.091Z",
-    "text": "The argument with his boss had left him discombobulated.",
-    "stylized_text": "The argument with his boss had left him <a href='/vocastory/show_meaning/94/'>discombobulated</a>.",
-    "order": 2,
-    "is_selected": true,
-    "story": 3,
-    "creator": 8,
-    "used_words": [
-      94
-    ],
-    "voted_users": [
-      10
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 46,
-  "fields": {
-    "creation_date": "2019-12-07T13:56:23.521Z",
-    "text": "As if on command, they started to create a hullabaloo.",
-    "stylized_text": "As if on command, they started to create a <a href='/vocastory/show_meaning/108/'>hullabaloo</a>.",
-    "order": 4,
-    "is_selected": false,
-    "story": 2,
-    "creator": 5,
-    "used_words": [
-      108
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 47,
-  "fields": {
-    "creation_date": "2019-12-07T13:56:25.997Z",
-    "text": "I am flummox by my inability to figure out his intentions.",
-    "stylized_text": "I am <a href='/vocastory/show_meaning/114/'>flummox</a> by my inability to figure out his intentions.",
-    "order": 2,
-    "is_selected": false,
-    "story": 3,
-    "creator": 9,
-    "used_words": [
-      114
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 48,
-  "fields": {
-    "creation_date": "2019-12-07T13:57:05.715Z",
-    "text": "What a nitwit! How unambitious...",
-    "stylized_text": "What a <a href='/vocastory/show_meaning/119/'>nitwit</a>! How unambitious...",
-    "order": 2,
-    "is_selected": false,
-    "story": 3,
-    "creator": 10,
-    "used_words": [
-      119
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 49,
-  "fields": {
-    "creation_date": "2019-12-07T13:57:39.547Z",
-    "text": "One of the arts I perfected there, was that, of speaking complex jabberwocky.",
-    "stylized_text": "One of the arts I perfected there, was that, of speaking complex <a href='/vocastory/show_meaning/110/'>jabberwocky</a>.",
-    "order": 3,
-    "is_selected": false,
-    "story": 5,
-    "creator": 9,
-    "used_words": [
-      110
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 50,
-  "fields": {
-    "creation_date": "2019-12-07T13:57:39.743Z",
-    "text": "It doesnt help that I'm writing this while in a malfunctioning Jacuzzi.",
-    "stylized_text": "It doesnt help that I'm writing this while in a malfunctioning <a href='/vocastory/show_meaning/111/'>Jacuzzi</a>.",
-    "order": 1,
-    "is_selected": false,
-    "story": 6,
-    "creator": 8,
-    "used_words": [
-      111
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 51,
-  "fields": {
-    "creation_date": "2019-12-07T13:58:09.081Z",
-    "text": "I generated a maelstrom of that special doohickey over there.",
-    "stylized_text": "I generated a <a href='/vocastory/show_meaning/115/'>maelstrom</a> of that special <a href='/vocastory/show_meaning/95/'>doohickey</a> over there.",
-    "order": 3,
-    "is_selected": true,
-    "story": 5,
-    "creator": 10,
-    "used_words": [
-      95,
-      115
-    ],
-    "voted_users": [
-      5,
-      9
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 52,
-  "fields": {
-    "creation_date": "2019-12-07T13:59:12.287Z",
-    "text": "The chickens eavesdropped on the top-secret communications between the clown and his non-existent better self.",
-    "stylized_text": "The chickens <a href='/vocastory/show_meaning/98/'>eavesdropped</a> on the top-secret communications between the clown and his non-existent better self.",
-    "order": 4,
-    "is_selected": true,
-    "story": 2,
-    "creator": 9,
-    "used_words": [
-      98
-    ],
-    "voted_users": [
-      10
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 53,
-  "fields": {
-    "creation_date": "2019-12-07T13:59:52.516Z",
-    "text": "Another attempt: it now resembles a cross between the face of a jabberwocky and the topographical map of Utah.",
-    "stylized_text": "Another attempt: it now resembles a cross between the face of a <a href='/vocastory/show_meaning/110/'>jabberwocky</a> and the topographical map of Utah.",
-    "order": 3,
-    "is_selected": false,
-    "story": 5,
-    "creator": 5,
-    "used_words": [
-      110
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 54,
-  "fields": {
-    "creation_date": "2019-12-07T14:01:02.734Z",
-    "text": "A promiscuous rooster walked up to that menagerie.",
-    "stylized_text": "A <a href='/vocastory/show_meaning/103/'>promiscuous</a> rooster walked up to that <a href='/vocastory/show_meaning/118/'>menagerie</a>.",
-    "order": 4,
-    "is_selected": false,
-    "story": 2,
-    "creator": 10,
-    "used_words": [
-      103,
-      118
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 55,
-  "fields": {
-    "creation_date": "2019-12-07T14:02:26.488Z",
-    "text": "It is virtually impossible to lie in doldrums.",
-    "stylized_text": "It is virtually impossible to lie in <a href='/vocastory/show_meaning/96/'>doldrums</a>.",
-    "order": 2,
-    "is_selected": false,
-    "story": 6,
-    "creator": 9,
-    "used_words": [
-      96
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 56,
-  "fields": {
-    "creation_date": "2019-12-07T14:03:48.598Z",
-    "text": "I've festooned a notebook with sentences of Shakespearean quality.",
-    "stylized_text": "I've <a href='/vocastory/show_meaning/100/'>festooned</a> a notebook with sentences of Shakespearean quality.",
-    "order": 2,
-    "is_selected": true,
-    "story": 1,
-    "creator": 9,
-    "used_words": [
-      100
-    ],
-    "voted_users": [
-      8
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 57,
-  "fields": {
-    "creation_date": "2019-12-07T14:04:30.745Z",
-    "text": "So discombobulated, that he transformed into a nitwit.",
-    "stylized_text": "So <a href='/vocastory/show_meaning/94/'>discombobulated</a>, that he transformed into a <a href='/vocastory/show_meaning/119/'>nitwit</a>.",
-    "order": 3,
-    "is_selected": false,
-    "story": 3,
-    "creator": 10,
-    "used_words": [
-      94,
-      119
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 58,
-  "fields": {
-    "creation_date": "2019-12-07T14:04:50.173Z",
-    "text": "In the midst of all that, he hit an epiphany.",
-    "stylized_text": "In the midst of all that, he hit an <a href='/vocastory/show_meaning/99/'>epiphany</a>.",
-    "order": 3,
-    "is_selected": true,
-    "story": 3,
-    "creator": 9,
-    "used_words": [
-      99
-    ],
-    "voted_users": [
-      8
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 59,
-  "fields": {
-    "creation_date": "2019-12-07T14:05:14.438Z",
-    "text": "It feeds on your negative thoughts, further spreading its venom of depression and sorrow.",
-    "stylized_text": "It feeds on your negative thoughts, further spreading its <a href='/vocastory/show_meaning/91/'>venom</a> of depression and sorrow.",
-    "order": 2,
-    "is_selected": true,
-    "story": 6,
-    "creator": 8,
-    "used_words": [
-      91
-    ],
-    "voted_users": [
-      10
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 60,
-  "fields": {
-    "creation_date": "2019-12-07T14:06:11.001Z",
-    "text": "I concocted a toxic mix of trolls and ogres.",
-    "stylized_text": "I <a href='/vocastory/show_meaning/90/'>concocted</a> a toxic mix of trolls and ogres.",
-    "order": 4,
-    "is_selected": false,
-    "story": 5,
-    "creator": 10,
-    "used_words": [
-      90
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 61,
-  "fields": {
-    "creation_date": "2019-12-07T14:07:25.960Z",
-    "text": "The chickens discovered that the pigs were smuggling some contraband into the farm.",
-    "stylized_text": "The chickens discovered that the pigs were smuggling some <a href='/vocastory/show_meaning/88/'>contraband</a> into the farm.",
-    "order": 5,
-    "is_selected": true,
-    "story": 2,
-    "creator": 9,
-    "used_words": [
-      88
-    ],
-    "voted_users": [
-      5,
-      8
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 62,
-  "fields": {
-    "creation_date": "2019-12-07T14:08:19.876Z",
-    "text": "Would you like to join those wunderkinds?",
-    "stylized_text": "Would you like to join those <a href='/vocastory/show_meaning/131/'>wunderkinds</a>?",
-    "order": 2,
-    "is_selected": false,
-    "story": 4,
-    "creator": 9,
-    "used_words": [
-      131
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 63,
-  "fields": {
-    "creation_date": "2019-12-07T14:09:24.411Z",
-    "text": "And not even the lowest riffraff of society would want to hear about my problems.",
-    "stylized_text": "And not even the lowest <a href='/vocastory/show_meaning/125/'>riffraff</a> of society would want to hear about my problems.",
-    "order": 2,
-    "is_selected": false,
-    "story": 1,
-    "creator": 5,
-    "used_words": [
-      125
-    ],
-    "voted_users": [
-      10
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 64,
-  "fields": {
-    "creation_date": "2019-12-07T14:09:29.126Z",
-    "text": "The chickens discovered that diaphanous blankets were on sale at the circus.",
-    "stylized_text": "The chickens discovered that <a href='/vocastory/show_meaning/93/'>diaphanous</a> blankets were on sale at the circus.",
-    "order": 5,
-    "is_selected": false,
-    "story": 2,
-    "creator": 10,
-    "used_words": [
-      93
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 65,
-  "fields": {
-    "creation_date": "2019-12-07T14:14:09.782Z",
-    "text": "I enlisted the help of the invaluable riffraff outside the academy.",
-    "stylized_text": "I enlisted the help of the invaluable <a href='/vocastory/show_meaning/125/'>riffraff</a> outside the academy.",
-    "order": 4,
-    "is_selected": true,
-    "story": 5,
-    "creator": 9,
-    "used_words": [
-      125
-    ],
-    "voted_users": [
-      8
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 66,
-  "fields": {
-    "creation_date": "2019-12-07T14:17:00.606Z",
-    "text": "I adore the glorious literary highs that my traumatised drugged self can concoct.",
-    "stylized_text": "I adore the glorious literary highs that my traumatised drugged self can <a href='/vocastory/show_meaning/90/'>concoct</a>.",
-    "order": 2,
-    "is_selected": false,
-    "story": 1,
-    "creator": 10,
-    "used_words": [
-      90
-    ],
-    "voted_users": [
-      9
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 67,
-  "fields": {
-    "creation_date": "2019-12-07T14:17:46.266Z",
-    "text": "The rubbernecked at my arrival, apparently they never had seen a non-binary gender-fluid before.",
-    "stylized_text": "The <a href='/vocastory/show_meaning/126/'>rubbernecked</a> at my arrival, apparently they never had seen a non-binary gender-fluid before.",
-    "order": 2,
-    "is_selected": false,
-    "story": 4,
-    "creator": 8,
-    "used_words": [
-      126
-    ],
-    "voted_users": [
-      10
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 68,
-  "fields": {
-    "creation_date": "2019-12-07T14:17:49.318Z",
-    "text": "It might even cause you to get into fisticuffs.",
-    "stylized_text": "It might even cause you to get into <a href='/vocastory/show_meaning/101/'>fisticuffs</a>.",
-    "order": 3,
-    "is_selected": false,
-    "story": 6,
-    "creator": 9,
-    "used_words": [
-      101
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 69,
-  "fields": {
-    "creation_date": "2019-12-07T14:18:42.582Z",
-    "text": "After reading my writing, one day you'll wake up as a moron, not knowing how not to be one.",
-    "stylized_text": "After reading my writing, one day you'll wake up as a <a href='/vocastory/show_meaning/121/'>moron</a>, not knowing how not to be one.",
-    "order": 3,
-    "is_selected": false,
-    "story": 6,
-    "creator": 10,
-    "used_words": [
-      121
-    ],
-    "voted_users": [
-      8
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 70,
-  "fields": {
-    "creation_date": "2019-12-07T14:19:25.018Z",
-    "text": "After much searching the chickens found nothing, so they lambasted a pig in order to get some answers out of it.",
-    "stylized_text": "After much searching the chickens found nothing, so they <a href='/vocastory/show_meaning/133/'>lambasted</a> a pig in order to get some answers out of it.",
-    "order": 6,
-    "is_selected": false,
-    "story": 2,
-    "creator": 5,
-    "used_words": [
-      133
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 71,
-  "fields": {
-    "creation_date": "2019-12-07T14:20:54.496Z",
-    "text": "The wolf launched into a long lambast of the chickens for their disgraceful spying.",
-    "stylized_text": "The wolf launched into a long <a href='/vocastory/show_meaning/133/'>lambast</a> of the chickens for their disgraceful spying.",
-    "order": 6,
-    "is_selected": false,
-    "story": 2,
-    "creator": 10,
-    "used_words": [
-      133
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 72,
-  "fields": {
-    "creation_date": "2019-12-07T14:21:25.390Z",
-    "text": "There's a small glitch. I might be Shakespeare and I might have time-travelled.",
-    "stylized_text": "There's a small <a href='/vocastory/show_meaning/105/'>glitch</a>. I might be Shakespeare and I might have time-travelled.",
-    "order": 3,
-    "is_selected": false,
-    "story": 1,
-    "creator": 9,
-    "used_words": [
-      105
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 73,
-  "fields": {
-    "creation_date": "2019-12-07T14:21:26.461Z",
-    "text": "But to anyone who has not suffered, learned and emerged enlightened as I have, it might as well be jabberwocky.",
-    "stylized_text": "But to anyone who has not suffered, learned and emerged enlightened as I have, it might as well be <a href='/vocastory/show_meaning/110/'>jabberwocky</a>.",
-    "order": 3,
-    "is_selected": false,
-    "story": 1,
-    "creator": 5,
-    "used_words": [
-      110
-    ],
-    "voted_users": [
-      10
-    ]
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 74,
-  "fields": {
-    "creation_date": "2019-12-07T14:22:06.797Z",
-    "text": "All he needed to do was to erect a viral monument to the tragic stupidity of his boss. The rest would fall into place automatically.",
-    "stylized_text": "All he needed to do was to <a href='/vocastory/show_meaning/89/'>erect</a> a viral monument to the tragic stupidity of his boss. The rest would fall into place automatically.",
-    "order": 4,
-    "is_selected": false,
-    "story": 3,
-    "creator": 10,
-    "used_words": [
-      89
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 75,
-  "fields": {
-    "creation_date": "2019-12-07T14:22:43.301Z",
-    "text": "He realised that his boss was the perfect example of a gadfly.",
-    "stylized_text": "He realised that his boss was the perfect example of a <a href='/vocastory/show_meaning/104/'>gadfly</a>.",
-    "order": 4,
-    "is_selected": false,
-    "story": 3,
-    "creator": 9,
-    "used_words": [
-      104
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 76,
-  "fields": {
-    "creation_date": "2019-12-07T14:22:58.685Z",
-    "text": "If he could pin this on his gadfly of a coworker, he would be go scottfree and would have one less pain in his back side.",
-    "stylized_text": "If he could pin this on his <a href='/vocastory/show_meaning/104/'>gadfly</a> of a coworker, he would be go scottfree and would have one less pain in his back side.",
-    "order": 4,
-    "is_selected": false,
-    "story": 3,
-    "creator": 8,
-    "used_words": [
-      104
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 77,
-  "fields": {
-    "creation_date": "2019-12-07T14:26:15.469Z",
-    "text": "The fox raised a huge hullabaloo over the mysterious contraband when he discovered it.",
-    "stylized_text": "The fox raised a huge <a href='/vocastory/show_meaning/108/'>hullabaloo</a> over the mysterious <a href='/vocastory/show_meaning/88/'>contraband</a> when he discovered it.",
-    "order": 6,
-    "is_selected": false,
-    "story": 2,
-    "creator": 9,
-    "used_words": [
-      88,
-      108
-    ],
-    "voted_users": []
-  }
-},
-{
-  "model": "vocastory.sentence",
-  "pk": 78,
-  "fields": {
-    "creation_date": "2019-12-07T14:28:24.550Z",
-    "text": "There's a slight glitch because I am Shakespeare and I've time-travelled just for your entertainment.",
-    "stylized_text": "There's a slight <a href='/vocastory/show_meaning/105/'>glitch</a> because I am Shakespeare and I've time-travelled just for your entertainment.",
-    "order": 3,
-    "is_selected": false,
-    "story": 1,
-    "creator": 10,
-    "used_words": [
-      105
+      137
     ],
     "voted_users": []
   }
