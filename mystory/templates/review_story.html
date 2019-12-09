@@ -9,67 +9,61 @@
     <div class="display-4" style="text-align:center;margin:40px 10px 30px 10px;font-size:50px;">REVIEW<br>MODE</div></div>
     </div></div>
     <div class="page" style="overflow:auto;">
-        <div class="top-half shadow p-0 mb-0" style="padding:20px;background:rgb(235, 235, 235);width:50vw;right:320px;height:85vh;top:60px">
+        
+        <div class="top-half shadow p-0 mb-0" style="padding:20px;background:rgb(235, 235, 235);width:50vw;right:320px;height:90vh;top:60px">
+            
             <p style="margin-left: 10px;margin-top: 10px;text-align: center;font-size: 20px;" >
                     <mark>Story id: {{ story.id }} <br>
             <div class="sentence shadow-sm" style="height:30%;font-size: 25px;margin:auto;overflow: auto;">
                 {{ story.get_stylized_text|safe }}
             </div>
+            <p style="margin-left:5%;margin-top: 2%;">
+                {% if instance %}
+                    You reviewed this story before, you can edit your response below:
+                {% endif %}
+            </p>
+            <!--forms-->
             <div style="margin-top: 15px;margin-right: 30px;margin-left: 30px;">
                 <form method="post">
                     {% csrf_token %}
                     <table class="table">
                         <tr>
-                           <td>{{ rating_form.flag.label }}</td>
+                           <td style="background-color: red;color: white;border-radius:40px;">{{ rating_form.flag.label }}</td>
                            <td>{{ rating_form.flag }}</td> 
                         </tr>
                         <tr>
-                            <td>{{ rating_form.coherence.label }}</td>
+                            <td style="font-weight: bold;font-size: 18px;">{{ rating_form.coherence.label }}</td>
                             <td>{{ rating_form.coherence }}</td> 
                         </tr>    
                         <tr>
-                            <td>{{ rating_form.creativity.label }}</td>
+                            <td style="font-weight: bold;font-size: 18px;">{{ rating_form.creativity.label }}</td>
                             <td>{{ rating_form.creativity }}</td> 
                         </tr> 
                         <tr>
-                            <td>{{ rating_form.fun.label }}</td>
+                            <td style="font-weight: bold;font-size: 18px;">{{ rating_form.fun.label }}</td>
                             <td>{{ rating_form.fun }}</td> 
                         </tr>
                         <tr>
-                            <td>{{ rating_form.comment.label }}</td>
-                            <td style="height: 150px;">{{ rating_form.comment }}</td> 
+                            <td style="font-weight: bold;font-size: 18px;">{{ rating_form.comment.label }}</td>
+                            <td>{{ rating_form.comment }}</td> 
                         </tr>
                     </table>
                         
-                        <input type="Submit" value="Submit"  class="btn btn-primary shadow-sm" style="width:100%;margin-top: 20px;">
+                        <input type="Submit" value="Submit"  class="btn btn-primary shadow-sm" style="width:100%;margin-top: 15px;">
                 </form>
             </div>
-    
-        </div>
-    
+        <p>
+            {% if review_list|length != 0 %}
+                <h2 style="margin:2%">Other's reviews:</h2>
+                <ul class="shadow-sm" style="background-color: lightcyan; margin :10px;padding:10px;font-size:20px;border-radius: 15px;">
+                {% for review in review_list %}
+                    {% include "show_comment.html" %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </p>
+        </div>        
     </div>
     
-    <p>
-        
-            
-        <br>
-
-        {% if instance %}
-            You reviewed this story before, you can edit your response below:
-        {% endif %}
-        <br>
-        <form method="post">
-            
-        </form>
-    </p>
-    <p>
-        {% if review_list|length != 0 %}
-            Other's reviews:
-            <ul>
-            {% for review in review_list %}
-                {% include "show_comment.html" %}
-            {% endfor %}
-            </ul>
-        {% endif %}
-    </p>
+    
 {% endblock %}
