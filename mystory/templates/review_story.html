@@ -3,8 +3,47 @@
 {% block title %}{{ block.super }}|Review Story{% endblock %}
 
 {% block content %}
+    <div class="side-bar shadow p-0 mb-0" id="side-bar" style="overflow:auto;height:calc(100vh -70px);top:70px;right:0px;z-index: 0;">
+    <div class="row">
+        <div class="shadow" style="min-width: 250px;border-color:rgb(255, 214, 214);border-style:solid;background: white;min-height: 250px;margin:45px;padding:20px;border-radius: 70px;">
+    <div class="display-4" style="text-align:center;margin:40px 10px 30px 10px;font-size:50px;">REVIEW<br>MODE</div></div>
+    </div></div>
+    <div class="page" style="overflow:auto;">
+        <div class="top-half shadow p-0 mb-0" style="padding:20px;background:rgb(235, 235, 235);width:50vw;right:320px;height:85vh;top:60px">
+            <p style="margin-left: 10px;margin-top: 10px;text-align: center;font-size: 20px;" >
+                    <mark>Story id: {{ story.id }} <br>
+            <div class="sentence shadow-sm" style="height:30%;font-size: 25px;margin:auto;overflow: auto;">
+                {{ story.get_stylized_text|safe }}
+            </div>
+            <div style="margin-top: 15px;margin-right: 30px;margin-left: 30px;">
+                <form method="post">
+                        {% csrf_token %}
+                        {{ rating_form.flag.label }}
+                        {{ rating_form.flag }}
+                        <br>
+                        {{ rating_form.coherence.label }}
+                        {{ rating_form.coherence }}
+                        <br>
+                        {{ rating_form.creativity.label }}
+                        {{ rating_form.creativity }}
+                        <br>
+                        {{ rating_form.fun.label }}
+                        {{ rating_form.fun }}
+                        <br>
+                        {{ rating_form.comment.label }}
+                        {{ rating_form.comment }}
+                        <br>
+                        <input type="Submit" value="Submit">
+                </form>
+            </div>
+    
+        </div>
+    
+    </div>
+    
     <p>
-        {{ story.get_stylized_text|safe }}
+        
+            
         <br>
 
         {% if instance %}
@@ -12,9 +51,7 @@
         {% endif %}
         <br>
         <form method="post">
-            {% csrf_token %}
-            {{ rating_form }}
-            <input type="Submit" value="Submit">
+            
         </form>
     </p>
     <p>
