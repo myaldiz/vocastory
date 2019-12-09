@@ -148,7 +148,7 @@ class Story(models.Model):
         candidate_ids = candidates.values_list('pk', flat=True)
         if user.voted_sentences.filter(pk__in=candidate_ids).exists():
             return False
-        if len(candidates) > 1:
+        if len(candidates) > 2:
             return True
         return False
 
@@ -190,7 +190,7 @@ class Story(models.Model):
 
         if delta > timezone.timedelta(minutes=25) \
                 or candidate_sentences[0].votes > 4 \
-                or (delta > timezone.timedelta(minutes=5) and candidate_sentences[0].votes > 1):
+                or (delta > timezone.timedelta(minutes=5) and candidate_sentences[0].votes > 2):
             sentence = Sentence.objects.get(id=candidate_sentences[0].id)
             sentence.is_selected = True
             sentence.save()
