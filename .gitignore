@@ -135,3 +135,5 @@ Thumbs.db
 # Folders to ignore
 /js/coverage/
 /node_modules/
+mystory/static/imgs/readers mode.gif
+mystory/static/imgs/writers mode.gif
