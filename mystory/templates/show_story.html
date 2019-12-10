@@ -8,10 +8,13 @@
             <a href='{{ story.get_review_url }}'>
                 Read/Review the story!
             </a>
-            Score is {{ story.score }}.
+            {% if story.score %}
+            Score is {{ story.score|floatformat }}.
+            {% endif %}
             <br>
 
         {% else %}
+            {{ story.get_text|slice:":10" }}...<br>
             <a href='{{ story.get_read_url }}'>
                 Contribute in Reader's mode!
             </a> <br>

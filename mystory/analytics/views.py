@@ -8,84 +8,76 @@ from matplotlib import pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from django.http import HttpResponse
 import io
-
-# Create your views here.
-def sentences_per_day(earliest):
-    per_day = []
-    d1 = timezone.timedelta(days=1)
-                            
-    delta = timezone.now() - earliest
-    
-    prev = earliest
-    for i in range(delta.days+1):
-        per_day.append(Sentence.num_entries_range(prev,prev+d1))
-        prev+=d1
-    
-    return per_day
     
 def see_sentences(request):
+    users = CustomUser.objects.all().order_by('date_joined')
+    start_date = users.first().date_joined.replace(hour=0, minute=0, second=0, microsecond=0)
+    end_date = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    end_date = end_date + timezone.timedelta(days=1)
+    t_d = timezone.timedelta(hours=8)
+
+    total_users = 0
+    cumulative_users = []
+    x = []
+    cur_date = start_date
+    while cur_date < end_date:
+        total_users += Sentence.num_entries_range(cur_date, cur_date + t_d)
+        cumulative_users.append(total_users)
+        x.append(cur_date.strftime('%d-%H'))
+        cur_date += t_d
+
+    
+    plt.xticks(range(len(x)), x, wrap=True)
+    plt.xlabel('Time (Day-Hour)')
+    plt.ylabel('Total Sentences')
+    plt.title('Cumulative Sentence Graph')
+    plt.bar(range(len(cumulative_users)), cumulative_users)
+
     f = matplotlib.figure.Figure()
-    
-    sentences=Sentence.objects.all().order_by('creation_date')    
-    earliest=sentences.first().creation_date
-    
-    y_vals = sentences_per_day(earliest)
-    x_vals=list(range(1,len(y_vals)+1))   
-    print(y_vals)
-    
-    fig, ax = plt.subplots()
-    ax.plot(x_vals, y_vals)
-    
-    ax.set(xlabel='Day', ylabel='Sentences written',
-           title='Sentences written over time')
-    ax.grid()
-    
+
     canvas = FigureCanvasAgg(f)
-    
+
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
+    plt.clf()
     plt.close(f)
-    
-    response = HttpResponse(buf.getvalue(), content_type = 'image/png')
-    
-    return response
 
-def users_per_day(earliest):
-    per_day = []
-    d1 = timezone.timedelta(days=1)
-                            
-    delta = timezone.now() - earliest
-    
-    prev = earliest
-    for i in range(delta.days+1):
-        per_day.append(CustomUser.num_entries_range(prev,prev+d1))
-        prev+=d1
-    
-    return per_day
+    response = HttpResponse(buf.getvalue(), content_type='image/png')
+
+    return response
     
 def see_users(request):
+    users = CustomUser.objects.all().order_by('date_joined')
+    start_date = users.first().date_joined.replace(hour=0, minute=0, second=0, microsecond=0)
+    end_date = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    end_date = end_date + timezone.timedelta(days=1)
+    t_d = timezone.timedelta(hours=8)
+
+    total_users = 0
+    cumulative_users = []
+    x = []
+    cur_date = start_date
+    while cur_date < end_date:
+        total_users += CustomUser.num_entries_range(cur_date, cur_date + t_d)
+        cumulative_users.append(total_users)
+        x.append(cur_date.strftime('%d-%H'))
+        cur_date += t_d
+
+    plt.xticks(range(len(x)), x, wrap=True)
+    plt.xlabel('Time (Day-Hour)')
+    plt.ylabel('Total Users')
+    plt.title('Cumulative User Graph')
+    plt.bar(range(len(cumulative_users)), cumulative_users)
+
     f = matplotlib.figure.Figure()
-    
-    users=CustomUser.objects.all().order_by('date_joined')    
-    earliest=users.first().date_joined
-    
-    y_vals = users_per_day(earliest)
-    x_vals=list(range(1,len(y_vals)+1))   
-    
-    fig, ax = plt.subplots()
-    ax.plot(x_vals, y_vals)
-    
-    ax.set(xlabel='Day', ylabel='Users added',
-           title='Users added over time')
-    ax.grid()
-    
     canvas = FigureCanvasAgg(f)
-    
+
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
+    plt.clf()
     plt.close(f)
     
-    response = HttpResponse(buf.getvalue(), content_type = 'image/png')
-    
+    response = HttpResponse(buf.getvalue(), content_type='image/png')
+
     return response
 

@@ -115,6 +115,16 @@ class Story(models.Model):
         sentences = self.get_selected_sentences(order)
         return " ".join([i.stylized_text for i in sentences])
 
+    def get_text(self):
+        """
+        Gets the text for selected sentences for visualization
+        """
+        order = self.get_last_selected_index()
+        if order == -1:
+            return " "
+        sentences = self.get_selected_sentences(order)
+        return " ".join([i.text for i in sentences])
+
     def get_used_word_list(self):
         order = self.get_last_selected_index()
         sentences = self.get_selected_sentences(order)
@@ -282,7 +292,7 @@ class Sentence(models.Model):
 
     @classmethod
     def num_entries_range(cls, date1, date2):
-        return cls.objects.filter(creation_date__gte=date1, creation_date__lte=date2).count()
+        return cls.objects.filter(creation_date__gte=date1, creation_date__lt=date2).count()
     
     def vote_sentence(self, user):
         if user is None:
