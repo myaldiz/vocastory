@@ -10,7 +10,7 @@
     </div></div>
     <div class="page" style="overflow:auto;">
         
-        <div class="top-half shadow p-0 mb-0" style="overflow-y:auto;padding:20px;background:rgb(235, 235, 235);width:50vw;right:320px;height:90vh;top:60px">
+        <div class="top-half shadow p-0 mb-0" style="padding:20px;background:rgb(235, 235, 235);width:50vw;right:320px;height:90vh;top:60px">
             
             <p style="margin-left: 10px;margin-top: 10px;text-align: center;font-size: 20px;" >
                     <mark>Story id: {{ story.id }} <br>
@@ -23,12 +23,12 @@
                 {% endif %}
             </p>
             <!--forms-->
-            <div style="margin-top: 15px;margin-right: 30px;margin-left: 20px;overflow-x:auto;padding-bottom: 10px ;">
-                <form method="post" >
+            <div style="margin-top: 15px;margin-right: 30px;margin-left: 30px;">
+                <form method="post">
                     {% csrf_token %}
-                    <table class="table table shadow-sm" style="background: white;border-radius: 15px;;">
-                        <tr style="background: red">
-                           <td style="font-weight: bold;font-size: 18px;font-style: italic;color:white;">REPORT</td>
+                    <table class="table">
+                        <tr>
+                           <td style="background-color: red;color: white;border-radius:40px;">{{ rating_form.flag.label }}</td>
                            <td>{{ rating_form.flag }}</td> 
                         </tr>
                         <tr>
@@ -45,7 +45,7 @@
                         </tr>
                         <tr>
                             <td style="font-weight: bold;font-size: 18px;">{{ rating_form.comment.label }}</td>
-                            <td style="width:50%">{{ rating_form.comment }}</td> 
+                            <td>{{ rating_form.comment }}</td> 
                         </tr>
                     </table>
                         
@@ -55,11 +55,11 @@
         <p>
             {% if review_list|length != 0 %}
                 <h2 style="margin:2%">Other's reviews:</h2>
-                <div class="shadow-sm" style="background-color: lightcyan; margin :10px;padding:10px;font-size:20px;border-radius: 15px;overflow-y:auto ;">
+                <ul class="shadow-sm" style="background-color: lightcyan; margin :10px;padding:10px;font-size:20px;border-radius: 15px;">
                 {% for review in review_list %}
                     {% include "show_comment.html" %}
                 {% endfor %}
-                </div>
+                </ul>
             {% endif %}
         </p>
         </div>        

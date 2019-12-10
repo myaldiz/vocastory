@@ -18,4 +18,4 @@ class StoryRatingForm(forms.Form):
     coherence = forms.IntegerField(label='Coherence', min_value=1, max_value=10)
     creativity = forms.IntegerField(label='Creativity', min_value=1, max_value=10)
     fun = forms.IntegerField(label='Fun', min_value=1, max_value=10)
-    comment = forms.CharField(label='Comment', max_length=200, widget=forms.Textarea(attrs={"rows":5, "cols":75}), required=False)
+    comment = forms.CharField(label='Comment', max_length=200, widget=forms.Textarea(attrs={"rows":5, "width":'100%'}), required=False)
