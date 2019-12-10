@@ -21,7 +21,7 @@
                 {% else %}
                     <td style="text-align:center"> {{ forloop.counter }} </td>
                     <td style="text-align:center"> {{ u.username }} </td>
-                    <td style="text-align:center"> {{ u.score }} </td>
+                    <td style="text-align:center"> {{ u.score|floatformat }} </td>
                 {% endif %}
             </tr>
         {% endfor %}

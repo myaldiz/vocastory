@@ -31,6 +31,7 @@ def see_sentences(request):
     
     y_vals = sentences_per_day(earliest)
     x_vals=list(range(1,len(y_vals)+1))   
+    print(y_vals)
     
     fig, ax = plt.subplots()
     ax.plot(x_vals, y_vals)

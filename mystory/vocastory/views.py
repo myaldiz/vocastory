@@ -101,7 +101,7 @@ def write_story(request, story_id):
     context = {'story': story}
 
     if not story.is_writable(user):
-        messages.info(request, 'This story is not readable :(')
+        messages.info(request, 'This story is not writable :(')
         return HttpResponseRedirect(reverse('home'))
 
     if request.method == 'GET':
@@ -118,7 +118,8 @@ def write_story(request, story_id):
                 messages.error(request, 'Please use the words from the word-list!')
                 context['input_form'] = form
                 return render(request, 'write_story.html', context)
-
+            else:
+                messages.info(request, 'Your response is recorded')
     return HttpResponseRedirect(reverse('home'))
 
 
@@ -134,10 +135,6 @@ def review_story(request, story_id):
 
     story = get_object_or_404(Story, id=story_id)
     user = get_object_or_404(CustomUser, id=request.user.id)
-
-    if not story.is_reviewable(user):
-        messages.info(request, 'This story is not readable :(')
-        return HttpResponseRedirect(reverse('home'))
 
     instance = StoryReview.objects.filter(creator=user, story=story).first()
     if instance is not None:

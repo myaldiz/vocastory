@@ -23,7 +23,7 @@ def nlp(*args, **kwargs):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
             import spacy
-            nlp_engine = spacy.load("en_core_web_sm")
+            nlp_engine = spacy.load("en_core_web_md")
     return nlp_engine(*args, **kwargs)
 
 
@@ -148,7 +148,7 @@ class Story(models.Model):
         candidate_ids = candidates.values_list('pk', flat=True)
         if user.voted_sentences.filter(pk__in=candidate_ids).exists():
             return False
-        if len(candidates) > 1:
+        if len(candidates) > 2:
             return True
         return False
 
@@ -188,12 +188,9 @@ class Story(models.Model):
         candidate_sentences = candidate_sentences \
             .annotate(votes=models.Count('voted_users')).order_by('-votes')
 
-        # if delta > timezone.timedelta(minutes=20) \
-        #         or candidate_sentences[0].votes > 3 \ 
-        #         or (delta > timezone.timedelta(minutes=5) and candidate_sentences[0].votes > 1):
-        if delta > timezone.timedelta(minutes=2) \
-                or candidate_sentences[0].votes > 3 \
-                or (delta > timezone.timedelta(minutes=1) and candidate_sentences[0].votes > 1):
+        if (delta > timezone.timedelta(minutes=50) and candidate_sentences[0].votes > 1)\
+                or candidate_sentences[0].votes > 4 \
+                or (delta > timezone.timedelta(minutes=5) and candidate_sentences[0].votes > 2):
             sentence = Sentence.objects.get(id=candidate_sentences[0].id)
             sentence.is_selected = True
             sentence.save()

@@ -908,5 +908,404 @@
   "fields": {
     "text": "lambast"
   }
+},
+{
+  "model": "vocastory.word",
+  "pk": 134,
+  "fields": {
+    "text": "medical"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 135,
+  "fields": {
+    "text": "car"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 136,
+  "fields": {
+    "text": "caravan"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 137,
+  "fields": {
+    "text": "space"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 138,
+  "fields": {
+    "text": "soar"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 139,
+  "fields": {
+    "text": "oblivion"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 140,
+  "fields": {
+    "text": "trajectory"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 141,
+  "fields": {
+    "text": "terror"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 142,
+  "fields": {
+    "text": "sunrise"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 143,
+  "fields": {
+    "text": "philosophical"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 144,
+  "fields": {
+    "text": "sea-salt"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 145,
+  "fields": {
+    "text": "Ferry"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 146,
+  "fields": {
+    "text": "hunt"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 147,
+  "fields": {
+    "text": "torrent"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 148,
+  "fields": {
+    "text": "apprehensive"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 149,
+  "fields": {
+    "text": "accursed"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 150,
+  "fields": {
+    "text": "demise"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 151,
+  "fields": {
+    "text": "azure"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 152,
+  "fields": {
+    "text": "sweat"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 153,
+  "fields": {
+    "text": "blood"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 154,
+  "fields": {
+    "text": "soccer"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 155,
+  "fields": {
+    "text": "labour"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 156,
+  "fields": {
+    "text": "yield"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 157,
+  "fields": {
+    "text": "ramifications"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 158,
+  "fields": {
+    "text": "phalanx"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 159,
+  "fields": {
+    "text": "spear"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 160,
+  "fields": {
+    "text": "frugal"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 161,
+  "fields": {
+    "text": "unyielding"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 162,
+  "fields": {
+    "text": "sheer"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 163,
+  "fields": {
+    "text": "brawn"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 164,
+  "fields": {
+    "text": "avenue"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 165,
+  "fields": {
+    "text": "asphalt"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 166,
+  "fields": {
+    "text": "velocity"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 167,
+  "fields": {
+    "text": "perspiration"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 168,
+  "fields": {
+    "text": "wind"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 169,
+  "fields": {
+    "text": "circuitous"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 170,
+  "fields": {
+    "text": "bebop"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 171,
+  "fields": {
+    "text": "brass"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 172,
+  "fields": {
+    "text": "ivory"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 173,
+  "fields": {
+    "text": "chant"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 174,
+  "fields": {
+    "text": "singer"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 175,
+  "fields": {
+    "text": "cigar"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 176,
+  "fields": {
+    "text": "whiskey"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 177,
+  "fields": {
+    "text": "conference"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 178,
+  "fields": {
+    "text": "sharp"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 179,
+  "fields": {
+    "text": "voguish"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 180,
+  "fields": {
+    "text": "discourse"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 181,
+  "fields": {
+    "text": "snob"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 182,
+  "fields": {
+    "text": "ranch"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 183,
+  "fields": {
+    "text": "livestock"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 184,
+  "fields": {
+    "text": "feedlot"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 185,
+  "fields": {
+    "text": "outhouse"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 186,
+  "fields": {
+    "text": "paddy"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 187,
+  "fields": {
+    "text": "aviary"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 188,
+  "fields": {
+    "text": "aerospace"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 189,
+  "fields": {
+    "text": "fuselage"
+  }
+},
+{
+  "model": "vocastory.word",
+  "pk": 190,
+  "fields": {
+    "text": "aviatrix"
+  }
 }
 ]
